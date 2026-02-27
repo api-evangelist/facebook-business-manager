@@ -1,0 +1,112 @@
+name: Facebook Business Manager API
+description: APIs for managing Facebook Business accounts, advertising, pages, and assets
+image: https://www.facebook.com/images/fb_icon_325x325.png
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+url: https://business.facebook.com/apis.json
+apis:
+- name: Facebook Marketing API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows
+  image: https://www.facebook.com/images/fb_icon_325x325.png
+  humanURL: https://developers.facebook.com/docs/marketing-apis
+  baseURL: https://graph.facebook.com/v18.0
+  tags:
+  - advertising
+  - marketing
+  - campaigns
+  - ads
+  properties:
+  - type: Documentation
+    url: https://developers.facebook.com/docs/marketing-api
+  - type: OpenAPI
+    url: https://developers.facebook.com/docs/graph-api/openapi
+  - type: Authentication
+    url: https://developers.facebook.com/docs/marketing-api/authentication
+  - type: Changelog
+    url: https://developers.facebook.com/docs/graph-api/changelog
+  - type: Rate Limits
+    url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+- name: Facebook Pages API
+  description: Manage Facebook Pages, posts, comments, and engagement
+  image: https://www.facebook.com/images/fb_icon_325x325.png
+  humanURL: https://developers.facebook.com/docs/pages
+  baseURL: https://graph.facebook.com/v18.0
+  tags:
+  - pages
+  - social media
+  - content
+  - publishing
+  properties:
+  - type: Documentation
+    url: https://developers.facebook.com/docs/pages-api
+  - type: Getting Started
+    url: https://developers.facebook.com/docs/pages/getting-started
+- name: Facebook Conversions API
+  description: Send web and offline events directly to Facebook for improved tracking and attribution
+  image: https://www.facebook.com/images/fb_icon_325x325.png
+  humanURL: https://developers.facebook.com/docs/marketing-api/conversions-api
+  baseURL: https://graph.facebook.com/v18.0
+  tags:
+  - conversions
+  - tracking
+  - events
+  - attribution
+  properties:
+  - type: Documentation
+    url: https://developers.facebook.com/docs/marketing-api/conversions-api
+  - type: Implementation Guide
+    url: https://developers.facebook.com/docs/marketing-api/conversions-api/get-started
+- name: Facebook Business Asset API
+  description: Manage business assets including pixels, catalogs, and custom audiences
+  image: https://www.facebook.com/images/fb_icon_325x325.png
+  humanURL: https://developers.facebook.com/docs/marketing-api/business-asset-management
+  baseURL: https://graph.facebook.com/v18.0
+  tags:
+  - assets
+  - pixels
+  - catalogs
+  - audiences
+  properties:
+  - type: Documentation
+    url: https://developers.facebook.com/docs/marketing-api/business-asset-management
+- name: Facebook Instagram API
+  description: Manage Instagram Business and Creator accounts through Business Manager
+  image: https://www.facebook.com/images/fb_icon_325x325.png
+  humanURL: https://developers.facebook.com/docs/instagram-api
+  baseURL: https://graph.facebook.com/v18.0
+  tags:
+  - instagram
+  - social media
+  - content
+  - media
+  properties:
+  - type: Documentation
+    url: https://developers.facebook.com/docs/instagram-api
+  - type: Getting Started
+    url: https://developers.facebook.com/docs/instagram-api/getting-started
+common:
+- type: Portal
+  url: https://developers.facebook.com
+- type: Developer Console
+  url: https://developers.facebook.com/apps
+- type: Business Manager
+  url: https://business.facebook.com
+- type: Support
+  url: https://developers.facebook.com/support
+- type: Status
+  url: https://developers.facebook.com/status
+- type: Terms of Service
+  url: https://developers.facebook.com/terms
+- type: Privacy Policy
+  url: https://www.facebook.com/privacy/explanation
+maintainers:
+- name: Meta for Developers
+  email: platformcs@support.facebook.com
+  url: https://developers.facebook.com
+tags:
+- advertising
+- marketing
+- social media
+- business management
+- analytics
