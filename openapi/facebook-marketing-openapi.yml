@@ -1,0 +1,1456 @@
+openapi: 3.1.0
+info:
+  title: Facebook Marketing API
+  description: >-
+    Create and manage ad campaigns, analyze performance, and automate
+    advertising workflows across Meta platforms. The Marketing API provides
+    programmatic access to Facebook's advertising system, enabling businesses
+    to create campaigns, ad sets, and ads, manage budgets and bidding
+    strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api
+servers:
+  - url: https://graph.facebook.com/v25.0
+    description: Facebook Graph API Production Server
+tags:
+  - name: Campaigns
+    description: >-
+      Manage advertising campaigns including creation, updating, and
+      status management.
+  - name: Ad Sets
+    description: >-
+      Manage ad sets within campaigns, including targeting, budgets,
+      scheduling, and optimization goals.
+  - name: Ads
+    description: >-
+      Manage individual ads within ad sets, including creative
+      associations and status.
+  - name: Ad Creatives
+    description: >-
+      Manage ad creative content including images, videos, copy, and
+      call-to-action configurations.
+  - name: Ad Accounts
+    description: >-
+      Manage advertising accounts including settings, spend limits,
+      and account-level configurations.
+  - name: Custom Audiences
+    description: >-
+      Create and manage custom audiences for ad targeting based on
+      customer data, website visitors, or app users.
+  - name: Insights
+    description: >-
+      Retrieve performance metrics and analytics data for campaigns,
+      ad sets, and ads.
+  - name: Ad Images
+    description: >-
+      Upload and manage images used in ad creatives.
+security:
+  - bearerAuth: []
+paths:
+  /act_{ad_account_id}/campaigns:
+    get:
+      operationId: listCampaigns
+      summary: List campaigns
+      description: >-
+        Retrieves all campaigns for the specified ad account. Returns a
+        paginated list of campaign objects with their configurations and
+        status information.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/after'
+        - name: filtering
+          in: query
+          description: >-
+            Filters to apply to the campaign list. Accepts JSON array of
+            filter objects with field, operator, and value.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of campaigns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCampaign
+      summary: Create a campaign
+      description: >-
+        Creates a new advertising campaign in the specified ad account.
+        Requires at minimum a name, objective, and status.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignCreate'
+      responses:
+        '200':
+          description: Campaign created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{campaign_id}:
+    get:
+      operationId: getCampaign
+      summary: Get a campaign
+      description: >-
+        Retrieves the details of a specific campaign by its ID, including
+        configuration, status, and objective.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved campaign details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCampaign
+      summary: Update a campaign
+      description: >-
+        Updates an existing campaign. Supports modifying name, status,
+        budget, and other campaign-level settings.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignUpdate'
+      responses:
+        '200':
+          description: Campaign updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteCampaign
+      summary: Delete a campaign
+      description: >-
+        Deletes an advertising campaign. This sets the campaign status
+        to DELETED and it will no longer serve ads.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      responses:
+        '200':
+          description: Campaign deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /act_{ad_account_id}/adsets:
+    get:
+      operationId: listAdSets
+      summary: List ad sets
+      description: >-
+        Retrieves all ad sets for the specified ad account. Returns
+        targeting, budget, scheduling, and optimization configurations.
+      tags:
+        - Ad Sets
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of ad sets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdSetList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAdSet
+      summary: Create an ad set
+      description: >-
+        Creates a new ad set within a campaign. Defines targeting,
+        budget, schedule, optimization goal, and bid strategy.
+      tags:
+        - Ad Sets
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdSetCreate'
+      responses:
+        '200':
+          description: Ad set created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{ad_set_id}:
+    get:
+      operationId: getAdSet
+      summary: Get an ad set
+      description: >-
+        Retrieves the details of a specific ad set including targeting,
+        budget, scheduling, and optimization settings.
+      tags:
+        - Ad Sets
+      parameters:
+        - $ref: '#/components/parameters/adSetId'
+        - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad set details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdSet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateAdSet
+      summary: Update an ad set
+      description: >-
+        Updates an existing ad set. Supports modifying targeting,
+        budget, schedule, and optimization settings.
+      tags:
+        - Ad Sets
+      parameters:
+        - $ref: '#/components/parameters/adSetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdSetUpdate'
+      responses:
+        '200':
+          description: Ad set updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /act_{ad_account_id}/ads:
+    get:
+      operationId: listAds
+      summary: List ads
+      description: >-
+        Retrieves all ads for the specified ad account. Returns ad
+        configurations including creative associations and status.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of ads
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAd
+      summary: Create an ad
+      description: >-
+        Creates a new ad within an ad set. Associates an ad creative
+        with targeting and delivery settings defined at the ad set level.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreate'
+      responses:
+        '200':
+          description: Ad created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{ad_id}:
+    get:
+      operationId: getAd
+      summary: Get an ad
+      description: >-
+        Retrieves the details of a specific ad including its creative,
+        status, and configuration.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adId'
+        - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ad'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /act_{ad_account_id}/adcreatives:
+    get:
+      operationId: listAdCreatives
+      summary: List ad creatives
+      description: >-
+        Retrieves all ad creatives for the specified ad account.
+      tags:
+        - Ad Creatives
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of ad creatives
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdCreativeList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAdCreative
+      summary: Create an ad creative
+      description: >-
+        Creates a new ad creative with image, video, copy, and
+        call-to-action configurations for use in ads.
+      tags:
+        - Ad Creatives
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreativeCreate'
+      responses:
+        '200':
+          description: Ad creative created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /act_{ad_account_id}:
+    get:
+      operationId: getAdAccount
+      summary: Get ad account details
+      description: >-
+        Retrieves the details of a specific ad account including
+        settings, spend limits, and status information.
+      tags:
+        - Ad Accounts
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdAccount'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /act_{ad_account_id}/customaudiences:
+    get:
+      operationId: listCustomAudiences
+      summary: List custom audiences
+      description: >-
+        Retrieves all custom audiences for the specified ad account.
+        Returns audience configurations and approximate sizes.
+      tags:
+        - Custom Audiences
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of custom audiences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAudienceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomAudience
+      summary: Create a custom audience
+      description: >-
+        Creates a new custom audience for ad targeting. Supports
+        customer file audiences, website custom audiences, app
+        activity audiences, and lookalike audiences.
+      tags:
+        - Custom Audiences
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAudienceCreate'
+      responses:
+        '200':
+          description: Custom audience created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /act_{ad_account_id}/insights:
+    get:
+      operationId: getAdAccountInsights
+      summary: Get ad account insights
+      description: >-
+        Retrieves performance insights and analytics for the specified
+        ad account. Supports date range filtering, breakdowns, and
+        action breakdowns.
+      tags:
+        - Insights
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/fields'
+        - name: time_range
+          in: query
+          description: >-
+            JSON object specifying the date range with since and until
+            fields in YYYY-MM-DD format.
+          required: false
+          schema:
+            type: string
+        - name: breakdowns
+          in: query
+          description: >-
+            Comma-separated list of breakdown dimensions such as age,
+            gender, country, or placement.
+          required: false
+          schema:
+            type: string
+        - name: level
+          in: query
+          description: >-
+            Level of aggregation for results. Options include account,
+            campaign, adset, or ad.
+          required: false
+          schema:
+            type: string
+            enum:
+              - account
+              - campaign
+              - adset
+              - ad
+        - name: time_increment
+          in: query
+          description: >-
+            Number of days for each increment in the time range, or
+            use monthly or all_days.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved insights data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{campaign_id}/insights:
+    get:
+      operationId: getCampaignInsights
+      summary: Get campaign insights
+      description: >-
+        Retrieves performance insights for a specific campaign including
+        impressions, clicks, spend, and conversion metrics.
+      tags:
+        - Insights
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/fields'
+        - name: time_range
+          in: query
+          description: >-
+            JSON object specifying the date range with since and until
+            fields in YYYY-MM-DD format.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved campaign insights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /act_{ad_account_id}/adimages:
+    post:
+      operationId: uploadAdImage
+      summary: Upload an ad image
+      description: >-
+        Uploads an image to the ad account image library for use in
+        ad creatives. Accepts image file bytes.
+      tags:
+        - Ad Images
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  format: binary
+                  description: The image file to upload
+      responses:
+        '200':
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    type: object
+                    description: Map of uploaded image details keyed by filename
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 access token with ads_management or ads_read permissions.
+        Obtain tokens via the Facebook Login flow.
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+    adSetId:
+      name: ad_set_id
+      in: path
+      required: true
+      description: The ID of the ad set
+      schema:
+        type: string
+    adId:
+      name: ad_id
+      in: path
+      required: true
+      description: The ID of the ad
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: >-
+        Comma-separated list of fields to include in the response.
+        If omitted, default fields are returned.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: >-
+        Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the campaign
+        name:
+          type: string
+          description: The name of the campaign
+        objective:
+          type: string
+          description: The campaign objective
+          enum:
+            - OUTCOME_AWARENESS
+            - OUTCOME_ENGAGEMENT
+            - OUTCOME_LEADS
+            - OUTCOME_SALES
+            - OUTCOME_TRAFFIC
+            - OUTCOME_APP_PROMOTION
+        status:
+          type: string
+          description: The configured status of the campaign
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DELETED
+            - ARCHIVED
+        effective_status:
+          type: string
+          description: >-
+            The effective status of the campaign taking into account
+            parent statuses and schedule.
+        daily_budget:
+          type: string
+          description: Daily budget amount in account currency smallest unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget amount in account currency smallest unit
+        budget_remaining:
+          type: string
+          description: Remaining budget for the campaign
+        buying_type:
+          type: string
+          description: Buying type of the campaign
+          enum:
+            - AUCTION
+            - RESERVED
+        special_ad_categories:
+          type: array
+          items:
+            type: string
+          description: >-
+            Special ad categories required for housing, employment,
+            credit, or social issues ads.
+        created_time:
+          type: string
+          format: date-time
+          description: Time when the campaign was created
+        updated_time:
+          type: string
+          format: date-time
+          description: Time when the campaign was last updated
+        start_time:
+          type: string
+          format: date-time
+          description: Scheduled start time of the campaign
+        stop_time:
+          type: string
+          format: date-time
+          description: Scheduled stop time of the campaign
+    CampaignList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Campaign'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    CampaignCreate:
+      type: object
+      required:
+        - name
+        - objective
+        - status
+        - special_ad_categories
+      properties:
+        name:
+          type: string
+          description: The name of the campaign
+        objective:
+          type: string
+          description: The campaign objective
+          enum:
+            - OUTCOME_AWARENESS
+            - OUTCOME_ENGAGEMENT
+            - OUTCOME_LEADS
+            - OUTCOME_SALES
+            - OUTCOME_TRAFFIC
+            - OUTCOME_APP_PROMOTION
+        status:
+          type: string
+          description: The initial status of the campaign
+          enum:
+            - ACTIVE
+            - PAUSED
+        special_ad_categories:
+          type: array
+          items:
+            type: string
+          description: Required special ad categories or empty array if none apply
+        daily_budget:
+          type: string
+          description: Daily budget in smallest currency unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget in smallest currency unit
+        buying_type:
+          type: string
+          enum:
+            - AUCTION
+            - RESERVED
+    CampaignUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated campaign name
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DELETED
+            - ARCHIVED
+        daily_budget:
+          type: string
+          description: Updated daily budget
+        lifetime_budget:
+          type: string
+          description: Updated lifetime budget
+    AdSet:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad set
+        name:
+          type: string
+          description: The name of the ad set
+        campaign_id:
+          type: string
+          description: The ID of the parent campaign
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DELETED
+            - ARCHIVED
+        effective_status:
+          type: string
+          description: Effective status considering parent statuses
+        daily_budget:
+          type: string
+          description: Daily budget in smallest currency unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget in smallest currency unit
+        optimization_goal:
+          type: string
+          description: The optimization goal for ad delivery
+          enum:
+            - LINK_CLICKS
+            - IMPRESSIONS
+            - REACH
+            - LANDING_PAGE_VIEWS
+            - OFFSITE_CONVERSIONS
+            - LEAD_GENERATION
+            - APP_INSTALLS
+            - VALUE
+        billing_event:
+          type: string
+          description: The event used for billing
+          enum:
+            - IMPRESSIONS
+            - LINK_CLICKS
+        bid_amount:
+          type: integer
+          description: Bid amount in smallest currency unit
+        bid_strategy:
+          type: string
+          description: Bidding strategy for the ad set
+          enum:
+            - LOWEST_COST_WITHOUT_CAP
+            - LOWEST_COST_WITH_BID_CAP
+            - COST_CAP
+        targeting:
+          type: object
+          description: Targeting specification for the ad set
+          properties:
+            age_min:
+              type: integer
+              minimum: 18
+            age_max:
+              type: integer
+              maximum: 65
+            genders:
+              type: array
+              items:
+                type: integer
+            geo_locations:
+              type: object
+              properties:
+                countries:
+                  type: array
+                  items:
+                    type: string
+            interests:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        created_time:
+          type: string
+          format: date-time
+        updated_time:
+          type: string
+          format: date-time
+    AdSetList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdSet'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    AdSetCreate:
+      type: object
+      required:
+        - name
+        - campaign_id
+        - optimization_goal
+        - billing_event
+        - targeting
+        - status
+      properties:
+        name:
+          type: string
+        campaign_id:
+          type: string
+        optimization_goal:
+          type: string
+          enum:
+            - LINK_CLICKS
+            - IMPRESSIONS
+            - REACH
+            - LANDING_PAGE_VIEWS
+            - OFFSITE_CONVERSIONS
+            - LEAD_GENERATION
+            - APP_INSTALLS
+            - VALUE
+        billing_event:
+          type: string
+          enum:
+            - IMPRESSIONS
+            - LINK_CLICKS
+        targeting:
+          type: object
+          description: Targeting specification
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+        daily_budget:
+          type: string
+        lifetime_budget:
+          type: string
+        bid_amount:
+          type: integer
+        bid_strategy:
+          type: string
+          enum:
+            - LOWEST_COST_WITHOUT_CAP
+            - LOWEST_COST_WITH_BID_CAP
+            - COST_CAP
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+    AdSetUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DELETED
+            - ARCHIVED
+        daily_budget:
+          type: string
+        lifetime_budget:
+          type: string
+        targeting:
+          type: object
+        bid_amount:
+          type: integer
+        end_time:
+          type: string
+          format: date-time
+    Ad:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad
+        name:
+          type: string
+          description: The name of the ad
+        adset_id:
+          type: string
+          description: The ID of the parent ad set
+        campaign_id:
+          type: string
+          description: The ID of the parent campaign
+        creative:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the associated ad creative
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DELETED
+            - ARCHIVED
+        effective_status:
+          type: string
+          description: Effective status considering parent statuses
+        created_time:
+          type: string
+          format: date-time
+        updated_time:
+          type: string
+          format: date-time
+    AdList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ad'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    AdCreate:
+      type: object
+      required:
+        - name
+        - adset_id
+        - creative
+        - status
+      properties:
+        name:
+          type: string
+        adset_id:
+          type: string
+        creative:
+          type: object
+          required:
+            - creative_id
+          properties:
+            creative_id:
+              type: string
+              description: The ID of the ad creative to use
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PAUSED
+    AdCreative:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad creative
+        name:
+          type: string
+          description: The name of the ad creative
+        object_story_spec:
+          type: object
+          description: >-
+            Specification for the story that will appear in the ad,
+            including page ID, link data, and media.
+        title:
+          type: string
+          description: The title of the ad
+        body:
+          type: string
+          description: The body text of the ad
+        image_url:
+          type: string
+          format: uri
+          description: URL of the ad image
+        call_to_action_type:
+          type: string
+          description: The call-to-action button type
+          enum:
+            - LEARN_MORE
+            - SHOP_NOW
+            - SIGN_UP
+            - BOOK_NOW
+            - DOWNLOAD
+            - GET_OFFER
+            - CONTACT_US
+            - SUBSCRIBE
+        link_url:
+          type: string
+          format: uri
+          description: Destination URL for the ad
+        url_tags:
+          type: string
+          description: URL tags for tracking parameters
+    AdCreativeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdCreative'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    AdCreativeCreate:
+      type: object
+      required:
+        - name
+        - object_story_spec
+      properties:
+        name:
+          type: string
+        object_story_spec:
+          type: object
+          description: Story specification including page, link, and media data
+        title:
+          type: string
+        body:
+          type: string
+        call_to_action_type:
+          type: string
+          enum:
+            - LEARN_MORE
+            - SHOP_NOW
+            - SIGN_UP
+            - BOOK_NOW
+            - DOWNLOAD
+            - GET_OFFER
+            - CONTACT_US
+            - SUBSCRIBE
+        url_tags:
+          type: string
+    AdAccount:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad account (prefixed with act_)
+        account_id:
+          type: string
+          description: The numeric account ID
+        name:
+          type: string
+          description: The name of the ad account
+        account_status:
+          type: integer
+          description: >-
+            Status of the account. 1 = ACTIVE, 2 = DISABLED,
+            3 = UNSETTLED, 7 = PENDING_RISK_REVIEW,
+            8 = PENDING_SETTLEMENT, 9 = IN_GRACE_PERIOD,
+            100 = PENDING_CLOSURE, 101 = CLOSED.
+        currency:
+          type: string
+          description: Currency code used by the account (ISO 4217)
+        timezone_name:
+          type: string
+          description: Timezone name for the ad account
+        amount_spent:
+          type: string
+          description: Total amount spent by the account in account currency
+        balance:
+          type: string
+          description: Current remaining account balance
+        spend_cap:
+          type: string
+          description: Spend cap for the account
+        business:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+          description: The business associated with this ad account
+        created_time:
+          type: string
+          format: date-time
+    CustomAudience:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the custom audience
+        name:
+          type: string
+          description: The name of the custom audience
+        description:
+          type: string
+          description: Description of the audience
+        subtype:
+          type: string
+          description: The subtype of the custom audience
+          enum:
+            - CUSTOM
+            - WEBSITE
+            - APP
+            - OFFLINE_CONVERSION
+            - CLAIM
+            - PARTNER
+            - MANAGED
+            - VIDEO
+            - LOOKALIKE
+            - ENGAGEMENT
+        approximate_count:
+          type: integer
+          description: Approximate number of people in the audience
+        data_source:
+          type: object
+          properties:
+            type:
+              type: string
+            sub_type:
+              type: string
+          description: The source of the audience data
+        delivery_status:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: Delivery status code
+        operation_status:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: Operation status code
+        time_created:
+          type: string
+          format: date-time
+        time_updated:
+          type: string
+          format: date-time
+    CustomAudienceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomAudience'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    CustomAudienceCreate:
+      type: object
+      required:
+        - name
+        - subtype
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        subtype:
+          type: string
+          enum:
+            - CUSTOM
+            - WEBSITE
+            - APP
+            - OFFLINE_CONVERSION
+            - LOOKALIKE
+            - ENGAGEMENT
+        customer_file_source:
+          type: string
+          description: Source of customer data for CUSTOM subtype
+        lookalike_spec:
+          type: object
+          description: Specification for lookalike audiences
+          properties:
+            origin_audience_id:
+              type: string
+            ratio:
+              type: number
+              minimum: 0.01
+              maximum: 0.2
+            country:
+              type: string
+        rule:
+          type: object
+          description: Rule-based audience definition for WEBSITE or APP subtypes
+    InsightsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightsData'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    InsightsData:
+      type: object
+      properties:
+        impressions:
+          type: string
+          description: Number of times ads were shown
+        clicks:
+          type: string
+          description: Number of clicks on ads
+        spend:
+          type: string
+          description: Total amount spent during the period
+        reach:
+          type: string
+          description: Number of unique people who saw the ads
+        cpc:
+          type: string
+          description: Average cost per click
+        cpm:
+          type: string
+          description: Average cost per 1,000 impressions
+        ctr:
+          type: string
+          description: Click-through rate percentage
+        frequency:
+          type: string
+          description: Average number of times each person saw the ad
+        actions:
+          type: array
+          description: List of actions taken by people
+          items:
+            type: object
+            properties:
+              action_type:
+                type: string
+              value:
+                type: string
+        conversions:
+          type: array
+          description: List of conversion events
+          items:
+            type: object
+            properties:
+              action_type:
+                type: string
+              value:
+                type: string
+        date_start:
+          type: string
+          format: date
+          description: Start date of the reporting period
+        date_stop:
+          type: string
+          format: date
+          description: End date of the reporting period
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        adset_id:
+          type: string
+        adset_name:
+          type: string
+        ad_id:
+          type: string
+        ad_name:
+          type: string
