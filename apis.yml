@@ -2,8 +2,8 @@ name: Facebook Business Manager API
 description: APIs for managing Facebook Business accounts, advertising, pages, and assets
 image: https://www.facebook.com/images/fb_icon_325x325.png
 created: '2024'
-modified: '2026-03-04'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 url: https://business.facebook.com/apis.json
 apis:
 - name: Facebook Marketing API
@@ -271,9 +271,8 @@ common:
 - type: Developer Tools
   url: https://developers.facebook.com/tools/explorer
 maintainers:
-- name: Kin Lane
-  email: kin@apievangelist.com
-  url: https://developers.facebook.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 tags:
 - advertising
 - marketing
