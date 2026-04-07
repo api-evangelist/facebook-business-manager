@@ -15,10 +15,10 @@ apis:
     humanURL: https://developers.facebook.com/docs/marketing-apis
     baseURL: https://graph.facebook.com/v18.0
     tags:
-      - advertising
-      - marketing
-      - campaigns
-      - ads
+      - Ads
+      - Advertising
+      - Campaigns
+      - Marketing
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/marketing-api
@@ -29,8 +29,7 @@ apis:
       - type: Change Log
         url: https://developers.facebook.com/docs/graph-api/changelog
       - type: Rate Limits
-        url: 
-          https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+        url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
       - type: Getting Started
         url: https://developers.facebook.com/docs/marketing-api/get-started
       - type: Reference
@@ -44,10 +43,10 @@ apis:
     humanURL: https://developers.facebook.com/docs/pages
     baseURL: https://graph.facebook.com/v18.0
     tags:
-      - pages
-      - social media
-      - content
-      - publishing
+      - Content
+      - Pages
+      - Publishing
+      - Social Media
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/pages-api
@@ -64,41 +63,35 @@ apis:
     humanURL: https://developers.facebook.com/docs/marketing-api/conversions-api
     baseURL: https://graph.facebook.com/v18.0
     tags:
-      - conversions
-      - tracking
-      - events
-      - attribution
+      - Attribution
+      - Conversions
+      - Events
+      - Tracking
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/marketing-api/conversions-api
       - type: Implementation Guide
-        url: 
-          https://developers.facebook.com/docs/marketing-api/conversions-api/get-started
+        url: https://developers.facebook.com/docs/marketing-api/conversions-api/get-started
       - type: Reference
-        url: 
-          https://developers.facebook.com/docs/marketing-api/conversions-api/parameters
+        url: https://developers.facebook.com/docs/marketing-api/conversions-api/parameters
       - type: SDKs
-        url: 
-          https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api
+        url: https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api
   - name: Facebook Business Asset API
     description: >-
       Manage business assets including pixels, catalogs, and custom audiences.
     image: https://www.facebook.com/images/fb_icon_325x325.png
-    humanURL: 
-      https://developers.facebook.com/docs/marketing-api/business-asset-management
+    humanURL: https://developers.facebook.com/docs/marketing-api/business-asset-management
     baseURL: https://graph.facebook.com/v18.0
     tags:
-      - assets
-      - pixels
-      - catalogs
-      - audiences
+      - Assets
+      - Audiences
+      - Catalogs
+      - Pixels
     properties:
       - type: Documentation
-        url: 
-          https://developers.facebook.com/docs/marketing-api/business-asset-management
+        url: https://developers.facebook.com/docs/marketing-api/business-asset-management
       - type: Reference
-        url: 
-          https://developers.facebook.com/docs/marketing-api/business-asset-management/get-started
+        url: https://developers.facebook.com/docs/marketing-api/business-asset-management/get-started
   - name: Facebook Instagram API
     description: >-
       Manage Instagram Business and Creator accounts through Business Manager.
@@ -106,10 +99,10 @@ apis:
     humanURL: https://developers.facebook.com/docs/instagram-api
     baseURL: https://graph.facebook.com/v18.0
     tags:
-      - instagram
-      - social media
-      - content
-      - media
+      - Content
+      - Instagram
+      - Media
+      - Social Media
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/instagram-api
@@ -118,8 +111,7 @@ apis:
       - type: Reference
         url: https://developers.facebook.com/docs/instagram-api/reference
       - type: Authentication
-        url: 
-          https://developers.facebook.com/docs/instagram-api/getting-started#authentication
+        url: https://developers.facebook.com/docs/instagram-api/getting-started#authentication
   - name: Facebook Insights API
     description: >-
       Access performance metrics and analytics data for Facebook Pages, ad
@@ -131,15 +123,14 @@ apis:
     baseURL: https://graph.facebook.com/v25.0
     tags:
       - Analytics
-      - Reporting
       - Insights
       - Metrics
+      - Reporting
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/platforminsights
       - type: Reference
-        url: 
-          https://developers.facebook.com/docs/graph-api/reference/page/insights
+        url: https://developers.facebook.com/docs/graph-api/reference/page/insights
   - name: Facebook Messenger Platform API
     description: >-
       Build conversational experiences on the Messenger platform. The Messenger
@@ -150,16 +141,15 @@ apis:
     humanURL: https://developers.facebook.com/docs/messenger-platform
     baseURL: https://graph.facebook.com/v25.0
     tags:
-      - Messaging
       - Bots
       - Chat
       - Customer Service
+      - Messaging
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/messenger-platform
       - type: Getting Started
-        url: 
-          https://developers.facebook.com/docs/messenger-platform/getting-started
+        url: https://developers.facebook.com/docs/messenger-platform/getting-started
       - type: Reference
         url: https://developers.facebook.com/docs/messenger-platform/reference
   - name: Facebook Catalog API
@@ -172,19 +162,17 @@ apis:
     humanURL: https://developers.facebook.com/docs/marketing-api/catalog
     baseURL: https://graph.facebook.com/v25.0
     tags:
+      - Catalogs
       - Commerce
       - Products
-      - Catalogs
       - Shopping
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/marketing-api/catalog
       - type: Reference
-        url: 
-          https://developers.facebook.com/docs/marketing-api/catalog/reference
+        url: https://developers.facebook.com/docs/marketing-api/catalog/reference
       - type: Getting Started
-        url: 
-          https://developers.facebook.com/docs/marketing-api/catalog/get-started
+        url: https://developers.facebook.com/docs/marketing-api/catalog/get-started
   - name: Facebook Live Video API
     description: >-
       Stream live video content directly to Facebook Pages, user profiles, and
@@ -195,18 +183,17 @@ apis:
     humanURL: https://developers.facebook.com/docs/videos/live-video
     baseURL: https://graph.facebook.com/v25.0
     tags:
-      - Video
-      - Live Streaming
       - Broadcasting
+      - Live Streaming
       - Media
+      - Video
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/videos/live-video
       - type: Reference
         url: https://developers.facebook.com/docs/graph-api/reference/live-video
       - type: Getting Started
-        url: 
-          https://developers.facebook.com/docs/videos/live-video/getting-started
+        url: https://developers.facebook.com/docs/videos/live-video/getting-started
   - name: Facebook Threads API
     description: >-
       Publish content, manage replies, and retrieve analytics on the Threads
@@ -217,10 +204,10 @@ apis:
     humanURL: https://developers.facebook.com/docs/threads
     baseURL: https://graph.threads.net/v25.0
     tags:
-      - Threads
-      - Social Media
-      - Publishing
       - Content
+      - Publishing
+      - Social Media
+      - Threads
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/threads
@@ -238,10 +225,10 @@ apis:
     humanURL: https://developers.facebook.com/docs/whatsapp
     baseURL: https://graph.facebook.com/v25.0
     tags:
-      - Messaging
-      - WhatsApp
       - Customer Service
+      - Messaging
       - Notifications
+      - WhatsApp
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/whatsapp/cloud-api
@@ -269,8 +256,7 @@ common:
   - type: Documentation
     url: https://developers.facebook.com/docs
   - type: Authentication
-    url: 
-      https://developers.facebook.com/docs/facebook-login/guides/access-tokens
+    url: https://developers.facebook.com/docs/facebook-login/guides/access-tokens
   - type: Rate Limits
     url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
   - type: Change Log
@@ -295,8 +281,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
-  - advertising
-  - marketing
-  - social media
-  - business management
-  - analytics
+  - Advertising
+  - Analytics
+  - Business Management
+  - Marketing
+  - Social Media

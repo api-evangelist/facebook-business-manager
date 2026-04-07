@@ -18,26 +18,26 @@ servers:
   - url: https://graph.facebook.com/v25.0
     description: Facebook Graph API Production Server
 tags:
-  - name: Pages
-    description: >-
-      Retrieve and manage Facebook Page settings, information, and
-      metadata.
-  - name: Posts
-    description: >-
-      Create, read, update, and delete posts on a Facebook Page feed.
   - name: Comments
     description: >-
       Manage comments on Page posts including reading, replying, and
       moderating.
-  - name: Photos
-    description: >-
-      Upload and manage photos on a Facebook Page.
-  - name: Videos
-    description: >-
-      Upload and manage videos on a Facebook Page.
   - name: Page Insights
     description: >-
       Retrieve analytics and engagement metrics for a Facebook Page.
+  - name: Pages
+    description: >-
+      Retrieve and manage Facebook Page settings, information, and
+      metadata.
+  - name: Photos
+    description: >-
+      Upload and manage photos on a Facebook Page.
+  - name: Posts
+    description: >-
+      Create, read, update, and delete posts on a Facebook Page feed.
+  - name: Videos
+    description: >-
+      Upload and manage videos on a Facebook Page.
 security:
   - bearerAuth: []
 paths:

@@ -19,10 +19,17 @@ servers:
   - url: https://graph.facebook.com/v25.0
     description: Facebook Graph API Production Server
 tags:
-  - name: Campaigns
+  - name: Ad Accounts
     description: >-
-      Manage advertising campaigns including creation, updating, and
-      status management.
+      Manage advertising accounts including settings, spend limits,
+      and account-level configurations.
+  - name: Ad Creatives
+    description: >-
+      Manage ad creative content including images, videos, copy, and
+      call-to-action configurations.
+  - name: Ad Images
+    description: >-
+      Upload and manage images used in ad creatives.
   - name: Ad Sets
     description: >-
       Manage ad sets within campaigns, including targeting, budgets,
@@ -31,14 +38,10 @@ tags:
     description: >-
       Manage individual ads within ad sets, including creative
       associations and status.
-  - name: Ad Creatives
+  - name: Campaigns
     description: >-
-      Manage ad creative content including images, videos, copy, and
-      call-to-action configurations.
-  - name: Ad Accounts
-    description: >-
-      Manage advertising accounts including settings, spend limits,
-      and account-level configurations.
+      Manage advertising campaigns including creation, updating, and
+      status management.
   - name: Custom Audiences
     description: >-
       Create and manage custom audiences for ad targeting based on
@@ -47,9 +50,6 @@ tags:
     description: >-
       Retrieve performance metrics and analytics data for campaigns,
       ad sets, and ads.
-  - name: Ad Images
-    description: >-
-      Upload and manage images used in ad creatives.
 security:
   - bearerAuth: []
 paths:
