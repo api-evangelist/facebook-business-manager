@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Facebook Pages API
+  title: Facebook Business Manager Facebook Pages API
   description: >-
     Manage Facebook Pages, publish and manage posts, moderate comments, and
     track engagement through the Graph API. The Pages API allows businesses
@@ -44,7 +44,7 @@ paths:
   /{page_id}:
     get:
       operationId: getPage
-      summary: Get page details
+      summary: Facebook Business Manager Get page details
       description: >-
         Retrieves information about a Facebook Page including name,
         category, description, fan count, and other metadata.
@@ -67,7 +67,7 @@ paths:
   /{page_id}/feed:
     get:
       operationId: getPageFeed
-      summary: Get page feed
+      summary: Facebook Business Manager Get page feed
       description: >-
         Retrieves the feed of posts on a Facebook Page. Includes posts
         published by the page and posts by visitors if allowed.
@@ -91,7 +91,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createPagePost
-      summary: Create a page post
+      summary: Facebook Business Manager Create a page post
       description: >-
         Publishes a new post to the Facebook Page feed. Supports text
         posts, link shares, and scheduled posts. Requires a page access
@@ -120,7 +120,7 @@ paths:
   /{post_id}:
     get:
       operationId: getPost
-      summary: Get a post
+      summary: Facebook Business Manager Get a post
       description: >-
         Retrieves the details of a specific post including message,
         attachments, reactions, and engagement counts.
@@ -142,7 +142,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updatePost
-      summary: Update a post
+      summary: Facebook Business Manager Update a post
       description: >-
         Updates an existing post on the Page. Only the message field
         can be updated after publishing.
@@ -173,7 +173,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deletePost
-      summary: Delete a post
+      summary: Facebook Business Manager Delete a post
       description: >-
         Deletes a post from the Facebook Page. This action cannot be
         undone.
@@ -195,7 +195,7 @@ paths:
   /{post_id}/comments:
     get:
       operationId: getPostComments
-      summary: Get post comments
+      summary: Facebook Business Manager Get post comments
       description: >-
         Retrieves comments on a specific post. Supports pagination and
         filtering by order.
@@ -235,7 +235,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createComment
-      summary: Create a comment
+      summary: Facebook Business Manager Create a comment
       description: >-
         Posts a comment on a Page post as the Page. Requires a page
         access token with pages_manage_engagement permission.
@@ -273,7 +273,7 @@ paths:
   /{comment_id}:
     delete:
       operationId: deleteComment
-      summary: Delete a comment
+      summary: Facebook Business Manager Delete a comment
       description: >-
         Deletes a comment from a Page post. The Page must own the
         comment or the post the comment is on.
@@ -300,7 +300,7 @@ paths:
   /{page_id}/photos:
     post:
       operationId: uploadPagePhoto
-      summary: Upload a page photo
+      summary: Facebook Business Manager Upload a page photo
       description: >-
         Uploads a photo to the Facebook Page. Can be published directly
         or uploaded as unpublished for later use in posts.
@@ -340,7 +340,7 @@ paths:
   /{page_id}/videos:
     post:
       operationId: uploadPageVideo
-      summary: Upload a page video
+      summary: Facebook Business Manager Upload a page video
       description: >-
         Uploads a video to the Facebook Page. Supports direct upload
         via URL or resumable upload for large files.
@@ -383,7 +383,7 @@ paths:
   /{page_id}/insights:
     get:
       operationId: getPageInsights
-      summary: Get page insights
+      summary: Facebook Business Manager Get page insights
       description: >-
         Retrieves analytics metrics for the Facebook Page including
         reach, impressions, engagement, and audience demographics.
@@ -438,7 +438,7 @@ paths:
   /{page_id}/subscribed_apps:
     post:
       operationId: subscribePageApp
-      summary: Subscribe app to page
+      summary: Facebook Business Manager Subscribe app to page
       description: >-
         Installs a Webhooks-configured app on the Page so the app can
         receive real-time updates about changes to the Page.

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Facebook Marketing API
+  title: Facebook Business Manager Facebook Marketing API
   description: >-
     Create and manage ad campaigns, analyze performance, and automate
     advertising workflows across Meta platforms. The Marketing API provides
@@ -56,7 +56,7 @@ paths:
   /act_{ad_account_id}/campaigns:
     get:
       operationId: listCampaigns
-      summary: List campaigns
+      summary: Facebook Business Manager List campaigns
       description: >-
         Retrieves all campaigns for the specified ad account. Returns a
         paginated list of campaign objects with their configurations and
@@ -89,7 +89,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createCampaign
-      summary: Create a campaign
+      summary: Facebook Business Manager Create a campaign
       description: >-
         Creates a new advertising campaign in the specified ad account.
         Requires at minimum a name, objective, and status.
@@ -117,7 +117,7 @@ paths:
   /{campaign_id}:
     get:
       operationId: getCampaign
-      summary: Get a campaign
+      summary: Facebook Business Manager Get a campaign
       description: >-
         Retrieves the details of a specific campaign by its ID, including
         configuration, status, and objective.
@@ -139,7 +139,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateCampaign
-      summary: Update a campaign
+      summary: Facebook Business Manager Update a campaign
       description: >-
         Updates an existing campaign. Supports modifying name, status,
         budget, and other campaign-level settings.
@@ -166,7 +166,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteCampaign
-      summary: Delete a campaign
+      summary: Facebook Business Manager Delete a campaign
       description: >-
         Deletes an advertising campaign. This sets the campaign status
         to DELETED and it will no longer serve ads.
@@ -188,7 +188,7 @@ paths:
   /act_{ad_account_id}/adsets:
     get:
       operationId: listAdSets
-      summary: List ad sets
+      summary: Facebook Business Manager List ad sets
       description: >-
         Retrieves all ad sets for the specified ad account. Returns
         targeting, budget, scheduling, and optimization configurations.
@@ -212,7 +212,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAdSet
-      summary: Create an ad set
+      summary: Facebook Business Manager Create an ad set
       description: >-
         Creates a new ad set within a campaign. Defines targeting,
         budget, schedule, optimization goal, and bid strategy.
@@ -240,7 +240,7 @@ paths:
   /{ad_set_id}:
     get:
       operationId: getAdSet
-      summary: Get an ad set
+      summary: Facebook Business Manager Get an ad set
       description: >-
         Retrieves the details of a specific ad set including targeting,
         budget, scheduling, and optimization settings.
@@ -262,7 +262,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateAdSet
-      summary: Update an ad set
+      summary: Facebook Business Manager Update an ad set
       description: >-
         Updates an existing ad set. Supports modifying targeting,
         budget, schedule, and optimization settings.
@@ -290,7 +290,7 @@ paths:
   /act_{ad_account_id}/ads:
     get:
       operationId: listAds
-      summary: List ads
+      summary: Facebook Business Manager List ads
       description: >-
         Retrieves all ads for the specified ad account. Returns ad
         configurations including creative associations and status.
@@ -314,7 +314,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAd
-      summary: Create an ad
+      summary: Facebook Business Manager Create an ad
       description: >-
         Creates a new ad within an ad set. Associates an ad creative
         with targeting and delivery settings defined at the ad set level.
@@ -342,7 +342,7 @@ paths:
   /{ad_id}:
     get:
       operationId: getAd
-      summary: Get an ad
+      summary: Facebook Business Manager Get an ad
       description: >-
         Retrieves the details of a specific ad including its creative,
         status, and configuration.
@@ -365,7 +365,7 @@ paths:
   /act_{ad_account_id}/adcreatives:
     get:
       operationId: listAdCreatives
-      summary: List ad creatives
+      summary: Facebook Business Manager List ad creatives
       description: >-
         Retrieves all ad creatives for the specified ad account.
       tags:
@@ -388,7 +388,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAdCreative
-      summary: Create an ad creative
+      summary: Facebook Business Manager Create an ad creative
       description: >-
         Creates a new ad creative with image, video, copy, and
         call-to-action configurations for use in ads.
@@ -416,7 +416,7 @@ paths:
   /act_{ad_account_id}:
     get:
       operationId: getAdAccount
-      summary: Get ad account details
+      summary: Facebook Business Manager Get ad account details
       description: >-
         Retrieves the details of a specific ad account including
         settings, spend limits, and status information.
@@ -439,7 +439,7 @@ paths:
   /act_{ad_account_id}/customaudiences:
     get:
       operationId: listCustomAudiences
-      summary: List custom audiences
+      summary: Facebook Business Manager List custom audiences
       description: >-
         Retrieves all custom audiences for the specified ad account.
         Returns audience configurations and approximate sizes.
@@ -463,7 +463,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createCustomAudience
-      summary: Create a custom audience
+      summary: Facebook Business Manager Create a custom audience
       description: >-
         Creates a new custom audience for ad targeting. Supports
         customer file audiences, website custom audiences, app
@@ -492,7 +492,7 @@ paths:
   /act_{ad_account_id}/insights:
     get:
       operationId: getAdAccountInsights
-      summary: Get ad account insights
+      summary: Facebook Business Manager Get ad account insights
       description: >-
         Retrieves performance insights and analytics for the specified
         ad account. Supports date range filtering, breakdowns, and
@@ -553,7 +553,7 @@ paths:
   /{campaign_id}/insights:
     get:
       operationId: getCampaignInsights
-      summary: Get campaign insights
+      summary: Facebook Business Manager Get campaign insights
       description: >-
         Retrieves performance insights for a specific campaign including
         impressions, clicks, spend, and conversion metrics.
@@ -584,7 +584,7 @@ paths:
   /act_{ad_account_id}/adimages:
     post:
       operationId: uploadAdImage
-      summary: Upload an ad image
+      summary: Facebook Business Manager Upload an ad image
       description: >-
         Uploads an image to the ad account image library for use in
         ad creatives. Accepts image file bytes.
