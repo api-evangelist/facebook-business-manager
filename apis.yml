@@ -1,13 +1,24 @@
+aid: facebook-business-manager
 name: Facebook Business Manager
 description: >-
-  APIs for managing Facebook Business accounts, advertising, pages, and assets.
+  APIs for managing Facebook Business accounts, advertising, pages, and assets
+  across the Meta platform family. Facebook Business Manager exposes a deep
+  catalog of Graph API surfaces for marketing, pages, conversions, business
+  asset management, Instagram, insights, Messenger, catalogs, live video,
+  Threads, and the WhatsApp Business Platform, all governed through a shared
+  authentication and access model.
 image: https://www.facebook.com/images/fb_icon_325x325.png
-created: '2024'
-modified: '2026-03-16'
+created: '2024-01-01'
+modified: '2026-04-28'
 specificationVersion: '0.19'
-url: https://business.facebook.com/apis.json
+type: Index
+position: Consumer
+access: 3rd-Party
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/apis.yml
 apis:
-  - name: Facebook Marketing API
+  - aid: facebook-business-manager:facebook-marketing-api
+    name: Facebook Marketing API
     description: >-
       Create and manage ad campaigns, analyze performance, and automate advertising
       workflows.
@@ -23,7 +34,8 @@ apis:
       - type: Documentation
         url: https://developers.facebook.com/docs/marketing-api
       - type: OpenAPI
-        url: https://developers.facebook.com/docs/graph-api/openapi
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-marketing-openapi.yml
       - type: Authentication
         url: https://developers.facebook.com/docs/marketing-api/authentication
       - type: Change Log
@@ -36,7 +48,8 @@ apis:
         url: https://developers.facebook.com/docs/marketing-api/reference
       - type: SDKs
         url: https://developers.facebook.com/docs/business-sdk/getting-started
-  - name: Facebook Pages API
+  - aid: facebook-business-manager:facebook-pages-api
+    name: Facebook Pages API
     description: >-
       Manage Facebook Pages, posts, comments, and engagement.
     image: https://www.facebook.com/images/fb_icon_325x325.png
@@ -50,6 +63,9 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/pages-api
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-pages-openapi.yml
       - type: Getting Started
         url: https://developers.facebook.com/docs/pages/getting-started
       - type: Reference
