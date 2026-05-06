@@ -1,0 +1,694 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Facebook Business Manager Facebook Marketing API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms.
+    The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns,
+    ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  tags:
+  - Facebook
+  - Business
+  - Manager
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: facebook-business-manager
+    baseUri: https://graph.facebook.com/v25.0
+    description: Facebook Business Manager Facebook Marketing API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{FACEBOOK_BUSINESS_MANAGER_TOKEN}}'
+    resources:
+    - name: act-ad-account-id-campaigns
+      path: /act_{ad_account_id}/campaigns
+      operations:
+      - name: listcampaigns
+        method: GET
+        description: Facebook Business Manager List campaigns
+        inputParameters:
+        - name: filtering
+          in: query
+          type: string
+          description: Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and
+            value.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcampaign
+        method: POST
+        description: Facebook Business Manager Create a campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: campaign-id
+      path: /{campaign_id}
+      operations:
+      - name: getcampaign
+        method: GET
+        description: Facebook Business Manager Get a campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecampaign
+        method: POST
+        description: Facebook Business Manager Update a campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecampaign
+        method: DELETE
+        description: Facebook Business Manager Delete a campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-adsets
+      path: /act_{ad_account_id}/adsets
+      operations:
+      - name: listadsets
+        method: GET
+        description: Facebook Business Manager List ad sets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createadset
+        method: POST
+        description: Facebook Business Manager Create an ad set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: ad-set-id
+      path: /{ad_set_id}
+      operations:
+      - name: getadset
+        method: GET
+        description: Facebook Business Manager Get an ad set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateadset
+        method: POST
+        description: Facebook Business Manager Update an ad set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-ads
+      path: /act_{ad_account_id}/ads
+      operations:
+      - name: listads
+        method: GET
+        description: Facebook Business Manager List ads
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createad
+        method: POST
+        description: Facebook Business Manager Create an ad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: ad-id
+      path: /{ad_id}
+      operations:
+      - name: getad
+        method: GET
+        description: Facebook Business Manager Get an ad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-adcreatives
+      path: /act_{ad_account_id}/adcreatives
+      operations:
+      - name: listadcreatives
+        method: GET
+        description: Facebook Business Manager List ad creatives
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createadcreative
+        method: POST
+        description: Facebook Business Manager Create an ad creative
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id
+      path: /act_{ad_account_id}
+      operations:
+      - name: getadaccount
+        method: GET
+        description: Facebook Business Manager Get ad account details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-customaudiences
+      path: /act_{ad_account_id}/customaudiences
+      operations:
+      - name: listcustomaudiences
+        method: GET
+        description: Facebook Business Manager List custom audiences
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcustomaudience
+        method: POST
+        description: Facebook Business Manager Create a custom audience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-insights
+      path: /act_{ad_account_id}/insights
+      operations:
+      - name: getadaccountinsights
+        method: GET
+        description: Facebook Business Manager Get ad account insights
+        inputParameters:
+        - name: time_range
+          in: query
+          type: string
+          description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+        - name: breakdowns
+          in: query
+          type: string
+          description: Comma-separated list of breakdown dimensions such as age, gender, country, or placement.
+        - name: level
+          in: query
+          type: string
+          description: Level of aggregation for results. Options include account, campaign, adset, or ad.
+        - name: time_increment
+          in: query
+          type: string
+          description: Number of days for each increment in the time range, or use monthly or all_days.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: campaign-id-insights
+      path: /{campaign_id}/insights
+      operations:
+      - name: getcampaigninsights
+        method: GET
+        description: Facebook Business Manager Get campaign insights
+        inputParameters:
+        - name: time_range
+          in: query
+          type: string
+          description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: act-ad-account-id-adimages
+      path: /act_{ad_account_id}/adimages
+      operations:
+      - name: uploadadimage
+        method: POST
+        description: Facebook Business Manager Upload an ad image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: facebook-business-manager-rest
+    description: REST adapter for Facebook Business Manager Facebook Marketing API.
+    resources:
+    - path: /act_{ad_account_id}/campaigns
+      name: listcampaigns
+      operations:
+      - method: GET
+        name: listcampaigns
+        description: Facebook Business Manager List campaigns
+        call: facebook-business-manager.listcampaigns
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/campaigns
+      name: createcampaign
+      operations:
+      - method: POST
+        name: createcampaign
+        description: Facebook Business Manager Create a campaign
+        call: facebook-business-manager.createcampaign
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{campaign_id}
+      name: getcampaign
+      operations:
+      - method: GET
+        name: getcampaign
+        description: Facebook Business Manager Get a campaign
+        call: facebook-business-manager.getcampaign
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{campaign_id}
+      name: updatecampaign
+      operations:
+      - method: POST
+        name: updatecampaign
+        description: Facebook Business Manager Update a campaign
+        call: facebook-business-manager.updatecampaign
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{campaign_id}
+      name: deletecampaign
+      operations:
+      - method: DELETE
+        name: deletecampaign
+        description: Facebook Business Manager Delete a campaign
+        call: facebook-business-manager.deletecampaign
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/adsets
+      name: listadsets
+      operations:
+      - method: GET
+        name: listadsets
+        description: Facebook Business Manager List ad sets
+        call: facebook-business-manager.listadsets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/adsets
+      name: createadset
+      operations:
+      - method: POST
+        name: createadset
+        description: Facebook Business Manager Create an ad set
+        call: facebook-business-manager.createadset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{ad_set_id}
+      name: getadset
+      operations:
+      - method: GET
+        name: getadset
+        description: Facebook Business Manager Get an ad set
+        call: facebook-business-manager.getadset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{ad_set_id}
+      name: updateadset
+      operations:
+      - method: POST
+        name: updateadset
+        description: Facebook Business Manager Update an ad set
+        call: facebook-business-manager.updateadset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/ads
+      name: listads
+      operations:
+      - method: GET
+        name: listads
+        description: Facebook Business Manager List ads
+        call: facebook-business-manager.listads
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/ads
+      name: createad
+      operations:
+      - method: POST
+        name: createad
+        description: Facebook Business Manager Create an ad
+        call: facebook-business-manager.createad
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{ad_id}
+      name: getad
+      operations:
+      - method: GET
+        name: getad
+        description: Facebook Business Manager Get an ad
+        call: facebook-business-manager.getad
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/adcreatives
+      name: listadcreatives
+      operations:
+      - method: GET
+        name: listadcreatives
+        description: Facebook Business Manager List ad creatives
+        call: facebook-business-manager.listadcreatives
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/adcreatives
+      name: createadcreative
+      operations:
+      - method: POST
+        name: createadcreative
+        description: Facebook Business Manager Create an ad creative
+        call: facebook-business-manager.createadcreative
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}
+      name: getadaccount
+      operations:
+      - method: GET
+        name: getadaccount
+        description: Facebook Business Manager Get ad account details
+        call: facebook-business-manager.getadaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/customaudiences
+      name: listcustomaudiences
+      operations:
+      - method: GET
+        name: listcustomaudiences
+        description: Facebook Business Manager List custom audiences
+        call: facebook-business-manager.listcustomaudiences
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/customaudiences
+      name: createcustomaudience
+      operations:
+      - method: POST
+        name: createcustomaudience
+        description: Facebook Business Manager Create a custom audience
+        call: facebook-business-manager.createcustomaudience
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/insights
+      name: getadaccountinsights
+      operations:
+      - method: GET
+        name: getadaccountinsights
+        description: Facebook Business Manager Get ad account insights
+        call: facebook-business-manager.getadaccountinsights
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{campaign_id}/insights
+      name: getcampaigninsights
+      operations:
+      - method: GET
+        name: getcampaigninsights
+        description: Facebook Business Manager Get campaign insights
+        call: facebook-business-manager.getcampaigninsights
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /act_{ad_account_id}/adimages
+      name: uploadadimage
+      operations:
+      - method: POST
+        name: uploadadimage
+        description: Facebook Business Manager Upload an ad image
+        call: facebook-business-manager.uploadadimage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: facebook-business-manager-mcp
+    transport: http
+    description: MCP adapter for Facebook Business Manager Facebook Marketing API for AI agent use.
+    tools:
+    - name: listcampaigns
+      description: Facebook Business Manager List campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.listcampaigns
+      with:
+        filtering: tools.filtering
+      inputParameters:
+      - name: filtering
+        type: string
+        description: Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and
+          value.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createcampaign
+      description: Facebook Business Manager Create a campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.createcampaign
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcampaign
+      description: Facebook Business Manager Get a campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getcampaign
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatecampaign
+      description: Facebook Business Manager Update a campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.updatecampaign
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletecampaign
+      description: Facebook Business Manager Delete a campaign
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: facebook-business-manager.deletecampaign
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listadsets
+      description: Facebook Business Manager List ad sets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.listadsets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createadset
+      description: Facebook Business Manager Create an ad set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.createadset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getadset
+      description: Facebook Business Manager Get an ad set
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getadset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateadset
+      description: Facebook Business Manager Update an ad set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.updateadset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listads
+      description: Facebook Business Manager List ads
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.listads
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createad
+      description: Facebook Business Manager Create an ad
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.createad
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getad
+      description: Facebook Business Manager Get an ad
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getad
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listadcreatives
+      description: Facebook Business Manager List ad creatives
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.listadcreatives
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createadcreative
+      description: Facebook Business Manager Create an ad creative
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.createadcreative
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getadaccount
+      description: Facebook Business Manager Get ad account details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getadaccount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcustomaudiences
+      description: Facebook Business Manager List custom audiences
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.listcustomaudiences
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createcustomaudience
+      description: Facebook Business Manager Create a custom audience
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.createcustomaudience
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getadaccountinsights
+      description: Facebook Business Manager Get ad account insights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getadaccountinsights
+      with:
+        time_range: tools.time_range
+        breakdowns: tools.breakdowns
+        level: tools.level
+        time_increment: tools.time_increment
+      inputParameters:
+      - name: time_range
+        type: string
+        description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+      - name: breakdowns
+        type: string
+        description: Comma-separated list of breakdown dimensions such as age, gender, country, or placement.
+      - name: level
+        type: string
+        description: Level of aggregation for results. Options include account, campaign, adset, or ad.
+      - name: time_increment
+        type: string
+        description: Number of days for each increment in the time range, or use monthly or all_days.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcampaigninsights
+      description: Facebook Business Manager Get campaign insights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-business-manager.getcampaigninsights
+      with:
+        time_range: tools.time_range
+      inputParameters:
+      - name: time_range
+        type: string
+        description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadadimage
+      description: Facebook Business Manager Upload an ad image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-business-manager.uploadadimage
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    FACEBOOK_BUSINESS_MANAGER_TOKEN: FACEBOOK_BUSINESS_MANAGER_TOKEN
