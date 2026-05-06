@@ -4,45 +4,37 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Facebook Business Manager
 providerId: facebook-business-manager
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Advertising
   - Analytics
   - Business Management
   - Marketing
   - Social Media
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Facebook Business Manager (now part of Meta Business Suite) is free to use. The Marketing,
+  Pages, Conversions, Catalog, and related Graph APIs that Business Manager exposes are not directly billed;
+  monetization is downstream via Meta Ads spend and per-conversation WhatsApp Business pricing. API access
+  is gated by App Review tiers (Development / Standard / Advanced) which determine rate-limit ceilings.
+sources:
+  - https://www.facebook.com/business/tools/meta-business-suite
+  - https://developers.facebook.com/docs/marketing-api/overview/authorization
+  - https://developers.facebook.com/docs/graph-api/overview/rate-limiting
 plans:
   - id: facebook-business-manager-free
-    name: Free
+    name: Free (Business Manager / Meta Business Suite)
     type: freemium
-    description: Free entry tier for the Facebook Business Manager API surface. Intended for evaluation,
-      prototyping, and low-volume integrations. Real limits and pricing must be reconciled with the provider's
-      published plan documentation.
+    description: Free use of Meta Business Suite and the Business Manager API surface. No per-call API
+      fees. Rate limits enforced by App Review tier.
     entries:
       - label: API Requests
-        description: Monthly API request quota across all included endpoints
+        description: Free API access; throttled by app-level and BUC formulas tied to engaged users /
+          active ads.
         name: api_requests
         type: quota
         metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://graph.facebook.com/v18.0
-          - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+        limit: -1
+        timeFrame: usage
         geo: global
         domains:
           - https://graph.facebook.com/v18.0
@@ -52,139 +44,86 @@ plans:
         price: '0.00'
         userMultiplied: false
     elements:
+      - name: Meta Business Suite Console
+      - name: Pages, Ad Accounts, Catalogs, Pixels Management
+      - name: Roles & Permissions
       - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
       - name: Facebook Marketing API
       - name: Facebook Pages API
       - name: Facebook Conversions API
       - name: Facebook Business Asset API
-      - name: Facebook Instagram API
-      - name: Facebook Insights API
-      - name: Facebook Messenger Platform API
       - name: Facebook Catalog API
-  - id: facebook-business-manager-pro
-    name: Professional
-    type: paid
-    description: Production tier for Facebook Business Manager. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+      - name: Facebook Insights API
+  - id: facebook-business-manager-advanced-access
+    name: Advanced Access (App Review)
+    type: freemium
+    description: After Business Verification + App Review, apps unlock significantly higher BUC rate limits.
+      No additional API fee.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://graph.facebook.com/v18.0
-          - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
+      - label: Ads Management Calls
+        description: 'Advanced Access ceiling: 100000 + 40 * Number of Active ads, per hour.'
+        name: ads_management_calls
         type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
+        metric: calls_per_hour
+        limit: 100000
+        timeFrame: hour
         geo: global
         domains:
-          - https://graph.facebook.com/v18.0
           - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
+      - label: Ads Insights Calls
+        description: 'Advanced Access ceiling: 190000 + 400 * Number of Active ads, per hour.'
+        name: ads_insights_calls
+        type: rate
+        metric: calls_per_hour
+        limit: 190000
+        timeFrame: hour
         geo: global
         domains:
-          - https://graph.facebook.com/v18.0
           - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Facebook Marketing API
-      - name: Facebook Pages API
-      - name: Facebook Conversions API
-      - name: Facebook Business Asset API
-      - name: Facebook Instagram API
-      - name: Facebook Insights API
-      - name: Facebook Messenger Platform API
-      - name: Facebook Catalog API
-      - name: Facebook Live Video API
-      - name: Facebook Threads API
-      - name: Facebook WhatsApp Business Platform API
-  - id: facebook-business-manager-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Facebook Business Manager. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
+      - name: Business Verification
+      - name: Higher BUC Rate Ceilings
+      - name: Full Permission Scopes
+  - id: facebook-business-manager-downstream-spend
+    name: Downstream Spend (Ads + WhatsApp Business)
+    type: usage-based
+    description: API access is free, but the campaigns and conversations driven through Business Manager
+      are billed by Meta. Ads spend is set via campaign budgets; WhatsApp Business charges per 24-hour
+      conversation by category and country.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Ad Spend
+        description: Variable per campaign, country, and placement; billed against the ad account on the
+          Business Manager.
+        name: ad_spend
+        type: metered
+        metric: USD
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://graph.facebook.com/v18.0
-          - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
+        price: see https://www.facebook.com/business/ads/pricing
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://graph.facebook.com/v18.0
-          - https://graph.facebook.com/v25.0
-          - https://graph.threads.net/v25.0
+      - label: WhatsApp Conversation
+        description: Per 24-hour conversation, by category (Marketing, Utility, Authentication, Service)
+          and destination country.
+        name: whatsapp_conversation
+        type: metered
+        metric: conversation
+        limit: -1
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
+        price: see https://developers.facebook.com/docs/whatsapp/pricing
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Facebook Marketing API
-      - name: Facebook Pages API
-      - name: Facebook Conversions API
-      - name: Facebook Business Asset API
-      - name: Facebook Instagram API
-      - name: Facebook Insights API
-      - name: Facebook Messenger Platform API
-      - name: Facebook Catalog API
-      - name: Facebook Live Video API
-      - name: Facebook Threads API
-      - name: Facebook WhatsApp Business Platform API
+      - name: Meta Ads Manager
+      - name: WhatsApp Business Platform
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
