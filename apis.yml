@@ -38,11 +38,11 @@ apis:
           https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-marketing-openapi.yml
       - type: Authentication
         url: https://developers.facebook.com/docs/marketing-api/authentication
-      - type: Change Log
+      - type: ChangeLog
         url: https://developers.facebook.com/docs/graph-api/changelog
-      - type: Rate Limits
+      - type: RateLimits
         url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/marketing-api/get-started
       - type: Reference
         url: https://developers.facebook.com/docs/marketing-api/reference
@@ -66,7 +66,7 @@ apis:
       - type: OpenAPI
         url: >-
           https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-pages-openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/pages/getting-started
       - type: Reference
         url: https://developers.facebook.com/docs/pages-api/overview
@@ -122,7 +122,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/instagram-api
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/instagram-api/getting-started
       - type: Reference
         url: https://developers.facebook.com/docs/instagram-api/reference
@@ -164,7 +164,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/messenger-platform
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/messenger-platform/getting-started
       - type: Reference
         url: https://developers.facebook.com/docs/messenger-platform/reference
@@ -187,7 +187,7 @@ apis:
         url: https://developers.facebook.com/docs/marketing-api/catalog
       - type: Reference
         url: https://developers.facebook.com/docs/marketing-api/catalog/reference
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/marketing-api/catalog/get-started
   - name: Facebook Live Video API
     description: >-
@@ -208,7 +208,7 @@ apis:
         url: https://developers.facebook.com/docs/videos/live-video
       - type: Reference
         url: https://developers.facebook.com/docs/graph-api/reference/live-video
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/videos/live-video/getting-started
   - name: Facebook Threads API
     description: >-
@@ -227,7 +227,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/threads
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/threads/get-started
       - type: Reference
         url: https://developers.facebook.com/docs/threads/threads-api
@@ -248,7 +248,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.facebook.com/docs/whatsapp/cloud-api
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
       - type: Reference
         url: https://developers.facebook.com/docs/whatsapp/cloud-api/reference
@@ -261,33 +261,33 @@ common:
     url: https://business.facebook.com
   - type: Support
     url: https://developers.facebook.com/support
-  - type: Status
+  - type: StatusPage
     url: https://developers.facebook.com/status
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://developers.facebook.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.facebook.com/privacy/explanation
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.facebook.com/docs/development/create-an-app
   - type: Documentation
     url: https://developers.facebook.com/docs
   - type: Authentication
     url: https://developers.facebook.com/docs/facebook-login/guides/access-tokens
-  - type: Rate Limits
+  - type: RateLimits
     url: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
-  - type: Change Log
+  - type: ChangeLog
     url: https://developers.facebook.com/docs/graph-api/changelog
   - type: Blog
     url: https://developers.meta.com/blog/
   - type: Website
     url: https://www.meta.com
-  - type: Sign Up
+  - type: SignUp
     url: https://developers.facebook.com/async/registration/
   - type: SDKs
     url: https://developers.facebook.com/docs/business-sdk/getting-started
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/facebook
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/facebook-graph-api
   - type: Community
     url: https://developers.facebook.com/community
