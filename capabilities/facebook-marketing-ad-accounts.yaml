@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Facebook Business Manager Facebook Marketing API — Ad Accounts
+  description: 'Facebook Business Manager Facebook Marketing API — Ad Accounts. 1 operations. Lead operation: Facebook Business
+    Manager Get ad account details. Self-contained Naftiko capability covering one Facebook Business Manager business surface.'
+  tags:
+  - Facebook Business Manager
+  - Ad Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FACEBOOK_BUSINESS_MANAGER_API_KEY: FACEBOOK_BUSINESS_MANAGER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: facebook-marketing-ad-accounts
+    baseUri: https://graph.facebook.com/v25.0
+    description: Facebook Business Manager Facebook Marketing API — Ad Accounts business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: act_{ad_account_id}
+      path: /act_{ad_account_id}
+      operations:
+      - name: getadaccount
+        method: GET
+        description: Facebook Business Manager Get ad account details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FACEBOOK_BUSINESS_MANAGER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: facebook-marketing-ad-accounts-rest
+    port: 8080
+    description: REST adapter for Facebook Business Manager Facebook Marketing API — Ad Accounts. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/act-ad-account-id
+      name: act-ad-account-id
+      description: REST surface for act_{ad_account_id}.
+      operations:
+      - method: GET
+        name: getadaccount
+        description: Facebook Business Manager Get ad account details
+        call: facebook-marketing-ad-accounts.getadaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: facebook-marketing-ad-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Facebook Business Manager Facebook Marketing API — Ad Accounts. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: facebook-business-manager-get-ad
+      description: Facebook Business Manager Get ad account details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-marketing-ad-accounts.getadaccount
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Facebook Business Manager Facebook Pages API — Comments
+  description: 'Facebook Business Manager Facebook Pages API — Comments. 3 operations. Lead operation: Facebook Business Manager
+    Delete a comment. Self-contained Naftiko capability covering one Facebook Business Manager business surface.'
+  tags:
+  - Facebook Business Manager
+  - Comments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FACEBOOK_BUSINESS_MANAGER_API_KEY: FACEBOOK_BUSINESS_MANAGER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: facebook-pages-comments
+    baseUri: https://graph.facebook.com/v25.0
+    description: Facebook Business Manager Facebook Pages API — Comments business capability. Self-contained, no shared references.
+    resources:
+    - name: comment_id
+      path: /{comment_id}
+      operations:
+      - name: deletecomment
+        method: DELETE
+        description: Facebook Business Manager Delete a comment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: comment_id
+          in: path
+          type: string
+          description: The ID of the comment to delete
+          required: true
+    - name: post_id-comments
+      path: /{post_id}/comments
+      operations:
+      - name: getpostcomments
+        method: GET
+        description: Facebook Business Manager Get post comments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter for comment type
+        - name: order
+          in: query
+          type: string
+          description: Order of comments
+      - name: createcomment
+        method: POST
+        description: Facebook Business Manager Create a comment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FACEBOOK_BUSINESS_MANAGER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: facebook-pages-comments-rest
+    port: 8080
+    description: REST adapter for Facebook Business Manager Facebook Pages API — Comments. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{comment-id}
+      name: comment-id
+      description: REST surface for comment_id.
+      operations:
+      - method: DELETE
+        name: deletecomment
+        description: Facebook Business Manager Delete a comment
+        call: facebook-pages-comments.deletecomment
+        with:
+          comment_id: rest.comment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{post-id}/comments
+      name: post-id-comments
+      description: REST surface for post_id-comments.
+      operations:
+      - method: GET
+        name: getpostcomments
+        description: Facebook Business Manager Get post comments
+        call: facebook-pages-comments.getpostcomments
+        with:
+          filter: rest.filter
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcomment
+        description: Facebook Business Manager Create a comment
+        call: facebook-pages-comments.createcomment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: facebook-pages-comments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Facebook Business Manager Facebook Pages API — Comments. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: facebook-business-manager-delete-comment
+      description: Facebook Business Manager Delete a comment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: facebook-pages-comments.deletecomment
+      with:
+        comment_id: tools.comment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: facebook-business-manager-get-post
+      description: Facebook Business Manager Get post comments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: facebook-pages-comments.getpostcomments
+      with:
+        filter: tools.filter
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: facebook-business-manager-create-comment
+      description: Facebook Business Manager Create a comment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: facebook-pages-comments.createcomment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
