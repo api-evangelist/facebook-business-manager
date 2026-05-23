@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdSetCreate",
+  "title": "AdSetCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "campaign_id",
+    "optimization_goal",
+    "billing_event",
+    "targeting",
+    "status"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "optimization_goal": {
+      "type": "string",
+      "enum": [
+        "LINK_CLICKS",
+        "IMPRESSIONS",
+        "REACH",
+        "LANDING_PAGE_VIEWS",
+        "OFFSITE_CONVERSIONS",
+        "LEAD_GENERATION",
+        "APP_INSTALLS",
+        "VALUE"
+      ]
+    },
+    "billing_event": {
+      "type": "string",
+      "enum": [
+        "IMPRESSIONS",
+        "LINK_CLICKS"
+      ]
+    },
+    "targeting": {
+      "type": "object",
+      "description": "Targeting specification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "daily_budget": {
+      "type": "string"
+    },
+    "lifetime_budget": {
+      "type": "string"
+    },
+    "bid_amount": {
+      "type": "integer"
+    },
+    "bid_strategy": {
+      "type": "string",
+      "enum": [
+        "LOWEST_COST_WITHOUT_CAP",
+        "LOWEST_COST_WITH_BID_CAP",
+        "COST_CAP"
+      ]
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

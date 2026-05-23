@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PagingCursors",
+  "title": "PagingCursors",
+  "type": "object",
+  "properties": {
+    "before": {
+      "type": "string",
+      "description": "Cursor pointing to the start of the current page"
+    },
+    "after": {
+      "type": "string",
+      "description": "Cursor pointing to the end of the current page"
+    }
+  }
+}

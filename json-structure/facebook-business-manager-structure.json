@@ -1,0 +1,365 @@
+{
+  "provider": "Facebook Business Manager",
+  "providerId": "facebook-business-manager",
+  "kind": "json-structure",
+  "description": "Structural overview of the Facebook Business Manager API surface; extracted from openapi/.",
+  "schemaCount": 25,
+  "operationCount": 20,
+  "schemas": [
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PagingCursors",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Paging",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CreateResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SuccessResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Campaign",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "CampaignList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CampaignCreate",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "objective",
+        "status",
+        "special_ad_categories"
+      ]
+    },
+    {
+      "name": "CampaignUpdate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AdSet",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "AdSetList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AdSetCreate",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "name",
+        "campaign_id",
+        "optimization_goal",
+        "billing_event",
+        "targeting",
+        "status"
+      ]
+    },
+    {
+      "name": "AdSetUpdate",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Ad",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "AdList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AdCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "adset_id",
+        "creative",
+        "status"
+      ]
+    },
+    {
+      "name": "AdCreative",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "AdCreativeList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AdCreativeCreate",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "object_story_spec"
+      ]
+    },
+    {
+      "name": "AdAccount",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "CustomAudience",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "CustomAudienceList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CustomAudienceCreate",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "subtype"
+      ]
+    },
+    {
+      "name": "InsightsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "InsightsData",
+      "type": "object",
+      "propertyCount": 18,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/campaigns",
+      "operationId": "listCampaigns",
+      "summary": "Facebook Business Manager List campaigns",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/campaigns",
+      "operationId": "createCampaign",
+      "summary": "Facebook Business Manager Create a campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{campaign_id}",
+      "operationId": "getCampaign",
+      "summary": "Facebook Business Manager Get a campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{campaign_id}",
+      "operationId": "updateCampaign",
+      "summary": "Facebook Business Manager Update a campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{campaign_id}",
+      "operationId": "deleteCampaign",
+      "summary": "Facebook Business Manager Delete a campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/adsets",
+      "operationId": "listAdSets",
+      "summary": "Facebook Business Manager List ad sets",
+      "tags": [
+        "Ad Sets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/adsets",
+      "operationId": "createAdSet",
+      "summary": "Facebook Business Manager Create an ad set",
+      "tags": [
+        "Ad Sets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{ad_set_id}",
+      "operationId": "getAdSet",
+      "summary": "Facebook Business Manager Get an ad set",
+      "tags": [
+        "Ad Sets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{ad_set_id}",
+      "operationId": "updateAdSet",
+      "summary": "Facebook Business Manager Update an ad set",
+      "tags": [
+        "Ad Sets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/ads",
+      "operationId": "listAds",
+      "summary": "Facebook Business Manager List ads",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/ads",
+      "operationId": "createAd",
+      "summary": "Facebook Business Manager Create an ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{ad_id}",
+      "operationId": "getAd",
+      "summary": "Facebook Business Manager Get an ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/adcreatives",
+      "operationId": "listAdCreatives",
+      "summary": "Facebook Business Manager List ad creatives",
+      "tags": [
+        "Ad Creatives"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/adcreatives",
+      "operationId": "createAdCreative",
+      "summary": "Facebook Business Manager Create an ad creative",
+      "tags": [
+        "Ad Creatives"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}",
+      "operationId": "getAdAccount",
+      "summary": "Facebook Business Manager Get ad account details",
+      "tags": [
+        "Ad Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/customaudiences",
+      "operationId": "listCustomAudiences",
+      "summary": "Facebook Business Manager List custom audiences",
+      "tags": [
+        "Custom Audiences"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/customaudiences",
+      "operationId": "createCustomAudience",
+      "summary": "Facebook Business Manager Create a custom audience",
+      "tags": [
+        "Custom Audiences"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/act_{ad_account_id}/insights",
+      "operationId": "getAdAccountInsights",
+      "summary": "Facebook Business Manager Get ad account insights",
+      "tags": [
+        "Insights"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{campaign_id}/insights",
+      "operationId": "getCampaignInsights",
+      "summary": "Facebook Business Manager Get campaign insights",
+      "tags": [
+        "Insights"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/act_{ad_account_id}/adimages",
+      "operationId": "uploadAdImage",
+      "summary": "Facebook Business Manager Upload an ad image",
+      "tags": [
+        "Ad Images"
+      ]
+    }
+  ]
+}

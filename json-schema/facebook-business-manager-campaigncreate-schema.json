@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignCreate",
+  "title": "CampaignCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "objective",
+    "status",
+    "special_ad_categories"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the campaign"
+    },
+    "objective": {
+      "type": "string",
+      "description": "The campaign objective",
+      "enum": [
+        "OUTCOME_AWARENESS",
+        "OUTCOME_ENGAGEMENT",
+        "OUTCOME_LEADS",
+        "OUTCOME_SALES",
+        "OUTCOME_TRAFFIC",
+        "OUTCOME_APP_PROMOTION"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The initial status of the campaign",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "special_ad_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Required special ad categories or empty array if none apply"
+    },
+    "daily_budget": {
+      "type": "string",
+      "description": "Daily budget in smallest currency unit"
+    },
+    "lifetime_budget": {
+      "type": "string",
+      "description": "Lifetime budget in smallest currency unit"
+    },
+    "buying_type": {
+      "type": "string",
+      "enum": [
+        "AUCTION",
+        "RESERVED"
+      ]
+    }
+  }
+}

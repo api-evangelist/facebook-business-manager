@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Campaign",
+  "title": "Campaign",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the campaign"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the campaign"
+    },
+    "objective": {
+      "type": "string",
+      "description": "The campaign objective",
+      "enum": [
+        "OUTCOME_AWARENESS",
+        "OUTCOME_ENGAGEMENT",
+        "OUTCOME_LEADS",
+        "OUTCOME_SALES",
+        "OUTCOME_TRAFFIC",
+        "OUTCOME_APP_PROMOTION"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The configured status of the campaign",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ]
+    },
+    "effective_status": {
+      "type": "string",
+      "description": "The effective status of the campaign taking into account parent statuses and schedule."
+    },
+    "daily_budget": {
+      "type": "string",
+      "description": "Daily budget amount in account currency smallest unit"
+    },
+    "lifetime_budget": {
+      "type": "string",
+      "description": "Lifetime budget amount in account currency smallest unit"
+    },
+    "budget_remaining": {
+      "type": "string",
+      "description": "Remaining budget for the campaign"
+    },
+    "buying_type": {
+      "type": "string",
+      "description": "Buying type of the campaign",
+      "enum": [
+        "AUCTION",
+        "RESERVED"
+      ]
+    },
+    "special_ad_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Special ad categories required for housing, employment, credit, or social issues ads."
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time when the campaign was created"
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time when the campaign was last updated"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled start time of the campaign"
+    },
+    "stop_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled stop time of the campaign"
+    }
+  }
+}

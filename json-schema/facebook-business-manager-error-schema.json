@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message"
+        },
+        "type": {
+          "type": "string",
+          "description": "Error type classification"
+        },
+        "code": {
+          "type": "integer",
+          "description": "Numeric error code"
+        },
+        "error_subcode": {
+          "type": "integer",
+          "description": "Numeric error subcode for more specific categorization"
+        },
+        "fbtrace_id": {
+          "type": "string",
+          "description": "Unique trace ID for debugging with Facebook support"
+        }
+      }
+    }
+  }
+}

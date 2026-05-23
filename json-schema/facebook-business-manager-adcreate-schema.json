@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdCreate",
+  "title": "AdCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "adset_id",
+    "creative",
+    "status"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "adset_id": {
+      "type": "string"
+    },
+    "creative": {
+      "type": "object",
+      "required": [
+        "creative_id"
+      ],
+      "properties": {
+        "creative_id": {
+          "type": "string",
+          "description": "The ID of the ad creative to use"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    }
+  }
+}

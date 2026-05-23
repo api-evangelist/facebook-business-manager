@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdCreativeList",
+  "title": "AdCreativeList",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AdCreative"
+      }
+    },
+    "paging": {
+      "$ref": "#/components/schemas/Paging"
+    }
+  }
+}

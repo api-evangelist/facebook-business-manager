@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageInsightsResponse",
+  "title": "PageInsightsResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The metric name"
+          },
+          "period": {
+            "type": "string",
+            "description": "The aggregation period"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "description": "The metric value (integer or object)"
+                },
+                "end_time": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable metric title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of what the metric measures"
+          },
+          "id": {
+            "type": "string",
+            "description": "Metric identifier"
+          }
+        }
+      }
+    },
+    "paging": {
+      "$ref": "#/components/schemas/Paging"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+name: Facebook Business Manager Domain Vocabulary
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: Tag-derived vocabulary for the Facebook Business Manager API surface; sourced from openapi/ tags.
+terms:
+- term: Ad Accounts
+  description: Manage advertising accounts including settings, spend limits, and account-level configurations.
+- term: Ad Creatives
+  description: Manage ad creative content including images, videos, copy, and call-to-action configurations.
+- term: Ad Images
+  description: Upload and manage images used in ad creatives.
+- term: Ad Sets
+  description: Manage ad sets within campaigns, including targeting, budgets, scheduling, and optimization goals.
+- term: Ads
+  description: Manage individual ads within ad sets, including creative associations and status.
+- term: Campaigns
+  description: Manage advertising campaigns including creation, updating, and status management.
+- term: Custom Audiences
+  description: Create and manage custom audiences for ad targeting based on customer data, website visitors, or app users.
+- term: Insights
+  description: Retrieve performance metrics and analytics data for campaigns, ad sets, and ads.

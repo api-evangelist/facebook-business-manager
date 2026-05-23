@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdSet",
+  "title": "AdSet",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the ad set"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad set"
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "The ID of the parent campaign"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ]
+    },
+    "effective_status": {
+      "type": "string",
+      "description": "Effective status considering parent statuses"
+    },
+    "daily_budget": {
+      "type": "string",
+      "description": "Daily budget in smallest currency unit"
+    },
+    "lifetime_budget": {
+      "type": "string",
+      "description": "Lifetime budget in smallest currency unit"
+    },
+    "optimization_goal": {
+      "type": "string",
+      "description": "The optimization goal for ad delivery",
+      "enum": [
+        "LINK_CLICKS",
+        "IMPRESSIONS",
+        "REACH",
+        "LANDING_PAGE_VIEWS",
+        "OFFSITE_CONVERSIONS",
+        "LEAD_GENERATION",
+        "APP_INSTALLS",
+        "VALUE"
+      ]
+    },
+    "billing_event": {
+      "type": "string",
+      "description": "The event used for billing",
+      "enum": [
+        "IMPRESSIONS",
+        "LINK_CLICKS"
+      ]
+    },
+    "bid_amount": {
+      "type": "integer",
+      "description": "Bid amount in smallest currency unit"
+    },
+    "bid_strategy": {
+      "type": "string",
+      "description": "Bidding strategy for the ad set",
+      "enum": [
+        "LOWEST_COST_WITHOUT_CAP",
+        "LOWEST_COST_WITH_BID_CAP",
+        "COST_CAP"
+      ]
+    },
+    "targeting": {
+      "type": "object",
+      "description": "Targeting specification for the ad set",
+      "properties": {
+        "age_min": {
+          "type": "integer",
+          "minimum": 18
+        },
+        "age_max": {
+          "type": "integer",
+          "maximum": 65
+        },
+        "genders": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "geo_locations": {
+          "type": "object",
+          "properties": {
+            "countries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

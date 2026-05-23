@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCreate",
+  "title": "PostCreate",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The text content for the post"
+    },
+    "link": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to share in the post"
+    },
+    "published": {
+      "type": "boolean",
+      "description": "Whether to publish the post immediately",
+      "default": true
+    },
+    "scheduled_publish_time": {
+      "type": "integer",
+      "description": "Unix timestamp for when to publish the post. Must be between 10 minutes and 6 months from now."
+    },
+    "targeting": {
+      "type": "object",
+      "description": "Targeting specification for the post audience"
+    }
+  }
+}

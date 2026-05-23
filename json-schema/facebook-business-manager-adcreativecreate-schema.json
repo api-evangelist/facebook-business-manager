@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdCreativeCreate",
+  "title": "AdCreativeCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "object_story_spec"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "object_story_spec": {
+      "type": "object",
+      "description": "Story specification including page, link, and media data"
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "call_to_action_type": {
+      "type": "string",
+      "enum": [
+        "LEARN_MORE",
+        "SHOP_NOW",
+        "SIGN_UP",
+        "BOOK_NOW",
+        "DOWNLOAD",
+        "GET_OFFER",
+        "CONTACT_US",
+        "SUBSCRIBE"
+      ]
+    },
+    "url_tags": {
+      "type": "string"
+    }
+  }
+}

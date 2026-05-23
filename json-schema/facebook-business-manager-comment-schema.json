@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Comment",
+  "title": "Comment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the comment"
+    },
+    "message": {
+      "type": "string",
+      "description": "The text content of the comment"
+    },
+    "from": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "The person or Page that made the comment"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the comment was created"
+    },
+    "like_count": {
+      "type": "integer",
+      "description": "Number of likes on the comment"
+    },
+    "comment_count": {
+      "type": "integer",
+      "description": "Number of replies to the comment"
+    },
+    "is_hidden": {
+      "type": "boolean",
+      "description": "Whether the comment is hidden"
+    },
+    "attachment": {
+      "type": "object",
+      "description": "Media attachment on the comment"
+    }
+  }
+}

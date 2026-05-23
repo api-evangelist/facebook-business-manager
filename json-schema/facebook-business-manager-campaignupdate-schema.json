@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignUpdate",
+  "title": "CampaignUpdate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated campaign name"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ]
+    },
+    "daily_budget": {
+      "type": "string",
+      "description": "Updated daily budget"
+    },
+    "lifetime_budget": {
+      "type": "string",
+      "description": "Updated lifetime budget"
+    }
+  }
+}

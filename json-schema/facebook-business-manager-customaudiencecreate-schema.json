@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomAudienceCreate",
+  "title": "CustomAudienceCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "subtype"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "subtype": {
+      "type": "string",
+      "enum": [
+        "CUSTOM",
+        "WEBSITE",
+        "APP",
+        "OFFLINE_CONVERSION",
+        "LOOKALIKE",
+        "ENGAGEMENT"
+      ]
+    },
+    "customer_file_source": {
+      "type": "string",
+      "description": "Source of customer data for CUSTOM subtype"
+    },
+    "lookalike_spec": {
+      "type": "object",
+      "description": "Specification for lookalike audiences",
+      "properties": {
+        "origin_audience_id": {
+          "type": "string"
+        },
+        "ratio": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.2
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "description": "Rule-based audience definition for WEBSITE or APP subtypes"
+    }
+  }
+}

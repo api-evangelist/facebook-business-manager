@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomAudience",
+  "title": "CustomAudience",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the custom audience"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the custom audience"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the audience"
+    },
+    "subtype": {
+      "type": "string",
+      "description": "The subtype of the custom audience",
+      "enum": [
+        "CUSTOM",
+        "WEBSITE",
+        "APP",
+        "OFFLINE_CONVERSION",
+        "CLAIM",
+        "PARTNER",
+        "MANAGED",
+        "VIDEO",
+        "LOOKALIKE",
+        "ENGAGEMENT"
+      ]
+    },
+    "approximate_count": {
+      "type": "integer",
+      "description": "Approximate number of people in the audience"
+    },
+    "data_source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "sub_type": {
+          "type": "string"
+        }
+      },
+      "description": "The source of the audience data"
+    },
+    "delivery_status": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "Delivery status code"
+        }
+      }
+    },
+    "operation_status": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "Operation status code"
+        }
+      }
+    },
+    "time_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "time_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

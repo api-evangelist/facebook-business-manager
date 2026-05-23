@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Page",
+  "title": "Page",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the Page"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the Page"
+    },
+    "category": {
+      "type": "string",
+      "description": "The primary category of the Page"
+    },
+    "category_list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "List of categories associated with the Page"
+    },
+    "about": {
+      "type": "string",
+      "description": "Short description of the Page"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the Page"
+    },
+    "fan_count": {
+      "type": "integer",
+      "description": "Total number of Page likes"
+    },
+    "followers_count": {
+      "type": "integer",
+      "description": "Total number of Page followers"
+    },
+    "link": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the Page on Facebook"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "The website listed on the Page"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number listed on the Page"
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Email addresses listed on the Page"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      }
+    },
+    "cover": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "description": "The Page cover photo"
+    },
+    "picture": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      },
+      "description": "The Page profile picture"
+    },
+    "verification_status": {
+      "type": "string",
+      "description": "Verification status of the Page"
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the Page is published and visible"
+    }
+  }
+}

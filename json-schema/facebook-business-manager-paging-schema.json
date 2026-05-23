@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Paging",
+  "title": "Paging",
+  "type": "object",
+  "properties": {
+    "cursors": {
+      "$ref": "#/components/schemas/PagingCursors"
+    },
+    "next": {
+      "type": "string",
+      "description": "URL for the next page of results"
+    },
+    "previous": {
+      "type": "string",
+      "description": "URL for the previous page of results"
+    }
+  }
+}

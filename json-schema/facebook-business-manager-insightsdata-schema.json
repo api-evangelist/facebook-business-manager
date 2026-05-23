@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InsightsData",
+  "title": "InsightsData",
+  "type": "object",
+  "properties": {
+    "impressions": {
+      "type": "string",
+      "description": "Number of times ads were shown"
+    },
+    "clicks": {
+      "type": "string",
+      "description": "Number of clicks on ads"
+    },
+    "spend": {
+      "type": "string",
+      "description": "Total amount spent during the period"
+    },
+    "reach": {
+      "type": "string",
+      "description": "Number of unique people who saw the ads"
+    },
+    "cpc": {
+      "type": "string",
+      "description": "Average cost per click"
+    },
+    "cpm": {
+      "type": "string",
+      "description": "Average cost per 1,000 impressions"
+    },
+    "ctr": {
+      "type": "string",
+      "description": "Click-through rate percentage"
+    },
+    "frequency": {
+      "type": "string",
+      "description": "Average number of times each person saw the ad"
+    },
+    "actions": {
+      "type": "array",
+      "description": "List of actions taken by people",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "conversions": {
+      "type": "array",
+      "description": "List of conversion events",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "date_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the reporting period"
+    },
+    "date_stop": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the reporting period"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_id": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_id": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    }
+  }
+}

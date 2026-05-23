@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdAccount",
+  "title": "AdAccount",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the ad account (prefixed with act_)"
+    },
+    "account_id": {
+      "type": "string",
+      "description": "The numeric account ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad account"
+    },
+    "account_status": {
+      "type": "integer",
+      "description": "Status of the account. 1 = ACTIVE, 2 = DISABLED, 3 = UNSETTLED, 7 = PENDING_RISK_REVIEW, 8 = PENDING_SETTLEMENT, 9 = IN_GRACE_PERIOD, 100 = PENDING_CLOSURE, 101 = CLOSED."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code used by the account (ISO 4217)"
+    },
+    "timezone_name": {
+      "type": "string",
+      "description": "Timezone name for the ad account"
+    },
+    "amount_spent": {
+      "type": "string",
+      "description": "Total amount spent by the account in account currency"
+    },
+    "balance": {
+      "type": "string",
+      "description": "Current remaining account balance"
+    },
+    "spend_cap": {
+      "type": "string",
+      "description": "Spend cap for the account"
+    },
+    "business": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "The business associated with this ad account"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

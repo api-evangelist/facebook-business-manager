@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Post",
+  "title": "Post",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the post"
+    },
+    "message": {
+      "type": "string",
+      "description": "The text content of the post"
+    },
+    "story": {
+      "type": "string",
+      "description": "Auto-generated story text for the post"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the post was created"
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the post was last updated"
+    },
+    "full_picture": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the full-size post image"
+    },
+    "permalink_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Permanent URL to the post"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of post content",
+      "enum": [
+        "link",
+        "status",
+        "photo",
+        "video",
+        "offer"
+      ]
+    },
+    "shares": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        }
+      },
+      "description": "Share count information"
+    },
+    "likes": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_count": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total_count": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "attachments": {
+      "type": "object",
+      "description": "Media and link attachments on the post"
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the post is published"
+    },
+    "scheduled_publish_time": {
+      "type": "string",
+      "description": "Unix timestamp for scheduled posts"
+    }
+  }
+}

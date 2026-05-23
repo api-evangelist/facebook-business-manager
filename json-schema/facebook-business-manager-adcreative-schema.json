@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdCreative",
+  "title": "AdCreative",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the ad creative"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad creative"
+    },
+    "object_story_spec": {
+      "type": "object",
+      "description": "Specification for the story that will appear in the ad, including page ID, link data, and media."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the ad"
+    },
+    "body": {
+      "type": "string",
+      "description": "The body text of the ad"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the ad image"
+    },
+    "call_to_action_type": {
+      "type": "string",
+      "description": "The call-to-action button type",
+      "enum": [
+        "LEARN_MORE",
+        "SHOP_NOW",
+        "SIGN_UP",
+        "BOOK_NOW",
+        "DOWNLOAD",
+        "GET_OFFER",
+        "CONTACT_US",
+        "SUBSCRIBE"
+      ]
+    },
+    "link_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Destination URL for the ad"
+    },
+    "url_tags": {
+      "type": "string",
+      "description": "URL tags for tracking parameters"
+    }
+  }
+}

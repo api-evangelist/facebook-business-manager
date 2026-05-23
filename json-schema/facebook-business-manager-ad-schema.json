@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Ad",
+  "title": "Ad",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the ad"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad"
+    },
+    "adset_id": {
+      "type": "string",
+      "description": "The ID of the parent ad set"
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "The ID of the parent campaign"
+    },
+    "creative": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the associated ad creative"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DELETED",
+        "ARCHIVED"
+      ]
+    },
+    "effective_status": {
+      "type": "string",
+      "description": "Effective status considering parent statuses"
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
