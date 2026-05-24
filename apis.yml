@@ -296,6 +296,8 @@ common:
   url: https://developers.facebook.com/community
 - type: Developer Tools
   url: https://developers.facebook.com/tools/explorer
+- type: LLMsTxt
+  url: https://developers.facebook.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
