@@ -2,13 +2,13 @@
   "repo": "facebook-business-manager",
   "feeds": [
     {
-      "source": "https://developers.meta.com/blog/",
-      "feed_url": "",
+      "source": "https://developers.facebook.com/docs/graph-api/changelog",
+      "feed_url": "https://developers.facebook.com/docs/graph-api/changelog",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
