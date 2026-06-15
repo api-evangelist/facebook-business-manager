@@ -1,0 +1,4526 @@
+{
+  "item": [
+    {
+      "id": "f7c4500a-f034-4633-a9a0-fa1895fe17d9",
+      "name": "Ad Accounts",
+      "description": {
+        "content": "Manage advertising accounts including settings, spend limits, and account-level configurations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28fa1f52-0fbf-44f4-a2f6-e18c59fdc7ed",
+          "name": "Facebook Business Manager Get ad account details",
+          "request": {
+            "name": "Facebook Business Manager Get ad account details",
+            "description": {
+              "content": "Retrieves the details of a specific ad account including settings, spend limits, and status information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5ca3ea7-4058-4d05-b835-73a5c568a050",
+              "name": "Successfully retrieved ad account details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"account_id\": \"string\",\n  \"name\": \"string\",\n  \"account_status\": 369,\n  \"currency\": \"string\",\n  \"timezone_name\": \"string\",\n  \"amount_spent\": \"string\",\n  \"balance\": \"string\",\n  \"spend_cap\": \"string\",\n  \"business\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"created_time\": \"2000-03-03T03:45:16.542Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac98309e-4eb0-49e6-a926-83671c2b239f",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81896dad-d07c-45dd-91a6-080179efecff",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "793a88d5-15f3-45be-b23a-29825ee84df7",
+      "name": "Ad Creatives",
+      "description": {
+        "content": "Manage ad creative content including images, videos, copy, and call-to-action configurations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0699b-484e-4bc3-a36a-ec0c6e71e4dc",
+          "name": "Facebook Business Manager List ad creatives",
+          "request": {
+            "name": "Facebook Business Manager List ad creatives",
+            "description": {
+              "content": "Retrieves all ad creatives for the specified ad account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "adcreatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of objects to return per page. Default is 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination to retrieve the next page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c362b8c3-7f4e-40d3-b49f-376b9fa01c5f",
+              "name": "Successfully retrieved list of ad creatives",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"object_story_spec\": {},\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"image_url\": \"http://EN.wuvcVwRe0CZCrsOocfDL\",\n      \"call_to_action_type\": \"CONTACT_US\",\n      \"link_url\": \"http://YbRATpBakyWmGBELNKR.zezaPBojj77jJ-Qxq,WaOoDh7fG,vx-ZNEqIaN5Lrj3DLsBtB00jX5b5Ixs-EhaLVg6dh\",\n      \"url_tags\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"object_story_spec\": {},\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"image_url\": \"http://eXGWaQbkifrfJqwGFmbt.xpyQdsIyIuqLY-eeMFwgdP0H8+O\",\n      \"call_to_action_type\": \"SUBSCRIBE\",\n      \"link_url\": \"https://m.rwfouAYz5JGG0,hSvxHe8cdRqeYvaCZoD+UL0+H\",\n      \"url_tags\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56123c9d-040a-4e87-b092-afdaa6226994",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2b0b83c-1c52-43a6-96d9-8b2acc6a16c8",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3cfa839-a025-4762-8509-31d8dbae4e34",
+          "name": "Facebook Business Manager Create an ad creative",
+          "request": {
+            "name": "Facebook Business Manager Create an ad creative",
+            "description": {
+              "content": "Creates a new ad creative with image, video, copy, and call-to-action configurations for use in ads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "adcreatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": \"<object>\",\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"<string>\",\n  \"url_tags\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a1adebe-24eb-463d-8fe0-00cd8b561dfe",
+              "name": "Ad creative created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": \"<object>\",\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"<string>\",\n  \"url_tags\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "369441d6-0813-47da-bf0b-d74ea16e259d",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": \"<object>\",\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"<string>\",\n  \"url_tags\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2749f80f-24a5-43ea-891a-c28717f15b9f",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": \"<object>\",\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"<string>\",\n  \"url_tags\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c8e5ad32-d6fe-48b8-993d-428f84a77f9d",
+      "name": "Ad Images",
+      "description": {
+        "content": "Upload and manage images used in ad creatives.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a419a340-4f79-4904-a074-3f3e71233023",
+          "name": "Facebook Business Manager Upload an ad image",
+          "request": {
+            "name": "Facebook Business Manager Upload an ad image",
+            "description": {
+              "content": "Uploads an image to the ad account image library for use in ad creatives. Accepts image file bytes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "adimages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "filename",
+                  "type": "file",
+                  "description": "The image file to upload"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d91560e0-0320-443f-96ed-8180a70eecfc",
+              "name": "Image uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adimages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The image file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"images\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cdc70c4-7a86-4ac0-a94a-ac27490f9a0d",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adimages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The image file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da71841a-1f0d-4b2e-a1d4-a0934231afc9",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adimages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The image file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bef398ab-76cc-4f82-88a7-df2f3456ea14",
+      "name": "Ad Sets",
+      "description": {
+        "content": "Manage ad sets within campaigns, including targeting, budgets, scheduling, and optimization goals.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb04db72-ea2a-48a8-b8ec-0d4b44ab275c",
+          "name": "Facebook Business Manager List ad sets",
+          "request": {
+            "name": "Facebook Business Manager List ad sets",
+            "description": {
+              "content": "Retrieves all ad sets for the specified ad account. Returns targeting, budget, scheduling, and optimization configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "adsets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of objects to return per page. Default is 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination to retrieve the next page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "405b7871-5932-4ea4-809a-c9995e12845b",
+              "name": "Successfully retrieved list of ad sets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"campaign_id\": \"string\",\n      \"status\": \"ARCHIVED\",\n      \"effective_status\": \"string\",\n      \"daily_budget\": \"string\",\n      \"lifetime_budget\": \"string\",\n      \"optimization_goal\": \"REACH\",\n      \"billing_event\": \"IMPRESSIONS\",\n      \"bid_amount\": 7250,\n      \"bid_strategy\": \"LOWEST_COST_WITHOUT_CAP\",\n      \"targeting\": {\n        \"age_min\": 755,\n        \"age_max\": 34,\n        \"genders\": [\n          3106,\n          1051\n        ],\n        \"geo_locations\": {\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"interests\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"start_time\": \"1957-06-01T19:35:26.824Z\",\n      \"end_time\": \"1983-12-28T00:12:40.657Z\",\n      \"created_time\": \"2008-01-17T12:18:11.158Z\",\n      \"updated_time\": \"1978-09-16T00:40:02.370Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"campaign_id\": \"string\",\n      \"status\": \"ARCHIVED\",\n      \"effective_status\": \"string\",\n      \"daily_budget\": \"string\",\n      \"lifetime_budget\": \"string\",\n      \"optimization_goal\": \"LEAD_GENERATION\",\n      \"billing_event\": \"LINK_CLICKS\",\n      \"bid_amount\": 2553,\n      \"bid_strategy\": \"LOWEST_COST_WITHOUT_CAP\",\n      \"targeting\": {\n        \"age_min\": 9799,\n        \"age_max\": 58,\n        \"genders\": [\n          4997,\n          110\n        ],\n        \"geo_locations\": {\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"interests\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"start_time\": \"1968-05-31T14:11:27.304Z\",\n      \"end_time\": \"2009-02-23T15:56:54.578Z\",\n      \"created_time\": \"1999-11-05T15:28:39.851Z\",\n      \"updated_time\": \"1953-09-28T06:28:25.098Z\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2cdabf9-e48c-4416-88fb-195a16cbab8d",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cce42256-ae5c-4dfc-87b0-ac21a97de5d8",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ab1e2d1-3aac-44fe-9753-7a915b7bade7",
+          "name": "Facebook Business Manager Create an ad set",
+          "request": {
+            "name": "Facebook Business Manager Create an ad set",
+            "description": {
+              "content": "Creates a new ad set within a campaign. Defines targeting, budget, schedule, optimization goal, and bid strategy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "adsets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"<string>\",\n  \"billing_event\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16a378d3-0fb2-4129-be7b-fa128ebcc9cc",
+              "name": "Ad set created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"<string>\",\n  \"billing_event\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e7a7a54-d767-4f27-ae53-8bf6aa7090b3",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"<string>\",\n  \"billing_event\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7222b6e-204e-4cee-95a1-1186e70f46cf",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"<string>\",\n  \"billing_event\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1ecb516-8d28-4895-9ac0-26e6dab3a413",
+          "name": "Facebook Business Manager Get an ad set",
+          "request": {
+            "name": "Facebook Business Manager Get an ad set",
+            "description": {
+              "content": "Retrieves the details of a specific ad set including targeting, budget, scheduling, and optimization settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":ad_set_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_set_id",
+                  "description": "(Required) The ID of the ad set"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13fe204c-abd4-4a22-b221-cdceecac7391",
+              "name": "Successfully retrieved ad set details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"campaign_id\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"effective_status\": \"string\",\n  \"daily_budget\": \"string\",\n  \"lifetime_budget\": \"string\",\n  \"optimization_goal\": \"OFFSITE_CONVERSIONS\",\n  \"billing_event\": \"IMPRESSIONS\",\n  \"bid_amount\": 3669,\n  \"bid_strategy\": \"COST_CAP\",\n  \"targeting\": {\n    \"age_min\": 9190,\n    \"age_max\": 12,\n    \"genders\": [\n      2127,\n      5065\n    ],\n    \"geo_locations\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"interests\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  },\n  \"start_time\": \"2005-10-11T08:39:49.148Z\",\n  \"end_time\": \"2005-06-08T01:04:58.231Z\",\n  \"created_time\": \"2009-01-10T09:06:21.228Z\",\n  \"updated_time\": \"2012-09-22T06:13:09.710Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "516e12cb-4473-4688-9f63-09c72af5730d",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5f1978d-3a8b-4b66-9906-578fa3040b59",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5143f2c-a6d5-489e-8aaa-8e16181fc967",
+          "name": "Facebook Business Manager Update an ad set",
+          "request": {
+            "name": "Facebook Business Manager Update an ad set",
+            "description": {
+              "content": "Updates an existing ad set. Supports modifying targeting, budget, schedule, and optimization settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":ad_set_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_set_id",
+                  "description": "(Required) The ID of the ad set"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91701f26-f81a-4e8e-bc54-bd1c60eb65cb",
+              "name": "Ad set updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d4a1381-dd11-4162-b8b3-e90f9627bab8",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d874ca6-eef6-46ba-b2ac-dd4d42de2275",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_set_id",
+                      "description": "(Required) The ID of the ad set"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": \"<object>\",\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "66940a95-fad6-495a-ab3d-7a3a802f4017",
+      "name": "Ads",
+      "description": {
+        "content": "Manage individual ads within ad sets, including creative associations and status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b468e5d-42c2-4ad3-ba60-6200f357d9a3",
+          "name": "Facebook Business Manager List ads",
+          "request": {
+            "name": "Facebook Business Manager List ads",
+            "description": {
+              "content": "Retrieves all ads for the specified ad account. Returns ad configurations including creative associations and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "ads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of objects to return per page. Default is 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination to retrieve the next page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4e21afb-5cc8-41e1-92fe-89eb5540ac9c",
+              "name": "Successfully retrieved list of ads",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"adset_id\": \"string\",\n      \"campaign_id\": \"string\",\n      \"creative\": {\n        \"id\": \"string\"\n      },\n      \"status\": \"ARCHIVED\",\n      \"effective_status\": \"string\",\n      \"created_time\": \"2015-12-29T06:28:16.866Z\",\n      \"updated_time\": \"1964-06-29T05:25:05.460Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"adset_id\": \"string\",\n      \"campaign_id\": \"string\",\n      \"creative\": {\n        \"id\": \"string\"\n      },\n      \"status\": \"ARCHIVED\",\n      \"effective_status\": \"string\",\n      \"created_time\": \"1997-10-26T17:28:45.836Z\",\n      \"updated_time\": \"2005-01-12T12:51:59.415Z\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b2172e1-b147-460f-9cea-6ad8375b3e50",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c2d34cb-37c1-482a-8a06-c2f5ea1ca755",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de60f4c2-1dff-4495-a546-ce6adfc1bb77",
+          "name": "Facebook Business Manager Create an ad",
+          "request": {
+            "name": "Facebook Business Manager Create an ad",
+            "description": {
+              "content": "Creates a new ad within an ad set. Associates an ad creative with targeting and delivery settings defined at the ad set level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "ads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"adset_id\": \"<string>\",\n  \"creative\": {\n    \"creative_id\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08a7e989-c587-477a-91d8-5fb7b8084b8b",
+              "name": "Ad created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"adset_id\": \"<string>\",\n  \"creative\": {\n    \"creative_id\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d181bf42-9485-4d9a-bf67-2119ed3f4eab",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"adset_id\": \"<string>\",\n  \"creative\": {\n    \"creative_id\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8d91460-aafa-4817-a7e7-3694ea9e9ad8",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"adset_id\": \"<string>\",\n  \"creative\": {\n    \"creative_id\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "719a6d3f-cd38-478a-ab7b-1f39b9d0af93",
+          "name": "Facebook Business Manager Get an ad",
+          "request": {
+            "name": "Facebook Business Manager Get an ad",
+            "description": {
+              "content": "Retrieves the details of a specific ad including its creative, status, and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":ad_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_id",
+                  "description": "(Required) The ID of the ad"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3ec9fac-91d2-45f7-af2b-0ef9c5d55c56",
+              "name": "Successfully retrieved ad details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_id",
+                      "description": "(Required) The ID of the ad"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"adset_id\": \"string\",\n  \"campaign_id\": \"string\",\n  \"creative\": {\n    \"id\": \"string\"\n  },\n  \"status\": \"ARCHIVED\",\n  \"effective_status\": \"string\",\n  \"created_time\": \"1987-06-13T05:53:07.076Z\",\n  \"updated_time\": \"2020-09-02T10:59:32.916Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22c97fee-cb4c-4088-b22d-7d6eacc93588",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_id",
+                      "description": "(Required) The ID of the ad"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98854603-d98a-4d11-9751-6455d4e42711",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ad_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_id",
+                      "description": "(Required) The ID of the ad"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e70dceea-2425-4491-8a06-5adcda315c58",
+      "name": "Campaigns",
+      "description": {
+        "content": "Manage advertising campaigns including creation, updating, and status management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1122b6c3-5c1a-4627-835e-884a2c599ebe",
+          "name": "Facebook Business Manager List campaigns",
+          "request": {
+            "name": "Facebook Business Manager List campaigns",
+            "description": {
+              "content": "Retrieves all campaigns for the specified ad account. Returns a paginated list of campaign objects with their configurations and status information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of objects to return per page. Default is 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination to retrieve the next page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "filtering",
+                  "value": "<string>",
+                  "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b911cd35-feb6-4711-9eff-4d397f11b51d",
+              "name": "Successfully retrieved list of campaigns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filtering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"objective\": \"OUTCOME_AWARENESS\",\n      \"status\": \"PAUSED\",\n      \"effective_status\": \"string\",\n      \"daily_budget\": \"string\",\n      \"lifetime_budget\": \"string\",\n      \"budget_remaining\": \"string\",\n      \"buying_type\": \"RESERVED\",\n      \"special_ad_categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_time\": \"1986-12-03T17:23:31.828Z\",\n      \"updated_time\": \"1973-06-28T01:59:41.663Z\",\n      \"start_time\": \"2000-12-25T00:23:07.074Z\",\n      \"stop_time\": \"1949-09-12T05:33:14.543Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"objective\": \"OUTCOME_APP_PROMOTION\",\n      \"status\": \"ACTIVE\",\n      \"effective_status\": \"string\",\n      \"daily_budget\": \"string\",\n      \"lifetime_budget\": \"string\",\n      \"budget_remaining\": \"string\",\n      \"buying_type\": \"AUCTION\",\n      \"special_ad_categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_time\": \"2024-01-01T05:05:36.856Z\",\n      \"updated_time\": \"1981-01-10T01:11:39.209Z\",\n      \"start_time\": \"1995-06-11T09:08:29.660Z\",\n      \"stop_time\": \"1956-10-09T20:34:53.967Z\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b23a610-7aba-44a9-897c-382e0c8e2f92",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filtering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6884ed85-1f29-40e9-92c0-0daadd0dd0de",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filtering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bd51bba-40ea-415d-b608-faf94cd963a5",
+          "name": "Facebook Business Manager Create a campaign",
+          "request": {
+            "name": "Facebook Business Manager Create a campaign",
+            "description": {
+              "content": "Creates a new advertising campaign in the specified ad account. Requires at minimum a name, objective, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"status\": \"<string>\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1b3f2bd-e2a6-4824-a26d-6984d550cf1d",
+              "name": "Campaign created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"status\": \"<string>\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ad50189-5738-4fe4-a373-3a4073caffa1",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"status\": \"<string>\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32687b2f-d05c-4df8-9046-811102e87be8",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"status\": \"<string>\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da9dfb0b-80d7-4644-9d4b-1f532bb349d7",
+          "name": "Facebook Business Manager Get a campaign",
+          "request": {
+            "name": "Facebook Business Manager Get a campaign",
+            "description": {
+              "content": "Retrieves the details of a specific campaign by its ID, including configuration, status, and objective.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":campaign_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a79918a-4e5a-4b9f-ae4a-3c4155b7d2fe",
+              "name": "Successfully retrieved campaign details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"objective\": \"OUTCOME_TRAFFIC\",\n  \"status\": \"ARCHIVED\",\n  \"effective_status\": \"string\",\n  \"daily_budget\": \"string\",\n  \"lifetime_budget\": \"string\",\n  \"budget_remaining\": \"string\",\n  \"buying_type\": \"AUCTION\",\n  \"special_ad_categories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created_time\": \"2006-12-17T00:09:19.737Z\",\n  \"updated_time\": \"2020-10-17T06:59:52.222Z\",\n  \"start_time\": \"2000-02-01T04:45:43.638Z\",\n  \"stop_time\": \"1966-05-14T16:16:58.611Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05001079-9f3a-44a9-9c87-fd50f0c4f3e8",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4b7fd01-11f9-4d9d-99c1-02ad9c4832c6",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b615dc26-71f9-4e99-b008-4adf206c2297",
+          "name": "Facebook Business Manager Update a campaign",
+          "request": {
+            "name": "Facebook Business Manager Update a campaign",
+            "description": {
+              "content": "Updates an existing campaign. Supports modifying name, status, budget, and other campaign-level settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":campaign_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a933baa7-9a82-4198-ae30-40f2f5d77d1d",
+              "name": "Campaign updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50af10a1-6d8b-4369-b4df-8a49a4cb37d8",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9aa3bec0-1c8e-489a-9209-f3f45fda4550",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "069121eb-1d63-47e6-a5d2-c3c53c6163b7",
+          "name": "Facebook Business Manager Delete a campaign",
+          "request": {
+            "name": "Facebook Business Manager Delete a campaign",
+            "description": {
+              "content": "Deletes an advertising campaign. This sets the campaign status to DELETED and it will no longer serve ads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":campaign_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f56657b5-fda4-41f1-8b82-841d85208d48",
+              "name": "Campaign deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6bcca4d-8d3e-43d7-ade8-b99ae6623396",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccabdc5f-d632-44e8-b088-389cfb633062",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "146c922d-0768-4622-a0df-e595d64e61d1",
+      "name": "Custom Audiences",
+      "description": {
+        "content": "Create and manage custom audiences for ad targeting based on customer data, website visitors, or app users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3abe4133-792d-4590-8cad-ec4fb784826d",
+          "name": "Facebook Business Manager List custom audiences",
+          "request": {
+            "name": "Facebook Business Manager List custom audiences",
+            "description": {
+              "content": "Retrieves all custom audiences for the specified ad account. Returns audience configurations and approximate sizes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "customaudiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of objects to return per page. Default is 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination to retrieve the next page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5886edac-f912-4a2c-b8fc-67cf38f72403",
+              "name": "Successfully retrieved list of custom audiences",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"subtype\": \"PARTNER\",\n      \"approximate_count\": 8476,\n      \"data_source\": {\n        \"type\": \"string\",\n        \"sub_type\": \"string\"\n      },\n      \"delivery_status\": {\n        \"status\": 5958\n      },\n      \"operation_status\": {\n        \"status\": 7848\n      },\n      \"time_created\": \"1965-03-15T00:34:15.579Z\",\n      \"time_updated\": \"1949-08-07T11:23:25.196Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"subtype\": \"LOOKALIKE\",\n      \"approximate_count\": 4254,\n      \"data_source\": {\n        \"type\": \"string\",\n        \"sub_type\": \"string\"\n      },\n      \"delivery_status\": {\n        \"status\": 329\n      },\n      \"operation_status\": {\n        \"status\": 6874\n      },\n      \"time_created\": \"1948-03-28T20:59:29.504Z\",\n      \"time_updated\": \"1969-04-09T07:36:27.363Z\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59db2f88-c4d2-436d-af9e-487b7059eef1",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e99a2245-f2e2-4aa7-a3ba-5f326e380062",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb2e4d5b-1f56-4226-8f84-0a27ab5b30d9",
+          "name": "Facebook Business Manager Create a custom audience",
+          "request": {
+            "name": "Facebook Business Manager Create a custom audience",
+            "description": {
+              "content": "Creates a new custom audience for ad targeting. Supports customer file audiences, website custom audiences, app activity audiences, and lookalike audiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "customaudiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"<string>\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db9f5d1c-99b8-449c-9f25-9a2222107f7c",
+              "name": "Custom audience created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"<string>\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01d87d70-f987-432e-819d-4cbde279fb9c",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"<string>\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f35817a8-5e5b-48ee-a3ea-a2426d6a2c92",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"<string>\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b0ea7e3e-a1d5-4191-af3d-117530a45528",
+      "name": "Insights",
+      "description": {
+        "content": "Retrieve performance metrics and analytics data for campaigns, ad sets, and ads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0d5817ed-7865-4c5f-8279-30d041184f76",
+          "name": "Facebook Business Manager Get ad account insights",
+          "request": {
+            "name": "Facebook Business Manager Get ad account insights",
+            "description": {
+              "content": "Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdowns",
+                  "value": "<string>",
+                  "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement."
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "Level of aggregation for results. Options include account, campaign, adset, or ad."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_increment",
+                  "value": "<string>",
+                  "description": "Number of days for each increment in the time range, or use monthly or all_days."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7e3f558-05aa-4f59-8bbe-c496025c9b4c",
+              "name": "Successfully retrieved insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1979-06-05\",\n      \"date_stop\": \"1948-04-12\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    },\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1959-11-01\",\n      \"date_stop\": \"2021-03-29\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e008db94-f338-46e0-9028-75373b9387db",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d5674e7-ee06-4255-8220-f8c902aca7b1",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07573bf4-b73f-409f-848d-b6ad7d31b5b0",
+          "name": "Facebook Business Manager Get campaign insights",
+          "request": {
+            "name": "Facebook Business Manager Get campaign insights",
+            "description": {
+              "content": "Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":campaign_id",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53d9201d-0d76-45aa-8ae8-8930a142a5a9",
+              "name": "Successfully retrieved campaign insights",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1979-06-05\",\n      \"date_stop\": \"1948-04-12\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    },\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1959-11-01\",\n      \"date_stop\": \"2021-03-29\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13aea39e-7462-40e4-9ac8-9a5a7d43d47b",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc3aaa8-0186-4eb1-9b49-d71776f50708",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 9913,\n    \"error_subcode\": 6274,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v25.0",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the ad account (numeric, without the act_ prefix)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "ad_account_id"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a95b6d28-21cf-489c-ad27-9c9e15e4a042",
+    "name": "Facebook Business Manager Facebook Marketing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,660 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              },
+              {
+                "name": "filtering",
+                "value": "",
+                "type": "query",
+                "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value."
+              }
+            ]
+          },
+          "docs": "Retrieves all campaigns for the specified ad account. Returns a paginated list of campaign objects with their configurations and status information."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new advertising campaign in the specified ad account. Requires at minimum a name, objective, and status."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific campaign by its ID, including configuration, status, and objective."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Update a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing campaign. Supports modifying name, status, budget, and other campaign-level settings."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Delete a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://graph.facebook.com/v25.0/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              }
+            ]
+          },
+          "docs": "Deletes an advertising campaign. This sets the campaign status to DELETED and it will no longer serve ads."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List ad sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adsets",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad sets for the specified ad account. Returns targeting, budget, scheduling, and optimization configurations."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adsets",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad set within a campaign. Defines targeting, budget, schedule, optimization goal, and bid strategy."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:ad_set_id",
+            "params": [
+              {
+                "name": "ad_set_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad set"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ad set including targeting, budget, scheduling, and optimization settings."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Update an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:ad_set_id",
+            "params": [
+              {
+                "name": "ad_set_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing ad set. Supports modifying targeting, budget, schedule, and optimization settings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List ads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/ads",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ads for the specified ad account. Returns ad configurations including creative associations and status."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create an ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/ads",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad within an ad set. Associates an ad creative with targeting and delivery settings defined at the ad set level."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get an ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:ad_id",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ad including its creative, status, and configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Creatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List ad creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adcreatives",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad creatives for the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create an ad creative",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adcreatives",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad creative with image, video, copy, and call-to-action configurations for use in ads."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get ad account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ad account including settings, spend limits, and status information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List custom audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/customaudiences",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              }
+            ]
+          },
+          "docs": "Retrieves all custom audiences for the specified ad account. Returns audience configurations and approximate sizes."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create a custom audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/customaudiences",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom audience for ad targeting. Supports customer file audiences, website custom audiences, app activity audiences, and lookalike audiences."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get ad account insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/insights",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+              },
+              {
+                "name": "breakdowns",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Level of aggregation for results. Options include account, campaign, adset, or ad."
+              },
+              {
+                "name": "time_increment",
+                "value": "",
+                "type": "query",
+                "description": "Number of days for each increment in the time range, or use monthly or all_days."
+              }
+            ]
+          },
+          "docs": "Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get campaign insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:campaign_id/insights",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Upload an ad image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adimages",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "filename",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an image to the ad account image library for use in ad creatives. Accepts image file bytes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
