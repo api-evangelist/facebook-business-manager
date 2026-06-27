@@ -240,7 +240,7 @@ apis:
 common:
   - type: Portal
     url: https://developers.facebook.com
-  - type: Developer Console
+  - type: Console
     url: https://developers.facebook.com/apps
   - type: Business Manager
     url: https://business.facebook.com
@@ -266,7 +266,7 @@ common:
     url: https://developers.meta.com/blog/
   - type: Website
     url: https://www.meta.com
-  - type: SignUp
+  - type: Signup
     url: https://developers.facebook.com/async/registration/
   - type: SDKs
     url: https://developers.facebook.com/docs/business-sdk/getting-started
@@ -278,7 +278,7 @@ common:
     url: https://developers.facebook.com/community
   - type: Developer Tools
     url: https://developers.facebook.com/tools/explorer
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developers.facebook.com/llms.txt
 maintainers:
   - FN: Kin Lane
