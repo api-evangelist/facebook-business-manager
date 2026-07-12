@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/facebook-marketing-openapi.yml, openapi/facebook-pages-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens
+    via the Facebook Login flow.
+  sources:
+  - openapi/facebook-marketing-openapi.yml
+  - openapi/facebook-pages-openapi.yml

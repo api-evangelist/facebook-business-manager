@@ -238,6 +238,12 @@ apis:
       - type: Reference
         url: https://developers.facebook.com/docs/whatsapp/cloud-api/reference
 common:
+  - type: VulnerabilityDisclosure
+    url: security/facebook-business-manager-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/facebook-business-manager-domain-security.yml
+  - type: Authentication
+    url: authentication/facebook-business-manager-authentication.yml
   - type: Portal
     url: https://developers.facebook.com
   - type: Console
