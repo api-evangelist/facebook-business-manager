@@ -238,6 +238,8 @@ apis:
       - type: Reference
         url: https://developers.facebook.com/docs/whatsapp/cloud-api/reference
 common:
+  - type: AgenticAccess
+    url: agentic-access/facebook-business-manager-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/facebook-business-manager-vulnerability-disclosure.yml
   - type: DomainSecurity
