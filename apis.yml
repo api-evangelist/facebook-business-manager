@@ -7,7 +7,7 @@ description: >-
   governed through a shared authentication and access model.
 image: https://www.facebook.com/images/fb_icon_325x325.png
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-07-20'
 specificationVersion: '0.19'
 type: Index
 position: Consumer
@@ -288,6 +288,9 @@ common:
     url: https://developers.facebook.com/tools/explorer
   - type: LlmsText
     url: https://developers.facebook.com/llms.txt
+  - name: MCP Documentation
+    url: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview
+    type: MCPDocumentation
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
