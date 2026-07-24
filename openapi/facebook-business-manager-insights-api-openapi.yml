@@ -1,0 +1,263 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Insights API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Insights
+  description: Retrieve performance metrics and analytics data for campaigns, ad sets, and ads.
+paths:
+  /act_{ad_account_id}/insights:
+    get:
+      operationId: getAdAccountInsights
+      summary: Facebook Business Manager Get ad account insights
+      description: Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns.
+      tags:
+      - Insights
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/fields'
+      - name: time_range
+        in: query
+        description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+        required: false
+        schema:
+          type: string
+      - name: breakdowns
+        in: query
+        description: Comma-separated list of breakdown dimensions such as age, gender, country, or placement.
+        required: false
+        schema:
+          type: string
+      - name: level
+        in: query
+        description: Level of aggregation for results. Options include account, campaign, adset, or ad.
+        required: false
+        schema:
+          type: string
+          enum:
+          - account
+          - campaign
+          - adset
+          - ad
+      - name: time_increment
+        in: query
+        description: Number of days for each increment in the time range, or use monthly or all_days.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved insights data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{campaign_id}/insights:
+    get:
+      operationId: getCampaignInsights
+      summary: Facebook Business Manager Get campaign insights
+      description: Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics.
+      tags:
+      - Insights
+      parameters:
+      - $ref: '#/components/parameters/campaignId'
+      - $ref: '#/components/parameters/fields'
+      - name: time_range
+        in: query
+        description: JSON object specifying the date range with since and until fields in YYYY-MM-DD format.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved campaign insights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    InsightsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightsData'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    InsightsData:
+      type: object
+      properties:
+        impressions:
+          type: string
+          description: Number of times ads were shown
+        clicks:
+          type: string
+          description: Number of clicks on ads
+        spend:
+          type: string
+          description: Total amount spent during the period
+        reach:
+          type: string
+          description: Number of unique people who saw the ads
+        cpc:
+          type: string
+          description: Average cost per click
+        cpm:
+          type: string
+          description: Average cost per 1,000 impressions
+        ctr:
+          type: string
+          description: Click-through rate percentage
+        frequency:
+          type: string
+          description: Average number of times each person saw the ad
+        actions:
+          type: array
+          description: List of actions taken by people
+          items:
+            type: object
+            properties:
+              action_type:
+                type: string
+              value:
+                type: string
+        conversions:
+          type: array
+          description: List of conversion events
+          items:
+            type: object
+            properties:
+              action_type:
+                type: string
+              value:
+                type: string
+        date_start:
+          type: string
+          format: date
+          description: Start date of the reporting period
+        date_stop:
+          type: string
+          format: date
+          description: End date of the reporting period
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        adset_id:
+          type: string
+        adset_name:
+          type: string
+        ad_id:
+          type: string
+        ad_name:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

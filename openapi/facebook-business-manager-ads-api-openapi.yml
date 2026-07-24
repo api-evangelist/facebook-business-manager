@@ -1,0 +1,272 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Ads API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Ads
+  description: Manage individual ads within ad sets, including creative associations and status.
+paths:
+  /act_{ad_account_id}/ads:
+    get:
+      operationId: listAds
+      summary: Facebook Business Manager List ads
+      description: Retrieves all ads for the specified ad account. Returns ad configurations including creative associations and status.
+      tags:
+      - Ads
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of ads
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAd
+      summary: Facebook Business Manager Create an ad
+      description: Creates a new ad within an ad set. Associates an ad creative with targeting and delivery settings defined at the ad set level.
+      tags:
+      - Ads
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreate'
+      responses:
+        '200':
+          description: Ad created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{ad_id}:
+    get:
+      operationId: getAd
+      summary: Facebook Business Manager Get an ad
+      description: Retrieves the details of a specific ad including its creative, status, and configuration.
+      tags:
+      - Ads
+      parameters:
+      - $ref: '#/components/parameters/adId'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ad'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    Ad:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad
+        name:
+          type: string
+          description: The name of the ad
+        adset_id:
+          type: string
+          description: The ID of the parent ad set
+        campaign_id:
+          type: string
+          description: The ID of the parent campaign
+        creative:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the associated ad creative
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        effective_status:
+          type: string
+          description: Effective status considering parent statuses
+        created_time:
+          type: string
+          format: date-time
+        updated_time:
+          type: string
+          format: date-time
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    AdCreate:
+      type: object
+      required:
+      - name
+      - adset_id
+      - creative
+      - status
+      properties:
+        name:
+          type: string
+        adset_id:
+          type: string
+        creative:
+          type: object
+          required:
+          - creative_id
+          properties:
+            creative_id:
+              type: string
+              description: The ID of the ad creative to use
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+    AdList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ad'
+        paging:
+          $ref: '#/components/schemas/Paging'
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    adId:
+      name: ad_id
+      in: path
+      required: true
+      description: The ID of the ad
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

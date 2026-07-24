@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Photos API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Photos
+  description: Upload and manage photos on a Facebook Page.
+paths:
+  /{page_id}/photos:
+    post:
+      operationId: uploadPagePhoto
+      summary: Facebook Business Manager Upload a page photo
+      description: Uploads a photo to the Facebook Page. Can be published directly or uploaded as unpublished for later use in posts.
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/pageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the photo to upload
+                caption:
+                  type: string
+                  description: Caption for the photo
+                published:
+                  type: boolean
+                  description: Whether to publish the photo immediately
+                  default: true
+      responses:
+        '200':
+          description: Photo uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

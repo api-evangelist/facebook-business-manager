@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Ad Accounts
+  description: Manage advertising accounts including settings, spend limits, and account-level configurations.
+paths:
+  /act_{ad_account_id}:
+    get:
+      operationId: getAdAccount
+      summary: Facebook Business Manager Get ad account details
+      description: Retrieves the details of a specific ad account including settings, spend limits, and status information.
+      tags:
+      - Ad Accounts
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdAccount'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    AdAccount:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad account (prefixed with act_)
+        account_id:
+          type: string
+          description: The numeric account ID
+        name:
+          type: string
+          description: The name of the ad account
+        account_status:
+          type: integer
+          description: Status of the account. 1 = ACTIVE, 2 = DISABLED, 3 = UNSETTLED, 7 = PENDING_RISK_REVIEW, 8 = PENDING_SETTLEMENT, 9 = IN_GRACE_PERIOD, 100 = PENDING_CLOSURE, 101 = CLOSED.
+        currency:
+          type: string
+          description: Currency code used by the account (ISO 4217)
+        timezone_name:
+          type: string
+          description: Timezone name for the ad account
+        amount_spent:
+          type: string
+          description: Total amount spent by the account in account currency
+        balance:
+          type: string
+          description: Current remaining account balance
+        spend_cap:
+          type: string
+          description: Spend cap for the account
+        business:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+          description: The business associated with this ad account
+        created_time:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

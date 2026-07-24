@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Page Insights API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Page Insights
+  description: Retrieve analytics and engagement metrics for a Facebook Page.
+paths:
+  /{page_id}/insights:
+    get:
+      operationId: getPageInsights
+      summary: Facebook Business Manager Get page insights
+      description: Retrieves analytics metrics for the Facebook Page including reach, impressions, engagement, and audience demographics.
+      tags:
+      - Page Insights
+      parameters:
+      - $ref: '#/components/parameters/pageId'
+      - name: metric
+        in: query
+        description: Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans.
+        required: true
+        schema:
+          type: string
+      - name: period
+        in: query
+        description: Aggregation period for the metrics
+        required: false
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - days_28
+          - month
+          - lifetime
+          - total_over_range
+      - name: since
+        in: query
+        description: Start of the date range in Unix timestamp or YYYY-MM-DD format
+        required: false
+        schema:
+          type: string
+      - name: until
+        in: query
+        description: End of the date range in Unix timestamp or YYYY-MM-DD format
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved page insights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageInsightsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+    Paging:
+      type: object
+      properties:
+        cursors:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        next:
+          type: string
+        previous:
+          type: string
+    PageInsightsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The metric name
+              period:
+                type: string
+                description: The aggregation period
+              values:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      description: The metric value (integer or object)
+                    end_time:
+                      type: string
+                      format: date-time
+              title:
+                type: string
+                description: Human-readable metric title
+              description:
+                type: string
+                description: Description of what the metric measures
+              id:
+                type: string
+                description: Metric identifier
+        paging:
+          $ref: '#/components/schemas/Paging'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

@@ -1,0 +1,418 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Ad Sets API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Ad Sets
+  description: Manage ad sets within campaigns, including targeting, budgets, scheduling, and optimization goals.
+paths:
+  /act_{ad_account_id}/adsets:
+    get:
+      operationId: listAdSets
+      summary: Facebook Business Manager List ad sets
+      description: Retrieves all ad sets for the specified ad account. Returns targeting, budget, scheduling, and optimization configurations.
+      tags:
+      - Ad Sets
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of ad sets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdSetList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAdSet
+      summary: Facebook Business Manager Create an ad set
+      description: Creates a new ad set within a campaign. Defines targeting, budget, schedule, optimization goal, and bid strategy.
+      tags:
+      - Ad Sets
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdSetCreate'
+      responses:
+        '200':
+          description: Ad set created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{ad_set_id}:
+    get:
+      operationId: getAdSet
+      summary: Facebook Business Manager Get an ad set
+      description: Retrieves the details of a specific ad set including targeting, budget, scheduling, and optimization settings.
+      tags:
+      - Ad Sets
+      parameters:
+      - $ref: '#/components/parameters/adSetId'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successfully retrieved ad set details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdSet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateAdSet
+      summary: Facebook Business Manager Update an ad set
+      description: Updates an existing ad set. Supports modifying targeting, budget, schedule, and optimization settings.
+      tags:
+      - Ad Sets
+      parameters:
+      - $ref: '#/components/parameters/adSetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdSetUpdate'
+      responses:
+        '200':
+          description: Ad set updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    AdSetCreate:
+      type: object
+      required:
+      - name
+      - campaign_id
+      - optimization_goal
+      - billing_event
+      - targeting
+      - status
+      properties:
+        name:
+          type: string
+        campaign_id:
+          type: string
+        optimization_goal:
+          type: string
+          enum:
+          - LINK_CLICKS
+          - IMPRESSIONS
+          - REACH
+          - LANDING_PAGE_VIEWS
+          - OFFSITE_CONVERSIONS
+          - LEAD_GENERATION
+          - APP_INSTALLS
+          - VALUE
+        billing_event:
+          type: string
+          enum:
+          - IMPRESSIONS
+          - LINK_CLICKS
+        targeting:
+          type: object
+          description: Targeting specification
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+        daily_budget:
+          type: string
+        lifetime_budget:
+          type: string
+        bid_amount:
+          type: integer
+        bid_strategy:
+          type: string
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    AdSetList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdSet'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    AdSet:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the ad set
+        name:
+          type: string
+          description: The name of the ad set
+        campaign_id:
+          type: string
+          description: The ID of the parent campaign
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        effective_status:
+          type: string
+          description: Effective status considering parent statuses
+        daily_budget:
+          type: string
+          description: Daily budget in smallest currency unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget in smallest currency unit
+        optimization_goal:
+          type: string
+          description: The optimization goal for ad delivery
+          enum:
+          - LINK_CLICKS
+          - IMPRESSIONS
+          - REACH
+          - LANDING_PAGE_VIEWS
+          - OFFSITE_CONVERSIONS
+          - LEAD_GENERATION
+          - APP_INSTALLS
+          - VALUE
+        billing_event:
+          type: string
+          description: The event used for billing
+          enum:
+          - IMPRESSIONS
+          - LINK_CLICKS
+        bid_amount:
+          type: integer
+          description: Bid amount in smallest currency unit
+        bid_strategy:
+          type: string
+          description: Bidding strategy for the ad set
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+        targeting:
+          type: object
+          description: Targeting specification for the ad set
+          properties:
+            age_min:
+              type: integer
+              minimum: 18
+            age_max:
+              type: integer
+              maximum: 65
+            genders:
+              type: array
+              items:
+                type: integer
+            geo_locations:
+              type: object
+              properties:
+                countries:
+                  type: array
+                  items:
+                    type: string
+            interests:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        created_time:
+          type: string
+          format: date-time
+        updated_time:
+          type: string
+          format: date-time
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    AdSetUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        daily_budget:
+          type: string
+        lifetime_budget:
+          type: string
+        targeting:
+          type: object
+        bid_amount:
+          type: integer
+        end_time:
+          type: string
+          format: date-time
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    adSetId:
+      name: ad_set_id
+      in: path
+      required: true
+      description: The ID of the ad set
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

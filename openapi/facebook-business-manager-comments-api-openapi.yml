@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Comments API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Comments
+  description: Manage comments on Page posts including reading, replying, and moderating.
+paths:
+  /{post_id}/comments:
+    get:
+      operationId: getPostComments
+      summary: Facebook Business Manager Get post comments
+      description: Retrieves comments on a specific post. Supports pagination and filtering by order.
+      tags:
+      - Comments
+      parameters:
+      - $ref: '#/components/parameters/postId'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/after'
+      - name: filter
+        in: query
+        description: Filter for comment type
+        required: false
+        schema:
+          type: string
+          enum:
+          - stream
+          - toplevel
+      - name: order
+        in: query
+        description: Order of comments
+        required: false
+        schema:
+          type: string
+          enum:
+          - chronological
+          - reverse_chronological
+      responses:
+        '200':
+          description: Successfully retrieved comments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createComment
+      summary: Facebook Business Manager Create a comment
+      description: Posts a comment on a Page post as the Page. Requires a page access token with pages_manage_engagement permission.
+      tags:
+      - Comments
+      parameters:
+      - $ref: '#/components/parameters/postId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+                  description: The comment text
+                attachment_url:
+                  type: string
+                  format: uri
+                  description: URL of an image to include with the comment
+      responses:
+        '200':
+          description: Comment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{comment_id}:
+    delete:
+      operationId: deleteComment
+      summary: Facebook Business Manager Delete a comment
+      description: Deletes a comment from a Page post. The Page must own the comment or the post the comment is on.
+      tags:
+      - Comments
+      parameters:
+      - name: comment_id
+        in: path
+        required: true
+        description: The ID of the comment to delete
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Comment deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    postId:
+      name: post_id
+      in: path
+      required: true
+      description: The ID of the post (format PAGE_ID_POST_ID)
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  schemas:
+    CommentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+    Paging:
+      type: object
+      properties:
+        cursors:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        next:
+          type: string
+        previous:
+          type: string
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the comment
+        message:
+          type: string
+          description: The text content of the comment
+        from:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+          description: The person or Page that made the comment
+        created_time:
+          type: string
+          format: date-time
+          description: When the comment was created
+        like_count:
+          type: integer
+          description: Number of likes on the comment
+        comment_count:
+          type: integer
+          description: Number of replies to the comment
+        is_hidden:
+          type: boolean
+          description: Whether the comment is hidden
+        attachment:
+          type: object
+          description: Media attachment on the comment
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api

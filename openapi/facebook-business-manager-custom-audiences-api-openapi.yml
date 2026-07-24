@@ -1,0 +1,268 @@
+openapi: 3.1.0
+info:
+  title: Facebook Business Manager Facebook Marketing Ad Accounts Custom Audiences API
+  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  version: '25.0'
+  contact:
+    name: Meta Developer Support
+    url: https://developers.facebook.com/support
+  termsOfService: https://developers.facebook.com/terms
+servers:
+- url: https://graph.facebook.com/v25.0
+  description: Facebook Graph API Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Custom Audiences
+  description: Create and manage custom audiences for ad targeting based on customer data, website visitors, or app users.
+paths:
+  /act_{ad_account_id}/customaudiences:
+    get:
+      operationId: listCustomAudiences
+      summary: Facebook Business Manager List custom audiences
+      description: Retrieves all custom audiences for the specified ad account. Returns audience configurations and approximate sizes.
+      tags:
+      - Custom Audiences
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Successfully retrieved list of custom audiences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAudienceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomAudience
+      summary: Facebook Business Manager Create a custom audience
+      description: Creates a new custom audience for ad targeting. Supports customer file audiences, website custom audiences, app activity audiences, and lookalike audiences.
+      tags:
+      - Custom Audiences
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAudienceCreate'
+      responses:
+        '200':
+          description: Custom audience created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CustomAudience:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the custom audience
+        name:
+          type: string
+          description: The name of the custom audience
+        description:
+          type: string
+          description: Description of the audience
+        subtype:
+          type: string
+          description: The subtype of the custom audience
+          enum:
+          - CUSTOM
+          - WEBSITE
+          - APP
+          - OFFLINE_CONVERSION
+          - CLAIM
+          - PARTNER
+          - MANAGED
+          - VIDEO
+          - LOOKALIKE
+          - ENGAGEMENT
+        approximate_count:
+          type: integer
+          description: Approximate number of people in the audience
+        data_source:
+          type: object
+          properties:
+            type:
+              type: string
+            sub_type:
+              type: string
+          description: The source of the audience data
+        delivery_status:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: Delivery status code
+        operation_status:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: Operation status code
+        time_created:
+          type: string
+          format: date-time
+        time_updated:
+          type: string
+          format: date-time
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    CustomAudienceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomAudience'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    CustomAudienceCreate:
+      type: object
+      required:
+      - name
+      - subtype
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        subtype:
+          type: string
+          enum:
+          - CUSTOM
+          - WEBSITE
+          - APP
+          - OFFLINE_CONVERSION
+          - LOOKALIKE
+          - ENGAGEMENT
+        customer_file_source:
+          type: string
+          description: Source of customer data for CUSTOM subtype
+        lookalike_spec:
+          type: object
+          description: Specification for lookalike audiences
+          properties:
+            origin_audience_id:
+              type: string
+            ratio:
+              type: number
+              minimum: 0.01
+              maximum: 0.2
+            country:
+              type: string
+        rule:
+          type: object
+          description: Rule-based audience definition for WEBSITE or APP subtypes
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+externalDocs:
+  description: Facebook Marketing API Documentation
+  url: https://developers.facebook.com/docs/marketing-api
