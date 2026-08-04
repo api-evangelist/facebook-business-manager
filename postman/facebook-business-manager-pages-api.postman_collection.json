@@ -1,0 +1,496 @@
+{
+  "info": {
+    "_postman_id": "29c6c296-8cbd-4dd0-a122-132fce930709",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Pages API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:36:02.000Z",
+    "updatedAt": "2026-07-28T01:36:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-29c6c296-8cbd-4dd0-a122-132fce930709"
+  },
+  "item": [
+    {
+      "name": "{page_id}",
+      "item": [
+        {
+          "name": "subscribed_apps",
+          "item": [
+            {
+              "name": "Facebook Business Manager Subscribe app to page",
+              "id": "6e4aea3e-0755-4792-b4af-09f7a258a373",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subscribed_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id/subscribed_apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id",
+                    "subscribed_apps"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2c167281-048a-4be4-b3e1-e3b59fd7ddc5",
+                      "key": "page_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the Facebook Page"
+                    }
+                  ]
+                },
+                "description": "Installs a Webhooks-configured app on the Page so the app can receive real-time updates about changes to the Page."
+              },
+              "response": [
+                {
+                  "id": "e485deef-f70a-4da7-bf22-899f3a4f8412",
+                  "name": "App subscribed to page successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subscribed_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/subscribed_apps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "subscribed_apps"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:36:03.000Z",
+                  "updatedAt": "2026-07-28T01:36:03.000Z",
+                  "uid": "35240-e485deef-f70a-4da7-bf22-899f3a4f8412"
+                },
+                {
+                  "id": "0291a09c-9a03-49f3-823d-7616e52b8b7d",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subscribed_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/subscribed_apps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "subscribed_apps"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:03.000Z",
+                  "updatedAt": "2026-07-28T01:36:03.000Z",
+                  "uid": "35240-0291a09c-9a03-49f3-823d-7616e52b8b7d"
+                },
+                {
+                  "id": "0dce499d-bb2f-42e6-bab6-14dc24ec6a57",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subscribed_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/subscribed_apps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "subscribed_apps"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:03.000Z",
+                  "updatedAt": "2026-07-28T01:36:03.000Z",
+                  "uid": "35240-0dce499d-bb2f-42e6-bab6-14dc24ec6a57"
+                }
+              ],
+              "createdAt": "2026-07-28T01:36:03.000Z",
+              "updatedAt": "2026-07-28T01:36:03.000Z",
+              "uid": "35240-6e4aea3e-0755-4792-b4af-09f7a258a373"
+            }
+          ],
+          "id": "4af5efb1-050c-49af-b73c-c82979b7b54f",
+          "createdAt": "2026-07-28T01:36:03.000Z",
+          "updatedAt": "2026-07-28T01:36:03.000Z",
+          "uid": "35240-4af5efb1-050c-49af-b73c-c82979b7b54f"
+        },
+        {
+          "name": "Facebook Business Manager Get page details",
+          "id": "1149c42a-d5e5-4f68-8ad1-51a9fc85c2af",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:page_id?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":page_id"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "6941cd33-efeb-49b2-97b0-50dfce640144",
+                  "key": "page_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the Facebook Page"
+                }
+              ]
+            },
+            "description": "Retrieves information about a Facebook Page including name, category, description, fan count, and other metadata."
+          },
+          "response": [
+            {
+              "id": "605faedf-659f-4a6a-adad-2889353e10dc",
+              "name": "Successfully retrieved page details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "page_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"category_list\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"about\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fan_count\": \"<integer>\",\n  \"followers_count\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"website\": \"<uri>\",\n  \"phone\": \"<string>\",\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"location\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"cover\": {\n    \"id\": \"<string>\",\n    \"source\": \"<uri>\"\n  },\n  \"picture\": {\n    \"data\": {\n      \"url\": \"<uri>\"\n    }\n  },\n  \"verification_status\": \"<string>\",\n  \"is_published\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:36:03.000Z",
+              "updatedAt": "2026-07-28T01:36:03.000Z",
+              "uid": "35240-605faedf-659f-4a6a-adad-2889353e10dc"
+            },
+            {
+              "id": "fe4e00e3-c34c-45f8-98c9-624ed9dd266e",
+              "name": "Invalid or expired access token or insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "page_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:36:03.000Z",
+              "updatedAt": "2026-07-28T01:36:03.000Z",
+              "uid": "35240-fe4e00e3-c34c-45f8-98c9-624ed9dd266e"
+            },
+            {
+              "id": "beff28fc-86a2-4182-b8d6-fd478f2f8abf",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "page_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:36:03.000Z",
+              "updatedAt": "2026-07-28T01:36:03.000Z",
+              "uid": "35240-beff28fc-86a2-4182-b8d6-fd478f2f8abf"
+            }
+          ],
+          "createdAt": "2026-07-28T01:36:03.000Z",
+          "updatedAt": "2026-07-28T01:36:03.000Z",
+          "uid": "35240-1149c42a-d5e5-4f68-8ad1-51a9fc85c2af"
+        }
+      ],
+      "id": "2554855e-9e15-4740-9758-ea78eccd0ac9",
+      "createdAt": "2026-07-28T01:36:03.000Z",
+      "updatedAt": "2026-07-28T01:36:03.000Z",
+      "uid": "35240-2554855e-9e15-4740-9758-ea78eccd0ac9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    }
+  ]
+}

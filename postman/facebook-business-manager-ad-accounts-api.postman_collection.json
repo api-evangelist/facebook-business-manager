@@ -1,0 +1,228 @@
+{
+  "info": {
+    "_postman_id": "95dd3ba2-0892-48f3-a427-8840241d63c5",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:31.000Z",
+    "updatedAt": "2026-07-28T01:35:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-95dd3ba2-0892-48f3-a427-8840241d63c5"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "Facebook Business Manager Get ad account details",
+          "id": "d9aeedd1-ff63-46ca-9ef7-04ce480482f6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/act_{{ad_account_id}}?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "act_{{ad_account_id}}"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the details of a specific ad account including settings, spend limits, and status information."
+          },
+          "response": [
+            {
+              "id": "59891032-fcb1-43ef-8d08-015fddf0cc05",
+              "name": "Successfully retrieved ad account details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_status\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"timezone_name\": \"<string>\",\n  \"amount_spent\": \"<string>\",\n  \"balance\": \"<string>\",\n  \"spend_cap\": \"<string>\",\n  \"business\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"created_time\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:35:32.000Z",
+              "updatedAt": "2026-07-28T01:35:32.000Z",
+              "uid": "35240-59891032-fcb1-43ef-8d08-015fddf0cc05"
+            },
+            {
+              "id": "bcc174eb-7122-4875-baa4-e9dcc2324747",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:32.000Z",
+              "updatedAt": "2026-07-28T01:35:32.000Z",
+              "uid": "35240-bcc174eb-7122-4875-baa4-e9dcc2324747"
+            },
+            {
+              "id": "7d8f029b-d341-4c37-92ea-b83ce4fd2183",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:32.000Z",
+              "updatedAt": "2026-07-28T01:35:32.000Z",
+              "uid": "35240-7d8f029b-d341-4c37-92ea-b83ce4fd2183"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:32.000Z",
+          "updatedAt": "2026-07-28T01:35:32.000Z",
+          "uid": "35240-d9aeedd1-ff63-46ca-9ef7-04ce480482f6"
+        }
+      ],
+      "id": "7f2d4d01-1ac7-4cd5-8168-153e5bfc1cb8",
+      "createdAt": "2026-07-28T01:35:32.000Z",
+      "updatedAt": "2026-07-28T01:35:32.000Z",
+      "uid": "35240-7f2d4d01-1ac7-4cd5-8168-153e5bfc1cb8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "2a9ad15d-a583-4c09-8cc6-f824272cd273",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Videos API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:36:08.000Z",
+    "updatedAt": "2026-07-28T01:36:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a9ad15d-a583-4c09-8cc6-f824272cd273"
+  },
+  "item": [
+    {
+      "name": "{page_id}",
+      "item": [
+        {
+          "name": "videos",
+          "item": [
+            {
+              "name": "Facebook Business Manager Upload a page video",
+              "id": "af095f70-a4ee-4bba-8481-206819723a55",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"published\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id/videos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id",
+                    "videos"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bbf7e18d-d620-4d8a-bbe1-6cf4c795b175",
+                      "key": "page_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the Facebook Page"
+                    }
+                  ]
+                },
+                "description": "Uploads a video to the Facebook Page. Supports direct upload via URL or resumable upload for large files."
+              },
+              "response": [
+                {
+                  "id": "b8f196e8-7065-48ee-a3a4-7a5931e42c33",
+                  "name": "Video uploaded successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/videos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "videos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:36:09.000Z",
+                  "updatedAt": "2026-07-28T01:36:09.000Z",
+                  "uid": "35240-b8f196e8-7065-48ee-a3a4-7a5931e42c33"
+                },
+                {
+                  "id": "3dba45b9-018c-45d3-ab9a-ae6dbfc47f59",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/videos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "videos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:09.000Z",
+                  "updatedAt": "2026-07-28T01:36:09.000Z",
+                  "uid": "35240-3dba45b9-018c-45d3-ab9a-ae6dbfc47f59"
+                },
+                {
+                  "id": "e16eed8a-75ed-4948-9525-05e4cbe06e06",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/videos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "videos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:09.000Z",
+                  "updatedAt": "2026-07-28T01:36:09.000Z",
+                  "uid": "35240-e16eed8a-75ed-4948-9525-05e4cbe06e06"
+                }
+              ],
+              "createdAt": "2026-07-28T01:36:09.000Z",
+              "updatedAt": "2026-07-28T01:36:09.000Z",
+              "uid": "35240-af095f70-a4ee-4bba-8481-206819723a55"
+            }
+          ],
+          "id": "5dc9100b-4882-467a-98a6-6215a82d62ac",
+          "createdAt": "2026-07-28T01:36:09.000Z",
+          "updatedAt": "2026-07-28T01:36:09.000Z",
+          "uid": "35240-5dc9100b-4882-467a-98a6-6215a82d62ac"
+        }
+      ],
+      "id": "678edefc-6f6d-4aca-85ea-48c5e6cf095b",
+      "createdAt": "2026-07-28T01:36:09.000Z",
+      "updatedAt": "2026-07-28T01:36:09.000Z",
+      "uid": "35240-678edefc-6f6d-4aca-85ea-48c5e6cf095b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    }
+  ]
+}

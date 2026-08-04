@@ -1,0 +1,1151 @@
+{
+  "info": {
+    "_postman_id": "e6a79401-b0da-49b0-a002-e2186a12f07e",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Campaigns API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:51.000Z",
+    "updatedAt": "2026-07-28T01:35:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6a79401-b0da-49b0-a002-e2186a12f07e"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "campaigns",
+          "item": [
+            {
+              "name": "Facebook Business Manager List campaigns",
+              "id": "2f5551ae-f464-4b3b-bf5d-f8f926fa7b92",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns?fields=<string>&limit=25&after=<string>&filtering=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of objects to return per page. Default is 25.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor for pagination to retrieve the next page of results",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value.",
+                      "key": "filtering",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all campaigns for the specified ad account. Returns a paginated list of campaign objects with their configurations and status information."
+              },
+              "response": [
+                {
+                  "id": "a6082733-c7b0-48a4-b6b6-0afb17c7e386",
+                  "name": "Successfully retrieved list of campaigns",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns?fields=<string>&limit=25&after=<string>&filtering=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value.",
+                          "key": "filtering",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"objective\": \"OUTCOME_APP_PROMOTION\",\n      \"status\": \"DELETED\",\n      \"effective_status\": \"<string>\",\n      \"daily_budget\": \"<string>\",\n      \"lifetime_budget\": \"<string>\",\n      \"budget_remaining\": \"<string>\",\n      \"buying_type\": \"RESERVED\",\n      \"special_ad_categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_time\": \"<dateTime>\",\n      \"updated_time\": \"<dateTime>\",\n      \"start_time\": \"<dateTime>\",\n      \"stop_time\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"objective\": \"OUTCOME_ENGAGEMENT\",\n      \"status\": \"ACTIVE\",\n      \"effective_status\": \"<string>\",\n      \"daily_budget\": \"<string>\",\n      \"lifetime_budget\": \"<string>\",\n      \"budget_remaining\": \"<string>\",\n      \"buying_type\": \"AUCTION\",\n      \"special_ad_categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_time\": \"<dateTime>\",\n      \"updated_time\": \"<dateTime>\",\n      \"start_time\": \"<dateTime>\",\n      \"stop_time\": \"<dateTime>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-a6082733-c7b0-48a4-b6b6-0afb17c7e386"
+                },
+                {
+                  "id": "e2f0d5cb-0541-492a-b84d-beb1febb243c",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns?fields=<string>&limit=25&after=<string>&filtering=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value.",
+                          "key": "filtering",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-e2f0d5cb-0541-492a-b84d-beb1febb243c"
+                },
+                {
+                  "id": "5299b44f-289d-458b-a307-346666a40065",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns?fields=<string>&limit=25&after=<string>&filtering=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters to apply to the campaign list. Accepts JSON array of filter objects with field, operator, and value.",
+                          "key": "filtering",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-5299b44f-289d-458b-a307-346666a40065"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-2f5551ae-f464-4b3b-bf5d-f8f926fa7b92"
+            },
+            {
+              "name": "Facebook Business Manager Create a campaign",
+              "id": "7c0038aa-7d6a-49fb-b665-41c76f3b167e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"OUTCOME_LEADS\",\n  \"status\": \"ACTIVE\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"AUCTION\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "campaigns"
+                  ]
+                },
+                "description": "Creates a new advertising campaign in the specified ad account. Requires at minimum a name, objective, and status."
+              },
+              "response": [
+                {
+                  "id": "1cbe0154-8c9e-4bc1-b5b3-bf29a9d1fa13",
+                  "name": "Campaign created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"OUTCOME_LEADS\",\n  \"status\": \"ACTIVE\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"AUCTION\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-1cbe0154-8c9e-4bc1-b5b3-bf29a9d1fa13"
+                },
+                {
+                  "id": "64233adc-d5be-4888-b81b-489b756b5383",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"OUTCOME_LEADS\",\n  \"status\": \"ACTIVE\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"AUCTION\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-64233adc-d5be-4888-b81b-489b756b5383"
+                },
+                {
+                  "id": "98245084-3ef7-4e83-945d-d7a81b0c47ee",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"objective\": \"OUTCOME_LEADS\",\n  \"status\": \"ACTIVE\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"buying_type\": \"AUCTION\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/campaigns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "campaigns"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:52.000Z",
+                  "updatedAt": "2026-07-28T01:35:52.000Z",
+                  "uid": "35240-98245084-3ef7-4e83-945d-d7a81b0c47ee"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-7c0038aa-7d6a-49fb-b665-41c76f3b167e"
+            }
+          ],
+          "id": "95e52a34-eb66-4aef-ab5c-b5896f670eff",
+          "createdAt": "2026-07-28T01:35:52.000Z",
+          "updatedAt": "2026-07-28T01:35:52.000Z",
+          "uid": "35240-95e52a34-eb66-4aef-ab5c-b5896f670eff"
+        }
+      ],
+      "id": "b81f4f6e-68b3-4c8d-a35b-749c5dbd0455",
+      "createdAt": "2026-07-28T01:35:52.000Z",
+      "updatedAt": "2026-07-28T01:35:52.000Z",
+      "uid": "35240-b81f4f6e-68b3-4c8d-a35b-749c5dbd0455"
+    },
+    {
+      "name": "{campaign_id}",
+      "item": [
+        {
+          "name": "Facebook Business Manager Get a campaign",
+          "id": "589ab7a7-06db-415c-9217-eaef492cf722",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:campaign_id?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":campaign_id"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "b77841d4-2bcb-47d8-894e-e87129bfff28",
+                  "key": "campaign_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "description": "Retrieves the details of a specific campaign by its ID, including configuration, status, and objective."
+          },
+          "response": [
+            {
+              "id": "1f0a0a55-ee18-4cd5-aefb-d22c2b0cbb84",
+              "name": "Successfully retrieved campaign details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"objective\": \"OUTCOME_TRAFFIC\",\n  \"status\": \"PAUSED\",\n  \"effective_status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"budget_remaining\": \"<string>\",\n  \"buying_type\": \"RESERVED\",\n  \"special_ad_categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_time\": \"<dateTime>\",\n  \"updated_time\": \"<dateTime>\",\n  \"start_time\": \"<dateTime>\",\n  \"stop_time\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-1f0a0a55-ee18-4cd5-aefb-d22c2b0cbb84"
+            },
+            {
+              "id": "531fcf20-2ad5-4ab9-b6c6-5e317e63ccd4",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-531fcf20-2ad5-4ab9-b6c6-5e317e63ccd4"
+            },
+            {
+              "id": "36815b88-107b-4264-afc0-17b5ff754033",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-36815b88-107b-4264-afc0-17b5ff754033"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:52.000Z",
+          "updatedAt": "2026-07-28T01:35:52.000Z",
+          "uid": "35240-589ab7a7-06db-415c-9217-eaef492cf722"
+        },
+        {
+          "name": "Facebook Business Manager Update a campaign",
+          "id": "63d7bd40-6f0f-452c-9f3d-64d2581d25d4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"DELETED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:campaign_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":campaign_id"
+              ],
+              "variable": [
+                {
+                  "id": "37444ba4-9b54-45bf-b8b4-12daa1895021",
+                  "key": "campaign_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "description": "Updates an existing campaign. Supports modifying name, status, budget, and other campaign-level settings."
+          },
+          "response": [
+            {
+              "id": "289829fb-92a8-432d-a7dc-72af3dc3e5e2",
+              "name": "Campaign updated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"DELETED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-289829fb-92a8-432d-a7dc-72af3dc3e5e2"
+            },
+            {
+              "id": "cbfa63bc-5fff-4ce1-81d8-310423c11992",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"DELETED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-cbfa63bc-5fff-4ce1-81d8-310423c11992"
+            },
+            {
+              "id": "b5e1809b-70b3-4bfa-9e13-1201e11bb365",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"DELETED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-b5e1809b-70b3-4bfa-9e13-1201e11bb365"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:52.000Z",
+          "updatedAt": "2026-07-28T01:35:52.000Z",
+          "uid": "35240-63d7bd40-6f0f-452c-9f3d-64d2581d25d4"
+        },
+        {
+          "name": "Facebook Business Manager Delete a campaign",
+          "id": "642db597-02e9-407a-874a-990999f46c39",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:campaign_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":campaign_id"
+              ],
+              "variable": [
+                {
+                  "id": "2f9a3c23-9057-42d9-97d9-dfdda8a89053",
+                  "key": "campaign_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "description": "Deletes an advertising campaign. This sets the campaign status to DELETED and it will no longer serve ads."
+          },
+          "response": [
+            {
+              "id": "13bb77a0-f88c-4141-ab0d-690a1a5036ef",
+              "name": "Campaign deleted successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-13bb77a0-f88c-4141-ab0d-690a1a5036ef"
+            },
+            {
+              "id": "5af3016e-21b5-4cc4-853f-338d1ec5d572",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-5af3016e-21b5-4cc4-853f-338d1ec5d572"
+            },
+            {
+              "id": "28dd79a1-e436-44ab-a0be-204ede69163b",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "campaign_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:52.000Z",
+              "updatedAt": "2026-07-28T01:35:52.000Z",
+              "uid": "35240-28dd79a1-e436-44ab-a0be-204ede69163b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:52.000Z",
+          "updatedAt": "2026-07-28T01:35:52.000Z",
+          "uid": "35240-642db597-02e9-407a-874a-990999f46c39"
+        }
+      ],
+      "id": "c206057f-b7e4-4985-b806-3c02f43d428e",
+      "createdAt": "2026-07-28T01:35:52.000Z",
+      "updatedAt": "2026-07-28T01:35:52.000Z",
+      "uid": "35240-c206057f-b7e4-4985-b806-3c02f43d428e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

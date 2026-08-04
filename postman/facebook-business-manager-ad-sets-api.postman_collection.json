@@ -1,0 +1,951 @@
+{
+  "info": {
+    "_postman_id": "133dfed4-56d5-4a85-a59d-dd0195c636b4",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Ad Sets API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:40.000Z",
+    "updatedAt": "2026-07-28T01:35:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-133dfed4-56d5-4a85-a59d-dd0195c636b4"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "adsets",
+          "item": [
+            {
+              "name": "Facebook Business Manager List ad sets",
+              "id": "82a42fb3-dab6-4d7c-afc2-22a074a8ced3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets?fields=<string>&limit=25&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of objects to return per page. Default is 25.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor for pagination to retrieve the next page of results",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all ad sets for the specified ad account. Returns targeting, budget, scheduling, and optimization configurations."
+              },
+              "response": [
+                {
+                  "id": "1fd9c73c-08e9-49ad-b10e-5c4090ae5ef8",
+                  "name": "Successfully retrieved list of ad sets",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"campaign_id\": \"<string>\",\n      \"status\": \"ACTIVE\",\n      \"effective_status\": \"<string>\",\n      \"daily_budget\": \"<string>\",\n      \"lifetime_budget\": \"<string>\",\n      \"optimization_goal\": \"IMPRESSIONS\",\n      \"billing_event\": \"IMPRESSIONS\",\n      \"bid_amount\": \"<integer>\",\n      \"bid_strategy\": \"LOWEST_COST_WITH_BID_CAP\",\n      \"targeting\": {\n        \"age_min\": \"<integer>\",\n        \"age_max\": \"<integer>\",\n        \"genders\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"geo_locations\": {\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"interests\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"created_time\": \"<dateTime>\",\n      \"updated_time\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"campaign_id\": \"<string>\",\n      \"status\": \"ARCHIVED\",\n      \"effective_status\": \"<string>\",\n      \"daily_budget\": \"<string>\",\n      \"lifetime_budget\": \"<string>\",\n      \"optimization_goal\": \"LINK_CLICKS\",\n      \"billing_event\": \"LINK_CLICKS\",\n      \"bid_amount\": \"<integer>\",\n      \"bid_strategy\": \"LOWEST_COST_WITHOUT_CAP\",\n      \"targeting\": {\n        \"age_min\": \"<integer>\",\n        \"age_max\": \"<integer>\",\n        \"genders\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"geo_locations\": {\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"interests\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"created_time\": \"<dateTime>\",\n      \"updated_time\": \"<dateTime>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-1fd9c73c-08e9-49ad-b10e-5c4090ae5ef8"
+                },
+                {
+                  "id": "40653dac-a3a1-4ff7-85eb-7dc1ded9f4b6",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-40653dac-a3a1-4ff7-85eb-7dc1ded9f4b6"
+                },
+                {
+                  "id": "85c254e3-00ef-4c7e-9212-bce033accc3c",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-85c254e3-00ef-4c7e-9212-bce033accc3c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-82a42fb3-dab6-4d7c-afc2-22a074a8ced3"
+            },
+            {
+              "name": "Facebook Business Manager Create an ad set",
+              "id": "ad8ff40a-8986-4194-8d9d-d539470b0461",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"LINK_CLICKS\",\n  \"billing_event\": \"LINK_CLICKS\",\n  \"targeting\": {},\n  \"status\": \"PAUSED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"COST_CAP\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adsets"
+                  ]
+                },
+                "description": "Creates a new ad set within a campaign. Defines targeting, budget, schedule, optimization goal, and bid strategy."
+              },
+              "response": [
+                {
+                  "id": "372bd848-0f16-4835-a3b0-24df422e1da2",
+                  "name": "Ad set created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"LINK_CLICKS\",\n  \"billing_event\": \"LINK_CLICKS\",\n  \"targeting\": {},\n  \"status\": \"PAUSED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"COST_CAP\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-372bd848-0f16-4835-a3b0-24df422e1da2"
+                },
+                {
+                  "id": "3ac6f6fd-ebec-4ab9-b429-b099433aec6a",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"LINK_CLICKS\",\n  \"billing_event\": \"LINK_CLICKS\",\n  \"targeting\": {},\n  \"status\": \"PAUSED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"COST_CAP\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-3ac6f6fd-ebec-4ab9-b429-b099433aec6a"
+                },
+                {
+                  "id": "9216e523-48a9-4180-9f16-b237e021614e",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"optimization_goal\": \"LINK_CLICKS\",\n  \"billing_event\": \"LINK_CLICKS\",\n  \"targeting\": {},\n  \"status\": \"PAUSED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"COST_CAP\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adsets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adsets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:40.000Z",
+                  "updatedAt": "2026-07-28T01:35:40.000Z",
+                  "uid": "35240-9216e523-48a9-4180-9f16-b237e021614e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-ad8ff40a-8986-4194-8d9d-d539470b0461"
+            }
+          ],
+          "id": "442b1e52-36e8-4769-b986-045e35895496",
+          "createdAt": "2026-07-28T01:35:40.000Z",
+          "updatedAt": "2026-07-28T01:35:40.000Z",
+          "uid": "35240-442b1e52-36e8-4769-b986-045e35895496"
+        }
+      ],
+      "id": "d419bdaf-441b-4967-9713-c02d18e30874",
+      "createdAt": "2026-07-28T01:35:40.000Z",
+      "updatedAt": "2026-07-28T01:35:40.000Z",
+      "uid": "35240-d419bdaf-441b-4967-9713-c02d18e30874"
+    },
+    {
+      "name": "{ad_set_id}",
+      "item": [
+        {
+          "name": "Facebook Business Manager Get an ad set",
+          "id": "f9ac60f8-0d9f-45e8-b309-783022e1ac1f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:ad_set_id?fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":ad_set_id"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "ede88fb0-74f5-4594-9c71-0567e07b1a9c",
+                  "key": "ad_set_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the ad set"
+                }
+              ]
+            },
+            "description": "Retrieves the details of a specific ad set including targeting, budget, scheduling, and optimization settings."
+          },
+          "response": [
+            {
+              "id": "473c7d21-56d0-4c3c-aff4-674b29d43c6f",
+              "name": "Successfully retrieved ad set details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"status\": \"PAUSED\",\n  \"effective_status\": \"<string>\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"optimization_goal\": \"REACH\",\n  \"billing_event\": \"LINK_CLICKS\",\n  \"bid_amount\": \"<integer>\",\n  \"bid_strategy\": \"LOWEST_COST_WITH_BID_CAP\",\n  \"targeting\": {\n    \"age_min\": \"<integer>\",\n    \"age_max\": \"<integer>\",\n    \"genders\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"geo_locations\": {\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"interests\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"created_time\": \"<dateTime>\",\n  \"updated_time\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-473c7d21-56d0-4c3c-aff4-674b29d43c6f"
+            },
+            {
+              "id": "ebbcc98c-d6c9-4c69-8b66-a133b5c3a8b2",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-ebbcc98c-d6c9-4c69-8b66-a133b5c3a8b2"
+            },
+            {
+              "id": "90e8f6c4-97af-4e2b-a51a-af739908c7de",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-90e8f6c4-97af-4e2b-a51a-af739908c7de"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:40.000Z",
+          "updatedAt": "2026-07-28T01:35:40.000Z",
+          "uid": "35240-f9ac60f8-0d9f-45e8-b309-783022e1ac1f"
+        },
+        {
+          "name": "Facebook Business Manager Update an ad set",
+          "id": "d5051163-7d65-442f-8123-ab65201ce7c7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"ARCHIVED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": {},\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:ad_set_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":ad_set_id"
+              ],
+              "variable": [
+                {
+                  "id": "c322a902-26cd-459f-b42a-a201be5d6ba8",
+                  "key": "ad_set_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the ad set"
+                }
+              ]
+            },
+            "description": "Updates an existing ad set. Supports modifying targeting, budget, schedule, and optimization settings."
+          },
+          "response": [
+            {
+              "id": "586c514f-c05f-40b3-8782-db900b4786f3",
+              "name": "Ad set updated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"ARCHIVED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": {},\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-586c514f-c05f-40b3-8782-db900b4786f3"
+            },
+            {
+              "id": "d4f5705e-f555-4bfb-835f-936e01a94ef0",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"ARCHIVED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": {},\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-d4f5705e-f555-4bfb-835f-936e01a94ef0"
+            },
+            {
+              "id": "28c4b86c-bcf1-4a10-a70a-c7b649bfeb7d",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"ARCHIVED\",\n  \"daily_budget\": \"<string>\",\n  \"lifetime_budget\": \"<string>\",\n  \"targeting\": {},\n  \"bid_amount\": \"<integer>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:ad_set_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ad_set_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "ad_set_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:40.000Z",
+              "updatedAt": "2026-07-28T01:35:40.000Z",
+              "uid": "35240-28c4b86c-bcf1-4a10-a70a-c7b649bfeb7d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:40.000Z",
+          "updatedAt": "2026-07-28T01:35:40.000Z",
+          "uid": "35240-d5051163-7d65-442f-8123-ab65201ce7c7"
+        }
+      ],
+      "id": "9c751db1-8bde-49cf-b205-c09d408343c7",
+      "createdAt": "2026-07-28T01:35:40.000Z",
+      "updatedAt": "2026-07-28T01:35:40.000Z",
+      "uid": "35240-9c751db1-8bde-49cf-b205-c09d408343c7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

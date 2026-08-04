@@ -1,0 +1,498 @@
+{
+  "info": {
+    "_postman_id": "44838cfd-d80d-4044-8aa1-ea4f8b2c3f07",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Ad Creatives API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:38.000Z",
+    "updatedAt": "2026-07-28T01:35:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44838cfd-d80d-4044-8aa1-ea4f8b2c3f07"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "adcreatives",
+          "item": [
+            {
+              "name": "Facebook Business Manager List ad creatives",
+              "id": "64fa0779-67e0-4508-a3bc-bf3ae4831ee9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives?fields=<string>&limit=25&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of objects to return per page. Default is 25.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor for pagination to retrieve the next page of results",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all ad creatives for the specified ad account."
+              },
+              "response": [
+                {
+                  "id": "eb222628-95c3-4a7d-a7f0-b743a0da1f9c",
+                  "name": "Successfully retrieved list of ad creatives",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"object_story_spec\": {},\n      \"title\": \"<string>\",\n      \"body\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"call_to_action_type\": \"SHOP_NOW\",\n      \"link_url\": \"<uri>\",\n      \"url_tags\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"object_story_spec\": {},\n      \"title\": \"<string>\",\n      \"body\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"call_to_action_type\": \"LEARN_MORE\",\n      \"link_url\": \"<uri>\",\n      \"url_tags\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-eb222628-95c3-4a7d-a7f0-b743a0da1f9c"
+                },
+                {
+                  "id": "a9a8327b-aaa5-4441-b5cb-842657bec0fe",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-a9a8327b-aaa5-4441-b5cb-842657bec0fe"
+                },
+                {
+                  "id": "bc582ccd-ef60-47c3-afe1-e4a1360632b4",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-bc582ccd-ef60-47c3-afe1-e4a1360632b4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:38.000Z",
+              "updatedAt": "2026-07-28T01:35:38.000Z",
+              "uid": "35240-64fa0779-67e0-4508-a3bc-bf3ae4831ee9"
+            },
+            {
+              "name": "Facebook Business Manager Create an ad creative",
+              "id": "fdf4bace-64b0-4b01-9249-0e80370c72bf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": {},\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"CONTACT_US\",\n  \"url_tags\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adcreatives"
+                  ]
+                },
+                "description": "Creates a new ad creative with image, video, copy, and call-to-action configurations for use in ads."
+              },
+              "response": [
+                {
+                  "id": "856cbb1e-e273-4efb-94c9-675e7a6628aa",
+                  "name": "Ad creative created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": {},\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"CONTACT_US\",\n  \"url_tags\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-856cbb1e-e273-4efb-94c9-675e7a6628aa"
+                },
+                {
+                  "id": "4fd6c6b1-e75a-4fef-80d5-cc2ce2d985c9",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": {},\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"CONTACT_US\",\n  \"url_tags\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-4fd6c6b1-e75a-4fef-80d5-cc2ce2d985c9"
+                },
+                {
+                  "id": "804c2e4e-4b09-4b9d-ab05-044676eb1af0",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"object_story_spec\": {},\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"call_to_action_type\": \"CONTACT_US\",\n  \"url_tags\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adcreatives",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adcreatives"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:38.000Z",
+                  "updatedAt": "2026-07-28T01:35:38.000Z",
+                  "uid": "35240-804c2e4e-4b09-4b9d-ab05-044676eb1af0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:38.000Z",
+              "updatedAt": "2026-07-28T01:35:38.000Z",
+              "uid": "35240-fdf4bace-64b0-4b01-9249-0e80370c72bf"
+            }
+          ],
+          "id": "616bac59-319f-4aff-acaa-abe18144c330",
+          "createdAt": "2026-07-28T01:35:38.000Z",
+          "updatedAt": "2026-07-28T01:35:38.000Z",
+          "uid": "35240-616bac59-319f-4aff-acaa-abe18144c330"
+        }
+      ],
+      "id": "d98ff2b0-3498-45af-9ac3-e8381583a646",
+      "createdAt": "2026-07-28T01:35:38.000Z",
+      "updatedAt": "2026-07-28T01:35:38.000Z",
+      "uid": "35240-d98ff2b0-3498-45af-9ac3-e8381583a646"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

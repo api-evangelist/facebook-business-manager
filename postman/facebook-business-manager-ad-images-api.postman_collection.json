@@ -1,0 +1,270 @@
+{
+  "info": {
+    "_postman_id": "bbed73cb-c802-45dc-a7ed-f81c92fc1de2",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Ad Images API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:39.000Z",
+    "updatedAt": "2026-07-28T01:35:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bbed73cb-c802-45dc-a7ed-f81c92fc1de2"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "adimages",
+          "item": [
+            {
+              "name": "Facebook Business Manager Upload an ad image",
+              "id": "e95fea17-3344-46b2-a7a7-a924c4a53ddf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "The image file to upload",
+                      "key": "filename",
+                      "type": "file",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/adimages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "adimages"
+                  ]
+                },
+                "description": "Uploads an image to the ad account image library for use in ad creatives. Accepts image file bytes."
+              },
+              "response": [
+                {
+                  "id": "3f0f19a4-94c0-4e6f-a2d4-b69b206c3119",
+                  "name": "Image uploaded successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The image file to upload",
+                          "key": "filename",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adimages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adimages"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"images\": {}\n}",
+                  "createdAt": "2026-07-28T01:35:39.000Z",
+                  "updatedAt": "2026-07-28T01:35:39.000Z",
+                  "uid": "35240-3f0f19a4-94c0-4e6f-a2d4-b69b206c3119"
+                },
+                {
+                  "id": "88b222a6-8731-470e-a1d4-23ff7bca68fb",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The image file to upload",
+                          "key": "filename",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adimages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adimages"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:39.000Z",
+                  "updatedAt": "2026-07-28T01:35:39.000Z",
+                  "uid": "35240-88b222a6-8731-470e-a1d4-23ff7bca68fb"
+                },
+                {
+                  "id": "415d8154-70dc-4f29-9546-81ba10ad5495",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The image file to upload",
+                          "key": "filename",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/adimages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "adimages"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:39.000Z",
+                  "updatedAt": "2026-07-28T01:35:39.000Z",
+                  "uid": "35240-415d8154-70dc-4f29-9546-81ba10ad5495"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:39.000Z",
+              "updatedAt": "2026-07-28T01:35:39.000Z",
+              "uid": "35240-e95fea17-3344-46b2-a7a7-a924c4a53ddf"
+            }
+          ],
+          "id": "e7fd0b29-258e-4b44-ac55-cb9e791e5b1b",
+          "createdAt": "2026-07-28T01:35:39.000Z",
+          "updatedAt": "2026-07-28T01:35:39.000Z",
+          "uid": "35240-e7fd0b29-258e-4b44-ac55-cb9e791e5b1b"
+        }
+      ],
+      "id": "f17e1928-396b-4e10-91ff-5bd0c7764928",
+      "createdAt": "2026-07-28T01:35:39.000Z",
+      "updatedAt": "2026-07-28T01:35:39.000Z",
+      "uid": "35240-f17e1928-396b-4e10-91ff-5bd0c7764928"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

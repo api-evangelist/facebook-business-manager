@@ -1,0 +1,498 @@
+{
+  "info": {
+    "_postman_id": "309f89cc-7a11-4ff5-b8e8-9a329c6321d8",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Custom Audiences API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:55.000Z",
+    "updatedAt": "2026-07-28T01:35:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-309f89cc-7a11-4ff5-b8e8-9a329c6321d8"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "customaudiences",
+          "item": [
+            {
+              "name": "Facebook Business Manager List custom audiences",
+              "id": "319724a5-8b19-4646-8dc5-8746b900b745",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences?fields=<string>&limit=25&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of objects to return per page. Default is 25.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor for pagination to retrieve the next page of results",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all custom audiences for the specified ad account. Returns audience configurations and approximate sizes."
+              },
+              "response": [
+                {
+                  "id": "da6e2bdb-6332-4b3c-87a3-180abd6f12c1",
+                  "name": "Successfully retrieved list of custom audiences",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subtype\": \"APP\",\n      \"approximate_count\": \"<integer>\",\n      \"data_source\": {\n        \"type\": \"<string>\",\n        \"sub_type\": \"<string>\"\n      },\n      \"delivery_status\": {\n        \"status\": \"<integer>\"\n      },\n      \"operation_status\": {\n        \"status\": \"<integer>\"\n      },\n      \"time_created\": \"<dateTime>\",\n      \"time_updated\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subtype\": \"LOOKALIKE\",\n      \"approximate_count\": \"<integer>\",\n      \"data_source\": {\n        \"type\": \"<string>\",\n        \"sub_type\": \"<string>\"\n      },\n      \"delivery_status\": {\n        \"status\": \"<integer>\"\n      },\n      \"operation_status\": {\n        \"status\": \"<integer>\"\n      },\n      \"time_created\": \"<dateTime>\",\n      \"time_updated\": \"<dateTime>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-da6e2bdb-6332-4b3c-87a3-180abd6f12c1"
+                },
+                {
+                  "id": "449c84b7-9589-4803-a2fd-25e6633326a5",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-449c84b7-9589-4803-a2fd-25e6633326a5"
+                },
+                {
+                  "id": "ce838fd8-22f2-4215-9831-27c181261b40",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences?fields=<string>&limit=25&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page. Default is 25.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for pagination to retrieve the next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-ce838fd8-22f2-4215-9831-27c181261b40"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:56.000Z",
+              "updatedAt": "2026-07-28T01:35:56.000Z",
+              "uid": "35240-319724a5-8b19-4646-8dc5-8746b900b745"
+            },
+            {
+              "name": "Facebook Business Manager Create a custom audience",
+              "id": "6ea22be6-afbd-476a-be8d-9c136a72c033",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"WEBSITE\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "customaudiences"
+                  ]
+                },
+                "description": "Creates a new custom audience for ad targeting. Supports customer file audiences, website custom audiences, app activity audiences, and lookalike audiences."
+              },
+              "response": [
+                {
+                  "id": "fc98531f-8f87-46fb-a518-6485a837ae24",
+                  "name": "Custom audience created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"WEBSITE\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-fc98531f-8f87-46fb-a518-6485a837ae24"
+                },
+                {
+                  "id": "10f0bd82-c354-4175-a5b4-0589afa5d487",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"WEBSITE\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-10f0bd82-c354-4175-a5b4-0589afa5d487"
+                },
+                {
+                  "id": "7c7782c9-2748-4cc7-8fea-ce54e56327b1",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"subtype\": \"WEBSITE\",\n  \"description\": \"<string>\",\n  \"customer_file_source\": \"<string>\",\n  \"lookalike_spec\": {\n    \"origin_audience_id\": \"<string>\",\n    \"ratio\": \"<number>\",\n    \"country\": \"<string>\"\n  },\n  \"rule\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/customaudiences",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "customaudiences"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:56.000Z",
+                  "updatedAt": "2026-07-28T01:35:56.000Z",
+                  "uid": "35240-7c7782c9-2748-4cc7-8fea-ce54e56327b1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:56.000Z",
+              "updatedAt": "2026-07-28T01:35:56.000Z",
+              "uid": "35240-6ea22be6-afbd-476a-be8d-9c136a72c033"
+            }
+          ],
+          "id": "02fae81e-7e11-4653-baac-db5973b5b26a",
+          "createdAt": "2026-07-28T01:35:56.000Z",
+          "updatedAt": "2026-07-28T01:35:56.000Z",
+          "uid": "35240-02fae81e-7e11-4653-baac-db5973b5b26a"
+        }
+      ],
+      "id": "e88b0fff-8348-46d4-8d0a-c85db2362840",
+      "createdAt": "2026-07-28T01:35:56.000Z",
+      "updatedAt": "2026-07-28T01:35:56.000Z",
+      "uid": "35240-e88b0fff-8348-46d4-8d0a-c85db2362840"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

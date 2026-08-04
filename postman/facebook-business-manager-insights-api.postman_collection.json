@@ -1,0 +1,571 @@
+{
+  "info": {
+    "_postman_id": "22ceb413-09b8-4d6e-8400-474d889068aa",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Insights API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:58.000Z",
+    "updatedAt": "2026-07-28T01:35:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-22ceb413-09b8-4d6e-8400-474d889068aa"
+  },
+  "item": [
+    {
+      "name": "act_{ad_account_id}",
+      "item": [
+        {
+          "name": "insights",
+          "item": [
+            {
+              "name": "Facebook Business Manager Get ad account insights",
+              "id": "2d43cdee-4fb8-4a2e-9e9d-3b10c4074820",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/act_{{ad_account_id}}/insights?fields=<string>&time_range=<string>&breakdowns=<string>&level=ad&time_increment=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement.",
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Level of aggregation for results. Options include account, campaign, adset, or ad.",
+                      "key": "level",
+                      "value": "ad"
+                    },
+                    {
+                      "description": "Number of days for each increment in the time range, or use monthly or all_days.",
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns."
+              },
+              "response": [
+                {
+                  "id": "14db1089-79fc-42a0-9d86-bec531e41671",
+                  "name": "Successfully retrieved insights data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/insights?fields=<string>&time_range=<string>&breakdowns=<string>&level=ad&time_increment=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement.",
+                          "key": "breakdowns",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Level of aggregation for results. Options include account, campaign, adset, or ad.",
+                          "key": "level",
+                          "value": "ad"
+                        },
+                        {
+                          "description": "Number of days for each increment in the time range, or use monthly or all_days.",
+                          "key": "time_increment",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"<string>\",\n      \"clicks\": \"<string>\",\n      \"spend\": \"<string>\",\n      \"reach\": \"<string>\",\n      \"cpc\": \"<string>\",\n      \"cpm\": \"<string>\",\n      \"ctr\": \"<string>\",\n      \"frequency\": \"<string>\",\n      \"actions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"date_start\": \"<date>\",\n      \"date_stop\": \"<date>\",\n      \"campaign_id\": \"<string>\",\n      \"campaign_name\": \"<string>\",\n      \"adset_id\": \"<string>\",\n      \"adset_name\": \"<string>\",\n      \"ad_id\": \"<string>\",\n      \"ad_name\": \"<string>\"\n    },\n    {\n      \"impressions\": \"<string>\",\n      \"clicks\": \"<string>\",\n      \"spend\": \"<string>\",\n      \"reach\": \"<string>\",\n      \"cpc\": \"<string>\",\n      \"cpm\": \"<string>\",\n      \"ctr\": \"<string>\",\n      \"frequency\": \"<string>\",\n      \"actions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"date_start\": \"<date>\",\n      \"date_stop\": \"<date>\",\n      \"campaign_id\": \"<string>\",\n      \"campaign_name\": \"<string>\",\n      \"adset_id\": \"<string>\",\n      \"adset_name\": \"<string>\",\n      \"ad_id\": \"<string>\",\n      \"ad_name\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-14db1089-79fc-42a0-9d86-bec531e41671"
+                },
+                {
+                  "id": "f4f0af68-5d07-4c76-aee2-d66078046597",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/insights?fields=<string>&time_range=<string>&breakdowns=<string>&level=ad&time_increment=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement.",
+                          "key": "breakdowns",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Level of aggregation for results. Options include account, campaign, adset, or ad.",
+                          "key": "level",
+                          "value": "ad"
+                        },
+                        {
+                          "description": "Number of days for each increment in the time range, or use monthly or all_days.",
+                          "key": "time_increment",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-f4f0af68-5d07-4c76-aee2-d66078046597"
+                },
+                {
+                  "id": "900388e1-5f56-44c9-be86-2c11b0e17fcc",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/act_{{ad_account_id}}/insights?fields=<string>&time_range=<string>&breakdowns=<string>&level=ad&time_increment=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "act_{{ad_account_id}}",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement.",
+                          "key": "breakdowns",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Level of aggregation for results. Options include account, campaign, adset, or ad.",
+                          "key": "level",
+                          "value": "ad"
+                        },
+                        {
+                          "description": "Number of days for each increment in the time range, or use monthly or all_days.",
+                          "key": "time_increment",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-900388e1-5f56-44c9-be86-2c11b0e17fcc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:59.000Z",
+              "updatedAt": "2026-07-28T01:35:59.000Z",
+              "uid": "35240-2d43cdee-4fb8-4a2e-9e9d-3b10c4074820"
+            }
+          ],
+          "id": "68d47a9d-6db1-46a1-8584-6c110818bb38",
+          "createdAt": "2026-07-28T01:35:59.000Z",
+          "updatedAt": "2026-07-28T01:35:59.000Z",
+          "uid": "35240-68d47a9d-6db1-46a1-8584-6c110818bb38"
+        }
+      ],
+      "id": "1bfbf894-dd08-42dd-a922-0fade04aab62",
+      "createdAt": "2026-07-28T01:35:59.000Z",
+      "updatedAt": "2026-07-28T01:35:59.000Z",
+      "uid": "35240-1bfbf894-dd08-42dd-a922-0fade04aab62"
+    },
+    {
+      "name": "{campaign_id}",
+      "item": [
+        {
+          "name": "insights",
+          "item": [
+            {
+              "name": "Facebook Business Manager Get campaign insights",
+              "id": "29736fa3-e8e9-43f7-bbfb-b78c48542fa3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:campaign_id/insights?fields=<string>&time_range=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "f4b67e0a-aead-4810-b50a-af70f553b7e6",
+                      "key": "campaign_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "description": "Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics."
+              },
+              "response": [
+                {
+                  "id": "9b2065cf-dd65-446d-8852-77fa8466210a",
+                  "name": "Successfully retrieved campaign insights",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:campaign_id/insights?fields=<string>&time_range=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":campaign_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "campaign_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"<string>\",\n      \"clicks\": \"<string>\",\n      \"spend\": \"<string>\",\n      \"reach\": \"<string>\",\n      \"cpc\": \"<string>\",\n      \"cpm\": \"<string>\",\n      \"ctr\": \"<string>\",\n      \"frequency\": \"<string>\",\n      \"actions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"date_start\": \"<date>\",\n      \"date_stop\": \"<date>\",\n      \"campaign_id\": \"<string>\",\n      \"campaign_name\": \"<string>\",\n      \"adset_id\": \"<string>\",\n      \"adset_name\": \"<string>\",\n      \"ad_id\": \"<string>\",\n      \"ad_name\": \"<string>\"\n    },\n    {\n      \"impressions\": \"<string>\",\n      \"clicks\": \"<string>\",\n      \"spend\": \"<string>\",\n      \"reach\": \"<string>\",\n      \"cpc\": \"<string>\",\n      \"cpm\": \"<string>\",\n      \"ctr\": \"<string>\",\n      \"frequency\": \"<string>\",\n      \"actions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"action_type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"date_start\": \"<date>\",\n      \"date_stop\": \"<date>\",\n      \"campaign_id\": \"<string>\",\n      \"campaign_name\": \"<string>\",\n      \"adset_id\": \"<string>\",\n      \"adset_name\": \"<string>\",\n      \"ad_id\": \"<string>\",\n      \"ad_name\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-9b2065cf-dd65-446d-8852-77fa8466210a"
+                },
+                {
+                  "id": "a7d39ce9-c92a-486d-9f9f-567da7f5b5ac",
+                  "name": "Invalid or expired access token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:campaign_id/insights?fields=<string>&time_range=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":campaign_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "campaign_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-a7d39ce9-c92a-486d-9f9f-567da7f5b5ac"
+                },
+                {
+                  "id": "bad5ae17-268f-409e-8497-d287d15b982c",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:campaign_id/insights?fields=<string>&time_range=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":campaign_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format.",
+                          "key": "time_range",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "campaign_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:59.000Z",
+                  "updatedAt": "2026-07-28T01:35:59.000Z",
+                  "uid": "35240-bad5ae17-268f-409e-8497-d287d15b982c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:59.000Z",
+              "updatedAt": "2026-07-28T01:35:59.000Z",
+              "uid": "35240-29736fa3-e8e9-43f7-bbfb-b78c48542fa3"
+            }
+          ],
+          "id": "78664336-5734-4622-811a-43e3ea78b67c",
+          "createdAt": "2026-07-28T01:35:59.000Z",
+          "updatedAt": "2026-07-28T01:35:59.000Z",
+          "uid": "35240-78664336-5734-4622-811a-43e3ea78b67c"
+        }
+      ],
+      "id": "aa367c84-5444-4b90-924f-f1b7d9704771",
+      "createdAt": "2026-07-28T01:35:59.000Z",
+      "updatedAt": "2026-07-28T01:35:59.000Z",
+      "uid": "35240-aa367c84-5444-4b90-924f-f1b7d9704771"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    },
+    {
+      "key": "ad_account_id",
+      "value": "<string>"
+    }
+  ]
+}

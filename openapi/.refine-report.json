@@ -1,0 +1,40 @@
+{
+  "provider": "facebook-business-manager",
+  "sources": [
+    "facebook-business-manager-ad-accounts-api-openapi.yml",
+    "facebook-business-manager-ad-creatives-api-openapi.yml",
+    "facebook-business-manager-ad-images-api-openapi.yml",
+    "facebook-business-manager-ad-sets-api-openapi.yml",
+    "facebook-business-manager-ads-api-openapi.yml",
+    "facebook-business-manager-campaigns-api-openapi.yml",
+    "facebook-business-manager-comments-api-openapi.yml",
+    "facebook-business-manager-custom-audiences-api-openapi.yml",
+    "facebook-business-manager-insights-api-openapi.yml",
+    "facebook-business-manager-page-insights-api-openapi.yml",
+    "facebook-business-manager-pages-api-openapi.yml",
+    "facebook-business-manager-photos-api-openapi.yml",
+    "facebook-business-manager-posts-api-openapi.yml",
+    "facebook-business-manager-videos-api-openapi.yml"
+  ],
+  "outputs": [
+    "facebook-business-manager-ad-accounts-api-openapi.yml",
+    "facebook-business-manager-ad-creatives-api-openapi.yml",
+    "facebook-business-manager-ad-images-api-openapi.yml",
+    "facebook-business-manager-ad-sets-api-openapi.yml",
+    "facebook-business-manager-ads-api-openapi.yml",
+    "facebook-business-manager-campaigns-api-openapi.yml",
+    "facebook-business-manager-comments-api-openapi.yml",
+    "facebook-business-manager-custom-audiences-api-openapi.yml",
+    "facebook-business-manager-insights-api-openapi.yml",
+    "facebook-business-manager-page-insights-api-openapi.yml",
+    "facebook-business-manager-pages-api-openapi.yml",
+    "facebook-business-manager-photos-api-openapi.yml",
+    "facebook-business-manager-posts-api-openapi.yml",
+    "facebook-business-manager-videos-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

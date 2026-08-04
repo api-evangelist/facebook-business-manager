@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "5a72ec41-ffcb-493f-abb4-4dc553ff8ff8",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Photos API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:36:04.000Z",
+    "updatedAt": "2026-07-28T01:36:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a72ec41-ffcb-493f-abb4-4dc553ff8ff8"
+  },
+  "item": [
+    {
+      "name": "{page_id}",
+      "item": [
+        {
+          "name": "photos",
+          "item": [
+            {
+              "name": "Facebook Business Manager Upload a page photo",
+              "id": "f457b62a-b52d-40b1-bad8-b9c2336f229c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"caption\": \"<string>\",\n  \"published\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id/photos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id",
+                    "photos"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7626fd20-933f-4df1-8933-eb9a356f33cf",
+                      "key": "page_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the Facebook Page"
+                    }
+                  ]
+                },
+                "description": "Uploads a photo to the Facebook Page. Can be published directly or uploaded as unpublished for later use in posts."
+              },
+              "response": [
+                {
+                  "id": "3635274d-9b50-4c16-a525-99f4b53458b9",
+                  "name": "Photo uploaded successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"caption\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/photos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "photos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:36:05.000Z",
+                  "updatedAt": "2026-07-28T01:36:05.000Z",
+                  "uid": "35240-3635274d-9b50-4c16-a525-99f4b53458b9"
+                },
+                {
+                  "id": "929cc90a-4287-4297-aa96-a498c4838b95",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"caption\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/photos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "photos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:05.000Z",
+                  "updatedAt": "2026-07-28T01:36:05.000Z",
+                  "uid": "35240-929cc90a-4287-4297-aa96-a498c4838b95"
+                },
+                {
+                  "id": "49487fc7-8eaa-4ab3-8f70-7e4755dcfe69",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"caption\": \"<string>\",\n  \"published\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/photos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "photos"
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:05.000Z",
+                  "updatedAt": "2026-07-28T01:36:05.000Z",
+                  "uid": "35240-49487fc7-8eaa-4ab3-8f70-7e4755dcfe69"
+                }
+              ],
+              "createdAt": "2026-07-28T01:36:05.000Z",
+              "updatedAt": "2026-07-28T01:36:05.000Z",
+              "uid": "35240-f457b62a-b52d-40b1-bad8-b9c2336f229c"
+            }
+          ],
+          "id": "5e0cd9f5-1ff2-4258-b400-a32ff8648d4a",
+          "createdAt": "2026-07-28T01:36:05.000Z",
+          "updatedAt": "2026-07-28T01:36:05.000Z",
+          "uid": "35240-5e0cd9f5-1ff2-4258-b400-a32ff8648d4a"
+        }
+      ],
+      "id": "0c74facf-4266-4e1c-abdc-4bebd7a47139",
+      "createdAt": "2026-07-28T01:36:05.000Z",
+      "updatedAt": "2026-07-28T01:36:05.000Z",
+      "uid": "35240-0c74facf-4266-4e1c-abdc-4bebd7a47139"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    }
+  ]
+}

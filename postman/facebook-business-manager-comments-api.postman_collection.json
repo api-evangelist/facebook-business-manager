@@ -1,0 +1,694 @@
+{
+  "info": {
+    "_postman_id": "f5f96671-1760-4a96-b2c3-f9d02b560a0f",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Comments API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:35:55.000Z",
+    "updatedAt": "2026-07-28T01:35:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f5f96671-1760-4a96-b2c3-f9d02b560a0f"
+  },
+  "item": [
+    {
+      "name": "{post_id}",
+      "item": [
+        {
+          "name": "comments",
+          "item": [
+            {
+              "name": "Facebook Business Manager Get post comments",
+              "id": "f4f3d10d-be66-4146-a197-71ea9a1864df",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:post_id/comments?fields=<string>&limit=25&after=<string>&filter=toplevel&order=reverse_chronological",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":post_id",
+                    "comments"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of objects to return per page",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor for forward pagination",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter for comment type",
+                      "key": "filter",
+                      "value": "toplevel"
+                    },
+                    {
+                      "description": "Order of comments",
+                      "key": "order",
+                      "value": "reverse_chronological"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3a99a661-4960-4eaf-af9b-bba3f6767fb3",
+                      "key": "post_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the post (format PAGE_ID_POST_ID)"
+                    }
+                  ]
+                },
+                "description": "Retrieves comments on a specific post. Supports pagination and filtering by order."
+              },
+              "response": [
+                {
+                  "id": "815a5745-9859-43b2-978c-3627ad2b697d",
+                  "name": "Successfully retrieved comments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:post_id/comments?fields=<string>&limit=25&after=<string>&filter=toplevel&order=reverse_chronological",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":post_id",
+                        "comments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for comment type",
+                          "key": "filter",
+                          "value": "toplevel"
+                        },
+                        {
+                          "description": "Order of comments",
+                          "key": "order",
+                          "value": "reverse_chronological"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "post_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\",\n      \"from\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"created_time\": \"<dateTime>\",\n      \"like_count\": \"<integer>\",\n      \"comment_count\": \"<integer>\",\n      \"is_hidden\": \"<boolean>\",\n      \"attachment\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\",\n      \"from\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"created_time\": \"<dateTime>\",\n      \"like_count\": \"<integer>\",\n      \"comment_count\": \"<integer>\",\n      \"is_hidden\": \"<boolean>\",\n      \"attachment\": {}\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:55.000Z",
+                  "updatedAt": "2026-07-28T01:35:55.000Z",
+                  "uid": "35240-815a5745-9859-43b2-978c-3627ad2b697d"
+                },
+                {
+                  "id": "4f388c72-93d8-4009-a0d8-84bf28fd7c60",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:post_id/comments?fields=<string>&limit=25&after=<string>&filter=toplevel&order=reverse_chronological",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":post_id",
+                        "comments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of objects to return per page",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for comment type",
+                          "key": "filter",
+                          "value": "toplevel"
+                        },
+                        {
+                          "description": "Order of comments",
+                          "key": "order",
+                          "value": "reverse_chronological"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "post_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:55.000Z",
+                  "updatedAt": "2026-07-28T01:35:55.000Z",
+                  "uid": "35240-4f388c72-93d8-4009-a0d8-84bf28fd7c60"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:55.000Z",
+              "updatedAt": "2026-07-28T01:35:55.000Z",
+              "uid": "35240-f4f3d10d-be66-4146-a197-71ea9a1864df"
+            },
+            {
+              "name": "Facebook Business Manager Create a comment",
+              "id": "8a1de0bb-2bf1-4fb4-9425-247acd9d02da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\",\n  \"attachment_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:post_id/comments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":post_id",
+                    "comments"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e972f84b-5539-4728-9289-c27aed5eab28",
+                      "key": "post_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the post (format PAGE_ID_POST_ID)"
+                    }
+                  ]
+                },
+                "description": "Posts a comment on a Page post as the Page. Requires a page access token with pages_manage_engagement permission."
+              },
+              "response": [
+                {
+                  "id": "69459b9c-1e06-4ffe-b531-6f15d0c70914",
+                  "name": "Comment created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\",\n  \"attachment_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:post_id/comments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":post_id",
+                        "comments"
+                      ],
+                      "variable": [
+                        {
+                          "key": "post_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:35:55.000Z",
+                  "updatedAt": "2026-07-28T01:35:55.000Z",
+                  "uid": "35240-69459b9c-1e06-4ffe-b531-6f15d0c70914"
+                },
+                {
+                  "id": "56a12b4b-88d4-494d-ae55-153fcc3ce2b4",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\",\n  \"attachment_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:post_id/comments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":post_id",
+                        "comments"
+                      ],
+                      "variable": [
+                        {
+                          "key": "post_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:55.000Z",
+                  "updatedAt": "2026-07-28T01:35:55.000Z",
+                  "uid": "35240-56a12b4b-88d4-494d-ae55-153fcc3ce2b4"
+                },
+                {
+                  "id": "750dd0e1-509f-4b6a-909e-40eee8f9331b",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\",\n  \"attachment_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:post_id/comments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":post_id",
+                        "comments"
+                      ],
+                      "variable": [
+                        {
+                          "key": "post_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:35:55.000Z",
+                  "updatedAt": "2026-07-28T01:35:55.000Z",
+                  "uid": "35240-750dd0e1-509f-4b6a-909e-40eee8f9331b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:35:55.000Z",
+              "updatedAt": "2026-07-28T01:35:55.000Z",
+              "uid": "35240-8a1de0bb-2bf1-4fb4-9425-247acd9d02da"
+            }
+          ],
+          "id": "dcc9ac23-19ef-4b85-9db3-9650d7a91cd6",
+          "createdAt": "2026-07-28T01:35:55.000Z",
+          "updatedAt": "2026-07-28T01:35:55.000Z",
+          "uid": "35240-dcc9ac23-19ef-4b85-9db3-9650d7a91cd6"
+        }
+      ],
+      "id": "a82fecbf-b845-4ee2-acae-fb2d6fc793f0",
+      "createdAt": "2026-07-28T01:35:55.000Z",
+      "updatedAt": "2026-07-28T01:35:55.000Z",
+      "uid": "35240-a82fecbf-b845-4ee2-acae-fb2d6fc793f0"
+    },
+    {
+      "name": "{comment_id}",
+      "item": [
+        {
+          "name": "Facebook Business Manager Delete a comment",
+          "id": "5ed2548d-79b6-4aa8-83d8-35abc4d2f7b2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:comment_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":comment_id"
+              ],
+              "variable": [
+                {
+                  "id": "8bc58576-e9bc-46a8-bd6e-fca8b25c1595",
+                  "key": "comment_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the comment to delete"
+                }
+              ]
+            },
+            "description": "Deletes a comment from a Page post. The Page must own the comment or the post the comment is on."
+          },
+          "response": [
+            {
+              "id": "2e85964c-3975-4352-9ae3-cc60ce3e7191",
+              "name": "Comment deleted successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:comment_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":comment_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "comment_id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:35:55.000Z",
+              "updatedAt": "2026-07-28T01:35:55.000Z",
+              "uid": "35240-2e85964c-3975-4352-9ae3-cc60ce3e7191"
+            },
+            {
+              "id": "862d9eda-bc7d-4e88-99e1-c5525a050c62",
+              "name": "Invalid or expired access token or insufficient permissions",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:comment_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":comment_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "comment_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:55.000Z",
+              "updatedAt": "2026-07-28T01:35:55.000Z",
+              "uid": "35240-862d9eda-bc7d-4e88-99e1-c5525a050c62"
+            },
+            {
+              "id": "bea11c08-d90b-4bd2-9f09-2091a01bb2a0",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:comment_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":comment_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "comment_id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:35:55.000Z",
+              "updatedAt": "2026-07-28T01:35:55.000Z",
+              "uid": "35240-bea11c08-d90b-4bd2-9f09-2091a01bb2a0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:35:55.000Z",
+          "updatedAt": "2026-07-28T01:35:55.000Z",
+          "uid": "35240-5ed2548d-79b6-4aa8-83d8-35abc4d2f7b2"
+        }
+      ],
+      "id": "77ade667-6862-4851-aebf-89e4b25dad0c",
+      "createdAt": "2026-07-28T01:35:55.000Z",
+      "updatedAt": "2026-07-28T01:35:55.000Z",
+      "uid": "35240-77ade667-6862-4851-aebf-89e4b25dad0c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    }
+  ]
+}

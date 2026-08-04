@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "2f9cdf0a-05f5-4a89-a52c-1a78430c8994",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Page Insights API",
+    "description": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:36:00.000Z",
+    "updatedAt": "2026-07-28T01:36:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f9cdf0a-05f5-4a89-a52c-1a78430c8994"
+  },
+  "item": [
+    {
+      "name": "{page_id}",
+      "item": [
+        {
+          "name": "insights",
+          "item": [
+            {
+              "name": "Facebook Business Manager Get page insights",
+              "id": "f7d2a6a5-2152-47bc-bf60-65a051311e69",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:page_id/insights?metric=<string>&period=days_28&since=<string>&until=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":page_id",
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans.",
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Aggregation period for the metrics",
+                      "key": "period",
+                      "value": "days_28"
+                    },
+                    {
+                      "description": "Start of the date range in Unix timestamp or YYYY-MM-DD format",
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "End of the date range in Unix timestamp or YYYY-MM-DD format",
+                      "key": "until",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "cbd93d3c-a747-4f26-9a2c-25192c1177b5",
+                      "key": "page_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the Facebook Page"
+                    }
+                  ]
+                },
+                "description": "Retrieves analytics metrics for the Facebook Page including reach, impressions, engagement, and audience demographics."
+              },
+              "response": [
+                {
+                  "id": "e84a4819-3b58-4975-9376-59742c0e3870",
+                  "name": "Successfully retrieved page insights",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/insights?metric=<string>&period=days_28&since=<string>&until=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Aggregation period for the metrics",
+                          "key": "period",
+                          "value": "days_28"
+                        },
+                        {
+                          "description": "Start of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "since",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "until",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"period\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {\n            \"description\": \"The metric value (integer or object)\"\n          },\n          \"end_time\": \"<dateTime>\"\n        },\n        {\n          \"value\": {\n            \"description\": \"The metric value (integer or object)\"\n          },\n          \"end_time\": \"<dateTime>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"period\": \"<string>\",\n      \"values\": [\n        {\n          \"value\": {\n            \"description\": \"The metric value (integer or object)\"\n          },\n          \"end_time\": \"<dateTime>\"\n        },\n        {\n          \"value\": {\n            \"description\": \"The metric value (integer or object)\"\n          },\n          \"end_time\": \"<dateTime>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"<string>\",\n      \"after\": \"<string>\"\n    },\n    \"next\": \"<string>\",\n    \"previous\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:01.000Z",
+                  "updatedAt": "2026-07-28T01:36:01.000Z",
+                  "uid": "35240-e84a4819-3b58-4975-9376-59742c0e3870"
+                },
+                {
+                  "id": "b5ea7059-b4f2-4ff9-b8a2-9ecb1618d616",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/insights?metric=<string>&period=days_28&since=<string>&until=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Aggregation period for the metrics",
+                          "key": "period",
+                          "value": "days_28"
+                        },
+                        {
+                          "description": "Start of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "since",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "until",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:01.000Z",
+                  "updatedAt": "2026-07-28T01:36:01.000Z",
+                  "uid": "35240-b5ea7059-b4f2-4ff9-b8a2-9ecb1618d616"
+                },
+                {
+                  "id": "bb42ff1b-3cd8-4eb2-811f-9899d71be699",
+                  "name": "Invalid or expired access token or insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:page_id/insights?metric=<string>&period=days_28&since=<string>&until=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":page_id",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Aggregation period for the metrics",
+                          "key": "period",
+                          "value": "days_28"
+                        },
+                        {
+                          "description": "Start of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "since",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the date range in Unix timestamp or YYYY-MM-DD format",
+                          "key": "until",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "page_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"error_subcode\": \"<integer>\",\n    \"fbtrace_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:36:01.000Z",
+                  "updatedAt": "2026-07-28T01:36:01.000Z",
+                  "uid": "35240-bb42ff1b-3cd8-4eb2-811f-9899d71be699"
+                }
+              ],
+              "createdAt": "2026-07-28T01:36:01.000Z",
+              "updatedAt": "2026-07-28T01:36:01.000Z",
+              "uid": "35240-f7d2a6a5-2152-47bc-bf60-65a051311e69"
+            }
+          ],
+          "id": "4c597e13-142d-47e0-abd3-9926ecf0bb99",
+          "createdAt": "2026-07-28T01:36:01.000Z",
+          "updatedAt": "2026-07-28T01:36:01.000Z",
+          "uid": "35240-4c597e13-142d-47e0-abd3-9926ecf0bb99"
+        }
+      ],
+      "id": "ecd0f467-ffdb-4819-ae66-a7fd84489d3b",
+      "createdAt": "2026-07-28T01:36:01.000Z",
+      "updatedAt": "2026-07-28T01:36:01.000Z",
+      "uid": "35240-ecd0f467-ffdb-4819-ae66-a7fd84489d3b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://graph.facebook.com/v25.0"
+    }
+  ]
+}
