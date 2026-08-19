@@ -1,0 +1,267 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/*.yml
+docs:
+  - https://developers.facebook.com/docs/marketing-api/reference/ad-campaign-group
+  - https://developers.facebook.com/docs/graph-api/overview
+specification: API Commons DataModel
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Entity-relationship graph for the Business Manager surface, derived from the $ref links and *_id reference
+  fields in the 14 OpenAPI files in openapi/, and reconciled against Meta's own node/edge model. The Graph API
+  is literally a graph: NODES are objects (Ad Account, Campaign, Page, Post), EDGES are the connections
+  between them (/act_X/campaigns), and FIELDS are the properties on a node. Every relationship below is an
+  edge in Meta's terms.
+model: node-edge-field
+id_conventions:
+  - pattern: 'act_{ad_account_id}'
+    applies_to: AdAccount
+    note: >-
+      Ad account paths are prefixed act_ in the URL while the account_id field itself is unprefixed. The
+      single most common source of 400s on this API.
+  - pattern: numeric string
+    applies_to: all other nodes
+    note: >-
+      Node IDs are opaque numeric strings and must be treated as strings, not integers — they exceed 2^53
+      and will be corrupted by a JSON parser that maps numbers to IEEE-754 doubles.
+  - pattern: '{page_id}_{post_id}'
+    applies_to: Post
+    note: Page post IDs are composite, joining the owning Page ID and the post ID with an underscore.
+entities:
+  - name: AdAccount
+    schema: json-schema/facebook-business-manager-adaccount-schema.json
+    path: /act_{ad_account_id}
+    operations:
+      - getAdAccount
+    description: Billing and ownership root for all advertising objects.
+  - name: Campaign
+    schema: json-schema/facebook-business-manager-campaign-schema.json
+    path: /act_{ad_account_id}/campaigns
+    operations:
+      - listCampaigns
+      - createCampaign
+      - getCampaign
+      - updateCampaign
+      - deleteCampaign
+    description: Objective-level container. Holds the campaign objective and special ad categories.
+  - name: AdSet
+    schema: json-schema/facebook-business-manager-adset-schema.json
+    path: /act_{ad_account_id}/adsets
+    operations:
+      - listAdSets
+      - createAdSet
+      - getAdSet
+      - updateAdSet
+    description: Budget, schedule, bidding, optimization goal and targeting live here.
+  - name: Ad
+    schema: json-schema/facebook-business-manager-ad-schema.json
+    path: /act_{ad_account_id}/ads
+    operations:
+      - listAds
+      - createAd
+      - getAd
+    description: Binds a creative to an ad set.
+  - name: AdCreative
+    schema: json-schema/facebook-business-manager-adcreative-schema.json
+    path: /act_{ad_account_id}/adcreatives
+    operations:
+      - listAdCreatives
+      - createAdCreative
+    description: The rendered content of an ad — copy, media, link, call to action.
+  - name: AdImage
+    path: /act_{ad_account_id}/adimages
+    operations:
+      - uploadAdImage
+    description: Uploaded image asset referenced by an AdCreative via image_hash.
+  - name: CustomAudience
+    schema: json-schema/facebook-business-manager-customaudience-schema.json
+    path: /act_{ad_account_id}/customaudiences
+    operations:
+      - listCustomAudiences
+      - createCustomAudience
+    description: Targetable audience owned by the ad account.
+  - name: InsightsData
+    schema: json-schema/facebook-business-manager-insightsdata-schema.json
+    path: /act_{ad_account_id}/insights
+    operations:
+      - getAdAccountInsights
+      - getCampaignInsights
+    description: >-
+      Performance rows. Not a node — a computed report keyed by ad_id / adset_id / campaign_id and a date
+      preset or time range.
+  - name: Page
+    schema: json-schema/facebook-business-manager-page-schema.json
+    path: /{page_id}
+    operations:
+      - getPage
+      - subscribePageApp
+    description: Organic presence root. Owns posts, photos, videos, comments and its own insights.
+  - name: Post
+    schema: json-schema/facebook-business-manager-post-schema.json
+    path: /{page_id}/feed
+    operations:
+      - getPageFeed
+      - createPagePost
+      - getPost
+      - updatePost
+      - deletePost
+    description: A Page feed story.
+  - name: Comment
+    schema: json-schema/facebook-business-manager-comment-schema.json
+    path: /{post_id}/comments
+    operations:
+      - getPostComments
+      - createComment
+      - deleteComment
+    description: User-generated reply on a Post. Comments nest on comments.
+  - name: Photo
+    path: /{page_id}/photos
+    operations:
+      - uploadPagePhoto
+  - name: Video
+    path: /{page_id}/videos
+    operations:
+      - uploadPageVideo
+  - name: PageInsights
+    schema: json-schema/facebook-business-manager-pageinsightsresponse-schema.json
+    path: /{page_id}/insights
+    operations:
+      - getPageInsights
+  - name: Paging
+    schema: json-schema/facebook-business-manager-paging-schema.json
+    description: >-
+      Envelope object present on every list response. Carries cursors (before/after) plus next/previous
+      URLs. Not a domain entity — the pagination contract. See conventions/.
+relationships:
+  - from: AdAccount
+    to: Campaign
+    type: has_many
+    via: edge /act_{ad_account_id}/campaigns
+  - from: Campaign
+    to: AdAccount
+    type: belongs_to
+    via: 'path scope act_{ad_account_id}'
+  - from: AdAccount
+    to: AdSet
+    type: has_many
+    via: edge /act_{ad_account_id}/adsets
+  - from: Campaign
+    to: AdSet
+    type: has_many
+    via: 'field AdSet.campaign_id'
+  - from: AdSet
+    to: Campaign
+    type: belongs_to
+    via: 'field campaign_id (required on AdSetCreate)'
+  - from: AdSet
+    to: Ad
+    type: has_many
+    via: 'field Ad.adset_id'
+  - from: Ad
+    to: AdSet
+    type: belongs_to
+    via: 'field adset_id (required on AdCreate)'
+  - from: Ad
+    to: Campaign
+    type: belongs_to
+    via: 'field campaign_id (denormalized on Ad for convenience)'
+  - from: AdAccount
+    to: Ad
+    type: has_many
+    via: edge /act_{ad_account_id}/ads
+  - from: AdAccount
+    to: AdCreative
+    type: has_many
+    via: edge /act_{ad_account_id}/adcreatives
+  - from: Ad
+    to: AdCreative
+    type: has_one
+    via: 'field creative on AdCreate'
+  - from: AdCreative
+    to: AdImage
+    type: has_one
+    via: 'image_hash returned by uploadAdImage'
+  - from: AdAccount
+    to: CustomAudience
+    type: has_many
+    via: edge /act_{ad_account_id}/customaudiences
+  - from: AdSet
+    to: CustomAudience
+    type: has_many
+    via: 'targeting.custom_audiences[]'
+  - from: AdAccount
+    to: InsightsData
+    type: has_many
+    via: edge /act_{ad_account_id}/insights
+  - from: Campaign
+    to: InsightsData
+    type: has_many
+    via: edge /{campaign_id}/insights
+  - from: InsightsData
+    to: Ad
+    type: belongs_to
+    via: 'field ad_id'
+  - from: InsightsData
+    to: AdSet
+    type: belongs_to
+    via: 'field adset_id'
+  - from: InsightsData
+    to: Campaign
+    type: belongs_to
+    via: 'field campaign_id'
+  - from: Page
+    to: Post
+    type: has_many
+    via: edge /{page_id}/feed
+  - from: Post
+    to: Page
+    type: belongs_to
+    via: 'composite id {page_id}_{post_id}'
+  - from: Post
+    to: Comment
+    type: has_many
+    via: edge /{post_id}/comments
+  - from: Comment
+    to: Post
+    type: belongs_to
+    via: 'path scope {post_id}'
+  - from: Comment
+    to: Comment
+    type: has_many
+    via: 'edge /{comment_id}/comments (nested replies)'
+  - from: Page
+    to: Photo
+    type: has_many
+    via: edge /{page_id}/photos
+  - from: Page
+    to: Video
+    type: has_many
+    via: edge /{page_id}/videos
+  - from: Page
+    to: PageInsights
+    type: has_many
+    via: edge /{page_id}/insights
+  - from: Page
+    to: Application
+    type: has_many
+    via: 'edge /{page_id}/subscribed_apps (webhook subscription)'
+envelope_schemas:
+  - CampaignList
+  - AdSetList
+  - AdList
+  - AdCreativeList
+  - CustomAudienceList
+  - CommentList
+  - PostList
+  - InsightsResponse
+  - PageInsightsResponse
+envelope_schemas_note: >-
+    Every *List schema is {data: [Entity], paging: Paging}. Clients should unwrap `data` and follow
+    `paging.next` rather than counting results — see conventions/.
+render: null
+render_note: No subway/ diagram exists in this repo.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

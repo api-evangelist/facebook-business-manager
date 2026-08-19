@@ -4,7 +4,16 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Facebook Business Manager
 providerId: facebook-business-manager
 created: '2026-05-04'
-modified: '2026-05-05'
+# 2026-08-13: upgraded generated -> searched. Re-read Meta's Marketing API get-started, the Graph API
+# rate-limiting guide and the Permissions Reference on 2026-08-13. Finding confirmed: Meta charges NOTHING
+# for API access itself. There is no per-call price, no API plan and no metered API tier anywhere on the
+# developer surface. What gates you is App Review tier, not money. All revenue is downstream — ad spend and
+# WhatsApp per-conversation pricing.
+method: searched
+source: https://developers.facebook.com/docs/marketing-api/get-started
+modified: '2026-08-13'
+verified: '2026-08-13'
+plan_count: 3
 reconciled: true
 tags:
   - Advertising

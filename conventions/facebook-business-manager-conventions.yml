@@ -1,0 +1,173 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/results
+docs:
+  - https://developers.facebook.com/docs/graph-api/results
+  - https://developers.facebook.com/docs/graph-api/guides/error-handling
+  - https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+  - https://developers.facebook.com/docs/graph-api/guides/versioning
+  - https://developers.facebook.com/docs/graph-api/field-expansion
+  - https://developers.facebook.com/docs/graph-api/batch-requests
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Cross-cutting runtime semantics shared by every Business Manager surface, because they are all the same
+  API: the Meta Graph API. Nodes, edges and fields; three pagination styles; a proprietary error envelope;
+  header-based rate-limit telemetry; and a versioned path. Searched from Meta's own Graph API guides on
+  2026-08-13 and cross-checked against the 33 operations in openapi/.
+authentication:
+  style: OAuth 2.0 bearer access token
+  transport:
+    - header: 'Authorization: Bearer {access-token}'
+    - query: 'access_token={access-token}'
+  token_types:
+    - user access token
+    - page access token
+    - app access token
+    - system user access token
+    - client token
+  appsecret_proof: >-
+    Meta recommends signing server-side calls with an appsecret_proof parameter (HMAC-SHA256 of the access
+    token keyed by the app secret) to prevent token replay from another app.
+  cross_reference: authentication/facebook-business-manager-authentication.yml
+  scopes_reference: scopes/facebook-business-manager-scopes.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    The Graph API publishes no idempotency-key mechanism. There is no Idempotency-Key header, no request
+    replay window, and no documented safe-retry contract for POST. Retrying a create is not safe in general —
+    Meta surfaces this indirectly through error code 506 (Duplicate Post), which rejects a consecutive
+    duplicate post rather than returning the original resource. Do NOT emit an Idempotency pointer for this
+    provider.
+  related_mechanisms:
+    - name: Conversions API event deduplication
+      description: >-
+        The Conversions API dedupes server events against Pixel browser events using event_id + event_name.
+        This is analytics deduplication, not request idempotency: it does not make a retried POST safe and
+        does not return the original response.
+      url: https://developers.facebook.com/docs/marketing-api/conversions-api/deduplicate-pixel-and-server-events
+pagination:
+  styles:
+    - name: cursor
+      preferred: true
+      request_params:
+        - before
+        - after
+        - limit
+      response_fields:
+        - paging.cursors.before
+        - paging.cursors.after
+        - paging.next
+        - paging.previous
+      note: >-
+        Most efficient and should be used when available. Cursors are opaque strings that MUST NOT be
+        stored — they are invalidated when the item they point at is deleted or moved.
+    - name: time
+      request_params:
+        - since
+        - until
+        - limit
+      response_fields:
+        - paging.next
+        - paging.previous
+      note: >-
+        Unix timestamps or strtotime values. Meta recommends specifying both since and until, with a maximum
+        span of about six months for consistent results.
+    - name: offset
+      request_params:
+        - offset
+        - limit
+      note: >-
+        Use only when the edge supports neither cursor nor time pagination. Page contents shift when items
+        are added, so results are not stable.
+  termination_rule: >-
+    Stop when `paging.next` is absent — NOT when the returned count is below `limit`. A page can legitimately
+    return fewer items than limit (privacy filtering) or even zero items while more pages remain.
+  depth_limit: >-
+    Deep paging is capped per endpoint. Exceeding it returns code 100: "The After Cursor specified exceeds
+    the max limit supported by this endpoint." Narrow the query instead of paging deeper.
+field_selection:
+  mechanism: fields parameter
+  description: >-
+    The Graph API returns a minimal default field set. Callers must request fields explicitly with
+    ?fields=a,b,c. This is a sparse-fieldset API by default, not by option.
+  expansion: >-
+    Field expansion nests edge reads inside a single request:
+    ?fields=adsets{name,status,ads{name}} — one round trip instead of N.
+  url: https://developers.facebook.com/docs/graph-api/field-expansion
+batching:
+  supported: true
+  mechanism: >-
+    POST to the Graph API root with a `batch` parameter containing a JSON array of up to 50 sub-requests.
+    Sub-requests may reference each other's results via JSONPath ({result=name:$.id}).
+  url: https://developers.facebook.com/docs/graph-api/batch-requests
+  note: >-
+    Each sub-request counts individually against rate limits. Batching saves round trips, not quota.
+metadata:
+  supported: true
+  mechanism: >-
+    Append ?metadata=1 to any node read to get its introspection block — field list, connection list and
+    node type.
+request_tracing:
+  identifier: fbtrace_id
+  location: error.fbtrace_id in the response body
+  note: >-
+    Present on error responses only, and short-lived. There is no request-id header on successful responses,
+    so successful calls cannot be correlated with Meta support after the fact. Capture fbtrace_id at the
+    moment of failure.
+versioning:
+  in_path: true
+  current: v26.0
+  cross_reference: lifecycle/facebook-business-manager-lifecycle.yml
+error_envelope:
+  format: proprietary JSON under a top-level `error` object
+  rfc9457: false
+  discriminator: error.code plus error.error_subcode
+  status_code_reliability: >-
+    LOW. The Graph API frequently returns HTTP 200 with an error body. Dispatch on the presence of `error` in
+    the payload, not on the status code.
+  cross_reference: errors/facebook-business-manager-problem-types.yml
+rate_limit_signalling:
+  headers:
+    - name: X-App-Usage
+      contents: 'call_count, total_time, total_cputime — each a percentage of the app''s allowance'
+      applies_to: Platform rate limits
+    - name: X-Business-Use-Case-Usage
+      contents: >-
+        Per business use case: call_count, total_cputime, total_time, type,
+        estimated_time_to_regain_access
+      applies_to: Business Use Case rate limits (Marketing API, Pages with system/page tokens)
+    - name: X-Ad-Account-Usage
+      contents: 'acc_id_util_pct, reset_time_duration, ads_api_access_tier'
+      applies_to: Ads API v3.3 and older
+    - name: X-Page-Usage
+      applies_to: Pages API
+  retry_after: false
+  retry_after_note: >-
+    Meta does not send Retry-After. The closest equivalent is estimated_time_to_regain_access inside
+    X-Business-Use-Case-Usage. Back off on that value, otherwise exponential backoff with jitter.
+  exhaustion_codes:
+    - 4
+    - 17
+    - 32
+    - 341
+    - 613
+  cross_reference: rate-limits/facebook-business-manager-rate-limits.yml
+webhooks:
+  signature_header: X-Hub-Signature-256
+  algorithm: 'sha256= HMAC of the raw payload keyed by the app secret'
+  verification_handshake: 'GET with hub.mode, hub.verify_token, hub.challenge — echo hub.challenge'
+  cross_reference: asyncapi/facebook-business-manager-webhooks.yml
+agent_conventions:
+  source: https://developers.facebook.com/llms.txt
+  user_agent: >-
+    Meta asks AI agents calling the Marketing API and the Ads MCP Server to append structured identification
+    to the existing User-Agent: <AgentName>/<Version> (<ModelName>) <HTTPClient>. Name and version required,
+    model name recommended. Keep the name stable across requests; do not randomize; do not impersonate other
+    agents; append rather than replace.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

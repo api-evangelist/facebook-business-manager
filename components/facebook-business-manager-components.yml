@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/plugins
+docs:
+  - https://developers.facebook.com/docs/plugins
+  - https://developers.facebook.com/docs/javascript
+  - https://developers.facebook.com/docs/facebook-login/web/login-button
+  - https://developers.facebook.com/docs/whatsapp/embedded-signup
+  - https://developers.facebook.com/docs/messenger-platform/discovery/facebook-chat-plugin
+specification: API Commons Components
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Client-side and embeddable surfaces Meta ships alongside the Graph API. All of them load through a single
+  loader — the Facebook SDK for JavaScript (connect.facebook.net/en_US/sdk.js) — and render from HTML5 data-*
+  attributes or XFBML tags. Distinct from the Business SDKs in packages/, which are server-side API clients.
+  This family is contracting: Meta discontinued a subset of Social Plugins on 2026-02-10 with no replacement.
+loaders:
+  - name: Facebook SDK for JavaScript
+    url: https://connect.facebook.net/en_US/sdk.js
+    docs: https://developers.facebook.com/docs/javascript
+    versioned: true
+    version_mechanism: >-
+      FB.init({ appId, version: 'v26.0' }) — the version set here is prepended to every FB.api() call and to
+      any Login dialog the SDK opens.
+    note: >-
+      The documented script URL carries no version pin, so the loader itself floats to whatever Meta serves.
+      Only the API version passed to FB.init is pinnable. Framework how-tos published for AngularJS, jQuery
+      and RequireJS.
+families:
+  - name: Social Plugins
+    docs: https://developers.facebook.com/docs/plugins
+    status: partially discontinued
+    discontinued_date: '2026-02-10'
+    discontinuation_note: >-
+      VERBATIM POSTURE FROM THE DOCS: no replacement plugins are being provided; the February 10, 2026 date
+      was final; notice was two developer alerts (three months out, then one week out). Removed plugins
+      degrade to invisible elements rather than breaking the host page.
+    components:
+      - name: Share Button
+        status: available
+        docs: https://developers.facebook.com/docs/plugins/share-button
+        description: Share content to Facebook, with friends, with a group, or in a private message.
+      - name: Page Plugin
+        status: available
+        docs: https://developers.facebook.com/docs/plugins/page-plugin
+        description: Embed components of a Facebook Page onto a webpage.
+      - name: Embedded Posts
+        status: available
+        docs: https://developers.facebook.com/docs/plugins/embedded-posts
+        description: Add public posts into the content of a webpage.
+      - name: Embedded Video & Live Video Player
+        status: available
+        docs: https://developers.facebook.com/docs/plugins/embedded-video-player
+        description: Add public Facebook videos and Facebook live videos to a webpage.
+  - name: Login
+    docs: https://developers.facebook.com/docs/facebook-login/web/login-button
+    status: available
+    components:
+      - name: Facebook Login Button
+        description: >-
+          Prebuilt login element (fb:login-button / .fb-login-button) that runs the OAuth consent flow and
+          returns an access token to the page. The entry point to every permission in
+          scopes/facebook-business-manager-scopes.yml.
+  - name: Business Messaging
+    status: available
+    components:
+      - name: Facebook Chat Plugin
+        docs: https://developers.facebook.com/docs/messenger-platform/discovery/facebook-chat-plugin
+        description: >-
+          Embeds a Messenger conversation with a business Page directly on the business's own website,
+          carrying the thread across the site and Messenger.
+  - name: Hosted onboarding flows
+    status: available
+    components:
+      - name: WhatsApp Embedded Signup
+        docs: https://developers.facebook.com/docs/whatsapp/embedded-signup
+        description: >-
+          Meta-hosted, embeddable onboarding flow that lets a solution provider's customers create a WhatsApp
+          Business Account, verify a phone number and grant the provider access without leaving the
+          provider's own product. A hosted/prebuilt surface rather than a UI widget — the WhatsApp analogue
+          of a connect flow.
+best_practices: https://developers.facebook.com/docs/plugins/best-practices
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

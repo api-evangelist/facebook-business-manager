@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/business-sdk/getting-started
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Meta publishes the Business SDK — the official client library family for the Marketing API, Pages API and
+  the wider Graph API business surface — in five languages, all under the github.com/facebook organization
+  and all generated from the same public codegen repo (facebook/facebook-business-sdk-codegen). SDK major
+  versions track Graph API versions (SDK v26 wraps Graph API v26.0). Versions and publish dates below were
+  read from each registry's own metadata endpoint on 2026-08-13.
+registries_checked:
+  - npm
+  - PyPI
+  - Packagist
+  - RubyGems
+  - Maven Central
+  - NuGet
+packages:
+  - name: facebook_business
+    registry: pypi
+    language: Python
+    official: true
+    url: https://pypi.org/project/facebook_business/
+    repository: https://github.com/facebook/facebook-python-business-sdk
+    version: 26.0.0
+    published: '2026-08-06'
+    note: Official Meta Business SDK for Python. Current with Graph API v26.0.
+  - name: facebook/php-business-sdk
+    registry: packagist
+    language: PHP
+    official: true
+    url: https://packagist.org/packages/facebook/php-business-sdk
+    repository: https://github.com/facebook/facebook-php-business-sdk
+    version: 26.0.0
+    published: '2026-08-06'
+    note: Official Meta Business SDK for PHP. Current with Graph API v26.0.
+  - name: com.facebook.business.sdk:facebook-java-business-sdk
+    registry: maven
+    language: Java
+    official: true
+    url: https://central.sonatype.com/artifact/com.facebook.business.sdk/facebook-java-business-sdk
+    repository: https://github.com/facebook/facebook-java-business-sdk
+    version: 26.0.0
+    published: '2026-08-06'
+    note: >-
+      Read from https://repo1.maven.org/maven2/com/facebook/business/sdk/facebook-java-business-sdk/maven-metadata.xml
+      (latest 26.0.0, lastUpdated 20260806060516). Current with Graph API v26.0.
+  - name: facebookbusiness
+    registry: rubygems
+    language: Ruby
+    official: true
+    url: https://rubygems.org/gems/facebookbusiness
+    repository: https://github.com/facebook/facebook-ruby-business-sdk
+    version: 25.0.4
+    published: '2026-07-17'
+    note: >-
+      Official Meta Business SDK for Ruby. One Graph API major behind the Python/PHP/Java SDKs, which shipped
+      26.0.0 on 2026-08-06.
+  - name: facebook-nodejs-business-sdk
+    registry: npm
+    language: JavaScript / Node.js
+    official: true
+    url: https://www.npmjs.com/package/facebook-nodejs-business-sdk
+    repository: https://github.com/facebook/facebook-nodejs-business-sdk
+    version: 24.0.1
+    published: '2025-11-21'
+    note: >-
+      DECAY SIGNAL. The npm dist-tag `latest` is still 24.0.1, published 2025-11-21, while the GitHub repo
+      facebook/facebook-nodejs-business-sdk was last pushed 2026-08-06 and the sibling Python/PHP/Java SDKs
+      published 26.0.0 that same day. The published Node.js package therefore wraps a Graph API version two
+      majors behind current (v26.0), and Graph API v24.0 is scheduled to stop working 2028-02-18.
+  - name: (none)
+    registry: nuget
+    language: .NET / C#
+    official: false
+    url: null
+    version: null
+    published: null
+    note: >-
+      Checked azuresearch-usnc.nuget.org for "facebook business sdk" — no first-party Meta package exists.
+      Only third-party wrappers (CloudRail, OmniSocials) are published. Recorded as an honest absence.
+related_distribution:
+  - name: Facebook SDK for JavaScript (sdk.js)
+    registry: cdn
+    official: true
+    url: https://connect.facebook.net/en_US/sdk.js
+    version: null
+    published: null
+    note: >-
+      Browser SDK for Facebook Login, social plugins and client-side Graph API calls. Distributed only from
+      connect.facebook.net with no version pin in the documented script tag — the URL floats to whatever Meta
+      is serving, so a consumer cannot tell what build they are getting and there is no registry metadata
+      endpoint to query. Version recorded as null deliberately. Docs:
+      https://developers.facebook.com/docs/javascript
+  - name: facebook-business-sdk-codegen
+    registry: github
+    official: true
+    url: https://github.com/facebook/facebook-business-sdk-codegen
+    version: null
+    published: null
+    note: >-
+      Source of truth Meta generates every Business SDK from. Not itself a published package; listed for
+      provenance. Repo last pushed 2026-08-05.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

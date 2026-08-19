@@ -1,0 +1,165 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes against every host named in apis.yml baseURL + the docs/console hosts
+specification: API Commons WellKnown
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Probe of /.well-known/ paths across the Graph API hosts (graph.facebook.com, graph.threads.net), the
+  developer docs host (developers.facebook.com), the console host (business.facebook.com), the consumer host
+  (www.facebook.com) and the MCP host (mcp.facebook.com). Three real documents are served: a security.txt on
+  the www and business hosts, an OpenID Connect discovery document on www, and RFC 9728 OAuth protected-resource
+  metadata for each of Meta's two remote MCP servers. The Graph API hosts themselves answer 400 to any
+  /.well-known/ path because the Graph API treats the path as a node id, not a 404 — recorded as-is.
+checked: '2026-08-13'
+probes:
+  - host: www.facebook.com
+    path: /.well-known/security.txt
+    url: https://www.facebook.com/.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    file: facebook-business-manager-security.txt
+    document: true
+  - host: business.facebook.com
+    path: /.well-known/security.txt
+    url: https://business.facebook.com/.well-known/security.txt
+    status: 200
+    document: true
+    note: Identical body to the www.facebook.com security.txt; saved once.
+  - host: www.facebook.com
+    path: /.well-known/openid-configuration
+    url: https://www.facebook.com/.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: facebook-business-manager-openid-configuration.json
+    document: true
+    note: >-
+      Real OIDC discovery document. issuer https://www.facebook.com, authorization_endpoint
+      https://facebook.com/dialog/oauth/, jwks_uri https://www.facebook.com/.well-known/oauth/openid/jwks/,
+      RS256, pairwise subjects. Covers Facebook Login, the identity layer under Business Manager access.
+  - host: mcp.facebook.com
+    path: /.well-known/oauth-protected-resource/ads
+    url: https://mcp.facebook.com/.well-known/oauth-protected-resource/ads
+    status: 200
+    content_type: application/json
+    file: facebook-business-manager-mcp-ads-oauth-protected-resource.json
+    document: true
+    note: >-
+      RFC 9728 metadata for the Meta Ads MCP server. scopes_supported ads_management, ads_read,
+      catalog_management, business_management, pages_show_list, instagram_basic, ads_mcp_management.
+  - host: mcp.facebook.com
+    path: /.well-known/oauth-protected-resource/devtools
+    url: https://mcp.facebook.com/.well-known/oauth-protected-resource/devtools
+    status: 200
+    content_type: application/json
+    file: facebook-business-manager-mcp-devtools-oauth-protected-resource.json
+    document: true
+    note: >-
+      RFC 9728 metadata for the Meta Devtools MCP server. scopes_supported
+      developer_tools_mcp_app_read, developer_tools_mcp_app_management.
+  - host: www.facebook.com
+    path: /.well-known/oauth-authorization-server
+    url: https://www.facebook.com/.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - host: www.facebook.com
+    path: /.well-known/api-catalog
+    url: https://www.facebook.com/.well-known/api-catalog
+    status: 404
+    document: false
+  - host: www.facebook.com
+    path: /.well-known/ai-plugin.json
+    url: https://www.facebook.com/.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - host: www.facebook.com
+    path: /.well-known/agent-card.json
+    url: https://www.facebook.com/.well-known/agent-card.json
+    status: 404
+    document: false
+  - host: www.facebook.com
+    path: /.well-known/agent.json
+    url: https://www.facebook.com/.well-known/agent.json
+    status: 404
+    document: false
+  - host: developers.facebook.com
+    path: /.well-known/security.txt
+    url: https://developers.facebook.com/.well-known/security.txt
+    status: 404
+    document: false
+    note: Docs host returns its 404 SPA shell (~136 KB of HTML) rather than a document.
+  - host: developers.facebook.com
+    path: /.well-known/openid-configuration
+    url: https://developers.facebook.com/.well-known/openid-configuration
+    status: 404
+    document: false
+  - host: developers.facebook.com
+    path: /.well-known/oauth-authorization-server
+    url: https://developers.facebook.com/.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - host: developers.facebook.com
+    path: /.well-known/ai-plugin.json
+    url: https://developers.facebook.com/.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - host: developers.facebook.com
+    path: /.well-known/agent-card.json
+    url: https://developers.facebook.com/.well-known/agent-card.json
+    status: 404
+    document: false
+  - host: developers.facebook.com
+    path: /.well-known/agent.json
+    url: https://developers.facebook.com/.well-known/agent.json
+    status: 404
+    document: false
+  - host: business.facebook.com
+    path: /.well-known/agent-card.json
+    url: https://business.facebook.com/.well-known/agent-card.json
+    status: 404
+    document: false
+  - host: graph.facebook.com
+    path: /.well-known/security.txt
+    url: https://graph.facebook.com/.well-known/security.txt
+    status: 400
+    document: false
+    note: >-
+      Graph API answers 400 (Unsupported get request / unknown node) to any /.well-known/ path because it
+      parses the path as a graph node id. Not a 404, but not a document either.
+  - host: graph.facebook.com
+    path: /.well-known/agent-card.json
+    url: https://graph.facebook.com/.well-known/agent-card.json
+    status: 400
+    document: false
+  - host: graph.threads.net
+    path: /.well-known/security.txt
+    url: https://graph.threads.net/.well-known/security.txt
+    status: 400
+    document: false
+  - host: graph.threads.net
+    path: /.well-known/agent-card.json
+    url: https://graph.threads.net/.well-known/agent-card.json
+    status: 400
+    document: false
+  - host: mcp.facebook.com
+    path: /.well-known/oauth-authorization-server
+    url: https://mcp.facebook.com/.well-known/oauth-authorization-server
+    status: 404
+    document: false
+    note: Root path is unrouted; metadata is served per-server under /.well-known/oauth-protected-resource/{server}.
+  - host: mcp.facebook.com
+    path: /.well-known/agent-card.json
+    url: https://mcp.facebook.com/.well-known/agent-card.json
+    status: 404
+    document: false
+summary:
+  paths_probed: 23
+  documents_served: 5
+  security_txt: true
+  openid_configuration: true
+  oauth_protected_resource: true
+  agent_card: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

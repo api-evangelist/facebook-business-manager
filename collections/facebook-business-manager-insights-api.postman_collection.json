@@ -1,0 +1,553 @@
+{
+  "item": [
+    {
+      "id": "8bbeb896-5c71-4586-9ca9-710437cb2ef8",
+      "name": "Insights",
+      "description": {
+        "content": "Retrieve performance metrics and analytics data for campaigns, ad sets, and ads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd7ac121-b99d-40e2-be3b-7dacdae1a1eb",
+          "name": "Facebook Business Manager Get ad account insights",
+          "request": {
+            "name": "Facebook Business Manager Get ad account insights",
+            "description": {
+              "content": "Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "act_{{ad_account_id}}",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdowns",
+                  "value": "<string>",
+                  "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement."
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "Level of aggregation for results. Options include account, campaign, adset, or ad."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_increment",
+                  "value": "<string>",
+                  "description": "Number of days for each increment in the time range, or use monthly or all_days."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "092c9b8c-49d1-43f4-a759-1489c4d78c0b",
+              "name": "Successfully retrieved insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"2002-10-01\",\n      \"date_stop\": \"1972-06-28\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    },\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1962-12-08\",\n      \"date_stop\": \"2002-02-08\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6753fe1-efc4-48d2-a562-83596316968f",
+              "name": "Invalid request parameters or malformed request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 6050,\n    \"error_subcode\": 3551,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2395dbde-4621-466a-94db-9d9b9728509a",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "act_{{ad_account_id}}",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdowns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_increment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 6050,\n    \"error_subcode\": 3551,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "148894ba-8dd7-4ccf-a2cf-2a906d415016",
+          "name": "Facebook Business Manager Get campaign insights",
+          "request": {
+            "name": "Facebook Business Manager Get campaign insights",
+            "description": {
+              "content": "Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":campaign_id",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The ID of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "940438a6-30a5-48de-b842-ec3ceae09742",
+              "name": "Successfully retrieved campaign insights",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"2002-10-01\",\n      \"date_stop\": \"1972-06-28\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    },\n    {\n      \"impressions\": \"string\",\n      \"clicks\": \"string\",\n      \"spend\": \"string\",\n      \"reach\": \"string\",\n      \"cpc\": \"string\",\n      \"cpm\": \"string\",\n      \"ctr\": \"string\",\n      \"frequency\": \"string\",\n      \"actions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"conversions\": [\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"action_type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"date_start\": \"1962-12-08\",\n      \"date_stop\": \"2002-02-08\",\n      \"campaign_id\": \"string\",\n      \"campaign_name\": \"string\",\n      \"adset_id\": \"string\",\n      \"adset_name\": \"string\",\n      \"ad_id\": \"string\",\n      \"ad_name\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"cursors\": {\n      \"before\": \"string\",\n      \"after\": \"string\"\n    },\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2f833d6-6f5d-4355-94d4-4ab83e6fd3a5",
+              "name": "Invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 6050,\n    \"error_subcode\": 3551,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7bb6cf3-a4ec-4369-83c6-52981ebb92f5",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":campaign_id",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The ID of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": 6050,\n    \"error_subcode\": 3551,\n    \"fbtrace_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://graph.facebook.com/v25.0",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the ad account (numeric, without the act_ prefix)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "ad_account_id"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e573e216-6caf-4436-b4a8-611d59edf42e",
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Insights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.\n\nContact Support:\n Name: Meta Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

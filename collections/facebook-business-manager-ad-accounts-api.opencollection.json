@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ad Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get ad account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ad account including settings, spend limits, and status information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

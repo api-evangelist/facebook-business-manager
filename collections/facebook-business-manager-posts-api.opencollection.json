@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Posts API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get page feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:page_id/feed",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Facebook Page"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Retrieves the feed of posts on a Facebook Page. Includes posts published by the page and posts by visitors if allowed."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create a page post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:page_id/feed",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Facebook Page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publishes a new post to the Facebook Page feed. Supports text posts, link shares, and scheduled posts. Requires a page access token with pages_manage_posts permission."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:post_id",
+            "params": [
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the post (format PAGE_ID_POST_ID)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific post including message, attachments, reactions, and engagement counts."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Update a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:post_id",
+            "params": [
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the post (format PAGE_ID_POST_ID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing post on the Page. Only the message field can be updated after publishing."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Delete a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://graph.facebook.com/v25.0/:post_id",
+            "params": [
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the post (format PAGE_ID_POST_ID)"
+              }
+            ]
+          },
+          "docs": "Deletes a post from the Facebook Page. This action cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

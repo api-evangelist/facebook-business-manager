@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/development/build-and-test
+docs:
+  - https://developers.facebook.com/docs/development/build-and-test
+  - https://developers.facebook.com/docs/development/build-and-test/test-apps
+  - https://developers.facebook.com/docs/development/build-and-test/test-users
+  - https://developers.facebook.com/docs/development/build-and-test/app-modes
+  - https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
+  - https://developers.facebook.com/tools/explorer
+specification: API Commons Sandbox
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Meta does not run a separate sandbox host. There is no test.graph.facebook.com and no test-vs-live key
+  prefix — the same https://graph.facebook.com host serves both, and the isolation boundary is the APP, not
+  the credential. An app in Development mode, or a child Test App cloned from a live parent, sees only
+  simulated or role-holding users. Notably, one of the two primary isolation mechanisms is currently
+  suspended: Meta has temporarily removed the ability to create new test users.
+separate_host: false
+test_live_key_prefix: false
+key_prefix_note: >-
+  Access tokens carry no test/live prefix. Whether a call is "test" depends on which app issued the token and
+  what mode that app is in, which is not legible from the token itself.
+modes:
+  - name: Development mode
+    description: >-
+      Default for new apps. App can only be used by people with an Administrator, Developer or Tester role,
+      and by test users. Webhooks in development mode only fire for test notifications initiated from the App
+      Dashboard or for people with a role on the app.
+    url: https://developers.facebook.com/docs/development/build-and-test/app-modes
+  - name: Live mode
+    description: >-
+      Public. Requires App Review for any permission beyond the default set, plus Business Verification for
+      Advanced Access.
+isolation_mechanisms:
+  - name: Test Apps
+    status: available
+    description: >-
+      Child apps cloned from a live parent app, always in Development mode, inheriting the parent's settings
+      and Administrators at creation time. Used to test new reviewable permissions and features without
+      touching the parent.
+    limits:
+      - Parent apps can have at most 50 child test apps.
+      - User IDs are scoped to the parent app.
+      - Settings do not sync in either direction after creation.
+      - Removing a parent app removes all of its test apps.
+    url: https://developers.facebook.com/docs/development/build-and-test/test-apps
+  - name: Test Users
+    status: suspended
+    description: >-
+      Simulated Facebook accounts for exercising Facebook Login and permissions. Cannot interact with real
+      users; data is visible only to other test users and to people holding a role on the app. Exempt from
+      spam and fake-account detection.
+    limits:
+      - Apps are limited to 10 test users.
+      - Creatable only by app Administrators or Developers.
+      - Creatable through the App Dashboard or the Graph API.
+    suspension_note: >-
+      VERBATIM FROM THE DOCS as of 2026-08-13: "We are temporarily removing the ability for apps to create
+      new test users. This should not affect existing test users or apps where we temporarily request test
+      users to be created for assessment purposes. We will share an update once access to creating new test
+      users has been reinstated." No reinstatement date is published. New integrations therefore cannot
+      currently stand up a clean Login/permission test fixture.
+    url: https://developers.facebook.com/docs/development/build-and-test/test-users
+  - name: Test Pages
+    status: available
+    description: Simulated Pages for testing Page-scoped surfaces.
+    url: https://developers.facebook.com/docs/development/build-and-test/test-pages
+  - name: WhatsApp test phone number
+    status: available
+    description: >-
+      The WhatsApp Cloud API onboarding provisions a Meta-supplied test phone number and a small allowance of
+      recipient numbers, so template and free-form sends can be exercised before a business phone number is
+      registered.
+    url: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
+tooling:
+  - name: Graph API Explorer
+    url: https://developers.facebook.com/tools/explorer
+    description: >-
+      Hosted request console. Generates tokens with an arbitrary permission set for an app you administer and
+      issues live Graph API calls against real data.
+  - name: Access Token Debugger
+    url: https://developers.facebook.com/tools/debug/accesstoken/
+    description: Decodes any access token — app, type, scopes granted, expiry, issued-at.
+  - name: Sharing Debugger
+    url: https://developers.facebook.com/tools/debug/
+    description: Re-scrapes and inspects Open Graph metadata for a URL.
+  - name: App Security Checkup
+    url: https://developers.facebook.com/tools/app-security-checkup/
+    description: Reviews an app's security posture.
+  - name: Jasper's Market sample app
+    url: https://github.com/fbsamples/whatsapp-business-jaspers-market
+    description: >-
+      First-party WhatsApp Cloud API sample app containing the messages and code used in Meta's demo.
+test_values:
+  test_cards: null
+  test_bank_accounts: null
+  test_clocks: null
+  note: >-
+    Not applicable. Meta publishes no test card numbers, test bank accounts or time-simulation clocks — the
+    Business Manager API surface bills through Meta Ads and WhatsApp conversation pricing, not through a
+    payments API this repo covers. Recorded as an honest absence rather than omitted.
+fixtures_and_triggers:
+  - name: Webhook test notifications
+    description: >-
+      The App Dashboard can fire a sample notification for any subscribed webhook field, so a receiver can be
+      validated before real events flow.
+    url: https://developers.facebook.com/docs/graph-api/webhooks/getting-started
+  - name: Events Manager Test Events
+    description: >-
+      Conversions API and Pixel events can be sent with a test_event_code and observed live in Events Manager
+      without polluting production attribution data.
+    url: https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

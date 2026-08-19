@@ -1,0 +1,172 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/facebook-business-manager-mcp.yml, openapi/*.yml
+specification: API Commons ToolCrosswalk
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Binds Meta's Ads MCP server surface to the REST operations in this repo's OpenAPI set. IMPORTANT CAVEAT:
+  this crosswalk is at the TOOL-CATEGORY level, not the individual-tool level, because Meta publishes no
+  readable tool inventory — tools/list on https://mcp.facebook.com/ads returns 401 without an OAuth token,
+  and every per-category tool reference page returned HTTP 500 on 2026-08-13 (see tools_note in
+  mcp/facebook-business-manager-mcp.yml). Each row below therefore names a category exactly as Meta's
+  overview page names it, not a tool id, and confidence is set accordingly. No tool name has been invented.
+surfaces:
+  openapi:
+    path: openapi/
+    files: 14
+    operations: 33
+    gated: false
+    note: >-
+      API Evangelist-authored OpenAPI for the Graph API business surface, derived from Meta's public
+      Marketing API and Pages API reference. Meta itself publishes no OpenAPI.
+  mcp:
+    url: https://mcp.facebook.com/ads
+    gated: true
+    gate: OAuth 2.0; tools/list returns 401
+  graphql:
+    url: null
+    gated: null
+    note: >-
+      The Graph API is a REST/HTTP graph traversal API, not GraphQL. Meta publishes no GraphQL endpoint for
+      the business surface, so there is no SDL to introspect.
+crosswalk:
+  - tool: Ad creation and management
+    is_category: true
+    category: ads
+    rest:
+      - listCampaigns
+      - createCampaign
+      - getCampaign
+      - updateCampaign
+      - deleteCampaign
+      - listAdSets
+      - createAdSet
+      - getAdSet
+      - updateAdSet
+      - listAds
+      - createAd
+      - getAd
+      - listAdCreatives
+      - createAdCreative
+      - uploadAdImage
+    binding: semantic
+    confidence: medium
+    note: >-
+      Meta describes this category as "Create and edit ads, ad sets, and campaigns" — an exact match for the
+      campaign/adset/ad/creative CRUD operations in this repo. Individual tool names unknown.
+  - tool: Comprehensive reporting
+    is_category: true
+    category: insights
+    rest:
+      - getAdAccountInsights
+      - getCampaignInsights
+      - getPageInsights
+    binding: semantic
+    confidence: medium
+    note: >-
+      "Gain valuable insights and pull detailed reporting to better understand campaign performance." Maps to
+      the /insights edges. Page-level insights may or may not be in scope for the Ads server.
+  - tool: Catalog creation and management
+    is_category: true
+    category: catalog
+    rest: []
+    binding: none
+    confidence: low
+    note: >-
+      Catalog endpoints (/{catalog_id}/items_batch, /{catalog_id}/batch, product sets) are documented by Meta
+      but are NOT captured in this repo's OpenAPI set, so there is nothing to bind to. Listed here as a known
+      gap rather than a match. The MCP server declares catalog_management in its OAuth scopes.
+  - tool: Signals and datasets
+    is_category: true
+    category: signals
+    rest: []
+    binding: none
+    confidence: low
+    note: >-
+      Covers pixel/dataset signal health. The Conversions API and pixel/dataset endpoints are listed in
+      apis.yml but have no OpenAPI operations in this repo to bind to.
+  - tool: A/B tests and conversion lift studies
+    is_category: true
+    category: experiments
+    rest: []
+    binding: none
+    confidence: low
+    note: Meta's /act_{ad_account_id}/ad_studies surface is not captured in this repo's OpenAPI.
+  - tool: Activity logs
+    is_category: true
+    category: audit
+    rest: []
+    binding: none
+    confidence: low
+    note: >-
+      Mirrors the Ads Manager campaign history page (/act_{ad_account_id}/activities). Not captured in this
+      repo's OpenAPI.
+  - tool: Help and troubleshooting
+    is_category: true
+    category: support
+    rest: []
+    binding: none
+    confidence: high
+    note: >-
+      Meta Business Help Center article search. There is no public REST equivalent — this is genuinely
+      MCP-only. Also recorded in mcp_only[] below.
+mcp_only:
+  - tool: Help and troubleshooting
+    reason: >-
+      Business Help Center search has no public Graph API endpoint; it exists only as an agent-facing tool.
+  - tool: Activity logs
+    reason: >-
+      Exposed through the MCP server as an agent-legible surface; the underlying /activities edge is
+      documented but not modeled in this repo's OpenAPI.
+rest_only:
+  - operationId: getAdAccount
+    reason: Ad account read is a Graph API node read; no evidence of a dedicated MCP tool.
+  - operationId: getPage
+    reason: Pages surface — the Ads MCP server declares only pages_show_list, not page read/write.
+  - operationId: getPageFeed
+    reason: Page publishing is outside the Ads MCP server's documented categories.
+  - operationId: createPagePost
+    reason: Page publishing is outside the Ads MCP server's documented categories.
+  - operationId: updatePost
+    reason: Page publishing is outside the Ads MCP server's documented categories.
+  - operationId: deletePost
+    reason: Page publishing is outside the Ads MCP server's documented categories.
+  - operationId: getPost
+    reason: Page publishing is outside the Ads MCP server's documented categories.
+  - operationId: getPostComments
+    reason: Comment moderation is outside the Ads MCP server's documented categories.
+  - operationId: createComment
+    reason: Comment moderation is outside the Ads MCP server's documented categories.
+  - operationId: deleteComment
+    reason: Comment moderation is outside the Ads MCP server's documented categories.
+  - operationId: uploadPagePhoto
+    reason: Page media upload is outside the Ads MCP server's documented categories.
+  - operationId: uploadPageVideo
+    reason: Page media upload is outside the Ads MCP server's documented categories.
+  - operationId: subscribePageApp
+    reason: Webhook subscription management sits on the Devtools MCP server, not the Ads server.
+  - operationId: listCustomAudiences
+    reason: >-
+      Custom Audiences are not named in the seven documented Ads MCP categories; the server's OAuth scope
+      list does not include a custom-audience scope.
+  - operationId: createCustomAudience
+    reason: See listCustomAudiences.
+coverage:
+  mcp_tools_known: 0
+  mcp_tool_categories: 7
+  categories_bound_to_rest: 2
+  categories_unbound: 5
+  rest_operations_total: 33
+  rest_operations_bound: 18
+  rest_only: 15
+  mcp_only: 2
+confidence_statement: >-
+  No row in this file asserts a tool id. Every binding is category-to-operation and is marked medium or low
+  except the one case (Help and troubleshooting) where the absence of a REST equivalent is certain. Upgrade
+  this file to binding: exact and confidence: high only after an authenticated tools/list against
+  https://mcp.facebook.com/ads returns real tool names and inputSchemas.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

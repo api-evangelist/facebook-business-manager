@@ -1,15 +1,136 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/facebook-marketing-openapi.yml, openapi/facebook-pages-openapi.yml
-summary:
-  types:
-  - http
-schemes:
-- name: bearerAuth
-  type: http
-  scheme: bearer
-  description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens
-    via the Facebook Login flow.
-  sources:
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/facebook-login/guides/access-tokens
+docs:
+  - https://developers.facebook.com/docs/facebook-login/guides/access-tokens
+  - https://developers.facebook.com/docs/permissions
+  - https://www.facebook.com/.well-known/openid-configuration
+  - https://mcp.facebook.com/.well-known/oauth-protected-resource/ads
+derived_from:
   - openapi/facebook-marketing-openapi.yml
   - openapi/facebook-pages-openapi.yml
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Every Business Manager surface authenticates the same way: an OAuth 2.0 bearer access token issued through
+  Facebook Login, scoped by user-granted permissions. The OpenAPI files in this repo declare only a generic
+  http/bearer scheme; this file upgrades that thin derivation with what Meta actually documents — five
+  distinct token types with materially different lifetimes and rate-limit regimes, an OIDC discovery document
+  served at www.facebook.com, and an appsecret_proof signature for server-side calls.
+  Upgraded 2026-08-13 from method: derived (openapi only) to method: searched.
+summary:
+  types:
+    - oauth2
+    - http
+    - openIdConnect
+schemes:
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    description: >-
+      OAuth 2.0 access token presented as `Authorization: Bearer {token}` or as an `access_token` query
+      parameter. This is the scheme the OpenAPI files declare.
+    sources:
+      - openapi/facebook-marketing-openapi.yml
+      - openapi/facebook-pages-openapi.yml
+  - name: facebookLogin
+    type: oauth2
+    flows:
+      authorizationCode:
+        authorizationUrl: https://www.facebook.com/v26.0/dialog/oauth
+        tokenUrl: https://graph.facebook.com/v26.0/oauth/access_token
+        scopes_reference: scopes/facebook-business-manager-scopes.yml
+    description: >-
+      Facebook Login. Scopes are Meta "permissions", requested at the dialog and grantable or deniable
+      individually by the app user. Advanced Access to any permission requires App Review plus Business
+      Verification.
+    method: searched
+  - name: facebookOIDC
+    type: openIdConnect
+    openIdConnectUrl: https://www.facebook.com/.well-known/openid-configuration
+    description: >-
+      OIDC discovery document served live (HTTP 200, probed 2026-08-13). issuer https://www.facebook.com,
+      authorization_endpoint https://facebook.com/dialog/oauth/, jwks_uri
+      https://www.facebook.com/.well-known/oauth/openid/jwks/, id_token signing RS256, pairwise subject
+      types. response_types_supported is [id_token, token id_token] only — no `code`. No userinfo_endpoint is
+      advertised; profile claims are read from the Graph API /me node instead.
+    method: probed
+    file: well-known/facebook-business-manager-openid-configuration.json
+token_types:
+  - name: User access token
+    obtained_via: Facebook Login dialog
+    lifetime: >-
+      Short-lived (~1-2 hours) by default; exchangeable for a long-lived token (~60 days) via
+      grant_type=fb_exchange_token.
+    rate_limit_regime: Platform Rate Limits
+  - name: Page access token
+    obtained_via: 'GET /me/accounts with pages_show_list (returns each Page''s own access_token)'
+    lifetime: Inherits the lifetime of the user token it was derived from; never-expiring when derived from a long-lived token.
+    rate_limit_regime: Business Use Case Rate Limits
+    note: >-
+      Page edges require a PAGE token, not the user token from Login. Using the user token is the single most
+      common silent authorization failure on the Pages surface.
+  - name: App access token
+    obtained_via: 'client_credentials, or the literal {app-id}|{app-secret} form'
+    lifetime: Does not expire until the app secret is rotated.
+    rate_limit_regime: Platform Rate Limits
+    note: Server-side only. Never ship an app access token to a client.
+  - name: System user access token
+    obtained_via: Business Manager > Business Settings > System Users
+    lifetime: Non-expiring
+    rate_limit_regime: Business Use Case Rate Limits
+    note: >-
+      The right credential for unattended server-to-server automation. Not tied to a human account, so it
+      does not break when an employee leaves or when the 90-day permission decay fires.
+  - name: Client token
+    obtained_via: App Dashboard > Settings > Advanced
+    lifetime: Static
+    note: Limited-privilege identifier for mobile/web clients; not a substitute for a user token.
+request_signing:
+  name: appsecret_proof
+  algorithm: HMAC-SHA256 of the access token, keyed by the app secret, hex-encoded
+  transport: appsecret_proof query parameter (with appsecret_time)
+  required: false
+  note: >-
+    Recommended for all server-side calls. Prevents a stolen access token being replayed by a different app.
+    Can be made mandatory per app in the App Dashboard.
+token_introspection:
+  endpoint: 'GET /debug_token?input_token={token}&access_token={app-token}'
+  tool: https://developers.facebook.com/tools/debug/accesstoken/
+  returns: app_id, type, application, expires_at, is_valid, scopes granted, user_id
+mcp_authentication:
+  servers:
+    - endpoint: https://mcp.facebook.com/ads
+      scheme: OAuth 2.0 bearer
+      challenge: >-
+        HTTP 401 with WWW-Authenticate: Bearer resource_metadata="https://mcp.facebook.com/.well-known/
+        oauth-protected-resource/ads", scope="ads_management ads_read catalog_management business_management
+        pages_show_list instagram_basic ads_mcp_management"
+      probed: '2026-08-13'
+    - endpoint: https://mcp.facebook.com/devtools
+      scheme: OAuth 2.0 bearer
+      probed: '2026-08-13'
+  rfc9728: true
+  revocation: facebook.com > Settings > Business Integrations
+authorization_lifecycle:
+  - name: App Review
+    description: Required before an app can use any permission granting access to data it does not own.
+  - name: Business Verification
+    description: Required for all apps requesting Advanced Access.
+  - name: Data Use Checkup
+    description: Annual recertification of permission use.
+  - name: 90-day regrant
+    description: >-
+      A permission unused for 90 days must be granted again by the app user. This revokes working
+      authorization without any API-level warning.
+authorization_lifecycle_reference: lifecycle/facebook-business-manager-lifecycle.yml
+mutual_tls: false
+api_keys: false
+api_keys_note: >-
+  There is no static API key on this platform. Every call carries an OAuth access token; the closest thing
+  to a long-lived key is a system user token.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,244 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/guides/error-handling
+docs:
+  - https://developers.facebook.com/docs/graph-api/guides/error-handling
+  - https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+derived_from:
+  - openapi/*.yml
+specification: API Commons ErrorCatalog
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+format: proprietary
+rfc9457: false
+description: >-
+  The Graph API — the transport under every Business Manager surface — does not use RFC 9457
+  application/problem+json. It returns a proprietary JSON envelope under a top-level `error` object, and it
+  frequently returns HTTP 200 with an error body, so status code alone is not a reliable failure signal. The
+  authoritative discriminator is `error.code` plus `error.error_subcode`. Catalog below is searched from
+  Meta's Handling Errors and Rate Limits guides; the 4xx shapes in this repo's OpenAPI were checked against it.
+envelope:
+  media_type: application/json
+  root: error
+  fields:
+    - name: message
+      description: Human-readable description of the error.
+    - name: type
+      description: Error class, e.g. OAuthException, GraphMethodException.
+    - name: code
+      description: Numeric error code. The primary dispatch key.
+    - name: error_subcode
+      description: Additional discriminator within a code. Optional.
+    - name: error_user_title
+      description: Localized dialog title safe to show the end user. Optional.
+    - name: error_user_msg
+      description: Localized message safe to show the end user. Optional.
+    - name: fbtrace_id
+      description: >-
+        Internal Meta support identifier. Include it when filing a bug. Short-lived — capture it at the
+        moment of failure or it is useless.
+  example: |
+    {
+      "error": {
+        "message": "Message describing the error",
+        "type": "OAuthException",
+        "code": 190,
+        "error_subcode": 460,
+        "error_user_title": "A title",
+        "error_user_msg": "A message",
+        "fbtrace_id": "REDACTED_TRACE_ID"
+      }
+    }
+problem_types:
+  - code: 1
+    name: API Unknown
+    type: GraphMethodException
+    category: transient
+    title: Unknown API error
+    remediation: >-
+      Possibly a temporary issue due to downtime. Wait and retry. If it recurs, confirm you are requesting an
+      endpoint that exists.
+    retryable: true
+  - code: 2
+    name: API Service
+    category: transient
+    title: Service temporarily unavailable
+    remediation: Temporary downtime. Wait and retry.
+    retryable: true
+  - code: 3
+    name: API Method
+    category: authorization
+    title: Capability or permission missing for this method
+    remediation: Confirm the app has the capability or permission required for this call.
+    retryable: false
+  - code: 4
+    name: API Too Many Calls
+    category: rate-limit
+    title: App-level rate limit reached
+    remediation: >-
+      Stop calling. Read X-App-Usage (call_count / total_time / total_cputime) and resume when below 100.
+      Continuing to call extends the block.
+    retryable: true
+  - code: 10
+    name: API Permission Denied
+    category: authorization
+    title: Permission not granted or removed
+    remediation: Re-request the permission through the login flow; handle the declined-permission path.
+    retryable: false
+  - code: 17
+    name: API User Too Many Calls
+    category: rate-limit
+    title: User-level rate limit reached
+    remediation: >-
+      The user's call count is shared across every app they use. Back off; spread calls over time.
+    retryable: true
+  - code: 17
+    subcode: 2446079
+    name: Ads API token rate limit (v3.3 and older)
+    category: rate-limit
+    title: Ads API token rate limit reached
+    remediation: Back off; migrate off Ads API v3.3 and older.
+    retryable: true
+  - code: 32
+    name: Page request limit reached
+    category: rate-limit
+    title: Pages API rate limit reached
+    remediation: >-
+      Applies to Pages API calls made with a system user or page access token. Back off and read
+      X-Business-Use-Case-Usage.
+    retryable: true
+    example: |
+      {
+        "error": {
+          "message": "(#32) Page request limit reached",
+          "type": "OAuthException",
+          "code": 32,
+          "fbtrace_id": "REDACTED_TRACE_ID"
+        }
+      }
+  - code: 100
+    name: Invalid parameter / cursor limit exceeded
+    type: OAuthException
+    category: client
+    title: Invalid parameter
+    remediation: >-
+      Also returned when paging past an endpoint's maximum cursor depth ("The After Cursor specified exceeds
+      the max limit supported by this endpoint"). Narrow the query rather than paging deeper.
+    retryable: false
+  - code: 102
+    name: API Session
+    type: OAuthException
+    category: authentication
+    title: Session or access token invalid
+    remediation: >-
+      With no subcode, the login status or access token has expired, been revoked, or is otherwise invalid —
+      get a new access token. With a subcode, dispatch on the subcode.
+    retryable: false
+  - code: 190
+    name: Access token has expired
+    type: OAuthException
+    category: authentication
+    title: Access token expired
+    remediation: Get a new access token. Dispatch on error_subcode for the specific cause.
+    retryable: false
+  - code: 200
+    name: API Permission (range 200-299)
+    category: authorization
+    title: Permission not granted or removed
+    remediation: >-
+      Codes 200 through 299 each map to a specific permission. Re-request the permission and handle the
+      missing-permission path.
+    retryable: false
+  - code: 341
+    name: Application limit reached
+    category: rate-limit
+    title: Application limit reached
+    remediation: Temporary throttle or downtime. Back off and examine request volume.
+    retryable: true
+  - code: 368
+    name: Temporarily blocked for policies violations
+    category: policy
+    title: Temporarily blocked
+    remediation: Wait and retry. Repeat occurrences indicate a policy problem, not a transient one.
+    retryable: true
+  - code: 506
+    name: Duplicate Post
+    category: client
+    title: Duplicate post
+    remediation: Duplicate posts cannot be published consecutively. Change the content and retry.
+    retryable: false
+  - code: 613
+    name: Custom rate limit reached
+    category: rate-limit
+    title: Custom rate limit reached
+    remediation: >-
+      A product-specific limit. Check the docs for the specific API being called for its custom limits.
+    retryable: true
+  - code: 613
+    subcode: 1996
+    name: Inconsistent API request volume
+    category: rate-limit
+    title: Anomalous request volume detected
+    remediation: >-
+      Meta observed an abrupt change in the app's request volume. Review recent changes that increased call
+      counts.
+    retryable: true
+  - code: 1609005
+    name: Error Posting Link
+    category: client
+    title: Link scrape failed
+    remediation: Meta could not scrape the supplied URL. Check the URL is reachable and retry.
+    retryable: false
+authentication_subcodes:
+  - subcode: 458
+    name: App Not Installed
+    remediation: The user has not logged into your app. Reauthenticate the user.
+  - subcode: 459
+    name: User Checkpointed
+    remediation: >-
+      The user must log in at facebook.com or m.facebook.com to clear a checkpoint before the token works.
+  - subcode: 460
+    name: Password Changed
+    remediation: >-
+      The user changed their password. They must log in to the app again (or, on iOS OS-integrated login,
+      update the password in OS settings).
+  - subcode: 463
+    name: Expired
+    remediation: Token expired. Refresh or re-authenticate.
+  - subcode: 464
+    name: Unconfirmed User
+    remediation: The user must log in at facebook.com or m.facebook.com to correct an account issue.
+  - subcode: 467
+    name: Invalid Access Token
+    remediation: Token expired, revoked, or otherwise invalid. Re-authenticate.
+  - subcode: 492
+    name: Invalid Session
+    remediation: >-
+      The user associated with the Page access token does not have an appropriate role on the Page. Fix the
+      Page role assignment.
+throttle_diagnostics:
+  source: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+  fields:
+    - name: throttled
+      description: Whether the query is throttled. True/False.
+    - name: backend_qps
+      description: >-
+        First throttling factor. Reports actual_score, limit and more_info. Fires when queries require a
+        large number of backend requests.
+    - name: complexity_score
+      description: >-
+        Second throttling factor. Fires when queries request large amounts of data. Reduce time ranges,
+        object ids, metrics and breakdowns; split large queries.
+openapi_alignment:
+  note: >-
+    The 14 OpenAPI files in openapi/ declare 400, 401 and 404 responses referencing
+    components/schemas/Error, which models the Graph API error envelope above. They do not model the
+    200-with-error-body behaviour, which is the single most common source of undetected failure on this API.
+  responses_declared:
+    - '400'
+    - '401'
+    - '404'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

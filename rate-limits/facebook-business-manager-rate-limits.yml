@@ -4,7 +4,13 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Facebook Business Manager
 providerId: facebook-business-manager
 created: '2026-05-04'
-modified: '2026-05-05'
+# 2026-08-13: upgraded generated -> searched. Every formula, header, header key and error code below
+# was re-read directly from https://developers.facebook.com/docs/graph-api/overview/rate-limiting on
+# 2026-08-13 and matched the values this file already carried. Additions from that read are marked.
+method: searched
+source: https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+modified: '2026-08-13'
+verified: '2026-08-13'
 reconciled: true
 tags:
   - Advertising
@@ -25,12 +31,87 @@ headers:
   businessUseCaseUsage: X-Business-Use-Case-Usage
   adAccountUsage: X-Ad-Account-Usage
   pageUsage: X-Page-Usage
+# Added 2026-08-13 from the rate-limiting guide: the exact JSON keys inside each header, which is what a
+# client actually has to parse. Every value is a PERCENTAGE OF ALLOWANCE, not a remaining count.
+headerContents:
+  X-App-Usage:
+    call_count: Whole number — percentage of calls made by the app over a rolling one hour period.
+    total_cputime: Whole number — percentage of CPU time allotted for query processing.
+    total_time: Whole number — percentage of total time allotted for query processing.
+    example: '{"call_count": 28, "total_time": 25, "total_cputime": 25}'
+    throttles_at: 100 on any of the three
+  X-Ad-Account-Usage:
+    acc_id_util_pct: Percentage of calls made for this ad account before the rate limit is reached.
+    reset_time_duration: Seconds until the current rate limit resets to 0.
+    ads_api_access_tier: development_access | standard_access — standard_access enables lower rate limiting.
+    example: >-
+      {"acc_id_util_pct": 9.67, "reset_time_duration": 100, "ads_api_access_tier": "standard_access"}
+  X-Business-Use-Case-Usage:
+    keys: call_count, total_cputime, total_time, type, estimated_time_to_regain_access
+    note: >-
+      estimated_time_to_regain_access is the closest thing this API has to Retry-After. Meta sends no
+      Retry-After header.
+retryAfter: false
+retryAfterNote: >-
+  Added 2026-08-13. The Graph API does not emit Retry-After, and it does not emit standard
+  RateLimit-Limit/Remaining/Reset either. Back off on estimated_time_to_regain_access from
+  X-Business-Use-Case-Usage, otherwise exponential backoff with jitter.
 responseCodes:
   appLimitReached: 4
   userLimitReached: 17
+  adsApiTokenLimitReached_v33: '17 with subcode 2446079'
   pagesLimitReached: 32
+  applicationLimitReached: 341
   customRateLimit: 613
+  anomalousVolume: '613 with subcode 1996'
   throttled: 429
+# Added 2026-08-13. Meta throttles on QUERY COMPLEXITY as well as call count — a distinct mechanism that
+# surprises clients that only watch call_count. The documented remedy is to SPLIT one large query into
+# several smaller, spaced-out queries.
+stabilityThrottle:
+  throttled: Whether the query is throttled. True | False.
+  backend_qps:
+    description: First throttling factor. Fires when queries need a large number of backend requests.
+    fields: actual_score, limit, more_info
+    remedy: Send fewer queries, or simplify them with narrower time ranges and fewer object IDs.
+  complexity_score:
+    description: Second throttling factor. Fires when queries request large amounts of data.
+    fields: actual_score, limit, more_info
+    remedy: >-
+      Shorten time ranges; reduce object IDs, metrics and breakdowns; split large complex queries into
+      multiple smaller queries and space them out.
+# Added 2026-08-13 from the Catalog section of the rate-limiting guide — log-scaled quotas keyed to
+# commercial activity rather than to a fixed number, which is unusual enough to record explicitly.
+catalogLimits:
+  - name: Catalog Batch
+    scope: catalog
+    metric: calls_per_minute
+    limit: 'Calls within one minute = 8 + 8 * log2(DA impressions + PDP visits)'
+    endpoints:
+      - POST /{catalog_id}/items_batch
+      - POST /{catalog_id}/localized_items_batch
+      - POST /{catalog_id}/batch
+    notes: DA impressions and PDP visits measured over the last 28 days for the individual catalog.
+  - name: Catalog Management
+    scope: catalog
+    metric: calls_per_hour
+    limit: 'Calls within one hour = 20,000 + 20,000 * log2(DA impressions + PDP visits)'
+    notes: Measured across all catalogs of the business over the last 28 days.
+businessUseCases:
+  - Ad Insights
+  - Ads Management
+  - Catalog
+  - Custom Audience
+  - Instagram Platform
+  - Lead Generation
+  - Messenger
+  - Pages
+  - Spark AR Commerce Effect Management
+  - WhatsApp Business Management API
+tokenDeterminesRegime: >-
+  Added 2026-08-13. Pages API requests are subject to EITHER Platform or Business Use Case limits depending
+  on the token: application or user access tokens fall under Platform limits, system user or page access
+  tokens fall under BUC limits. Same endpoint, different ceiling. Where both could apply, BUC wins.
 limits:
   - name: App-level (Platform)
     scope: app

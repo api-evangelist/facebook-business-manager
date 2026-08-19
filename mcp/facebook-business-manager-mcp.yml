@@ -1,0 +1,141 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview
+specification: API Commons MCPServer
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+status: published
+description: >-
+  Meta ships two official, Meta-hosted remote MCP servers reachable at mcp.facebook.com. The Ads MCP server
+  (https://mcp.facebook.com/ads) exposes Meta's ads, catalog, signals and reporting surface to any MCP client;
+  the Devtools MCP server (https://mcp.facebook.com/devtools) exposes app management, App Review, webhook
+  configuration and developer-docs search. Both are OAuth-protected and advertise RFC 9728 protected-resource
+  metadata. Both endpoints were probed directly on 2026-08-13.
+deployment:
+  mode: remote
+  endpoint: https://mcp.facebook.com/ads
+  auth: oauth
+  verified: probed
+  note: >-
+    Remote only. Meta publishes no npx/pip package for either server — there is nothing to install locally.
+    A second remote endpoint, https://mcp.facebook.com/devtools, is documented and probes live; it is recorded
+    under servers[] below because this block carries a single endpoint.
+servers:
+  - name: Meta Ads MCP Server
+    endpoint: https://mcp.facebook.com/ads
+    transport: streamable-http
+    auth: oauth
+    docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview
+    verified: probed
+    probe:
+      method: 'POST tools/list (jsonrpc 2.0)'
+      status: 401
+      www_authenticate: >-
+        Bearer resource_metadata="https://mcp.facebook.com/.well-known/oauth-protected-resource/ads",
+        scope="ads_management ads_read catalog_management business_management pages_show_list instagram_basic
+        ads_mcp_management"
+      body: '{"title":"Authentication Required","detail":"Failed to authenticate MCP request","status":401}'
+      fetched: '2026-08-13'
+    scopes:
+      - ads_management
+      - ads_read
+      - catalog_management
+      - business_management
+      - pages_show_list
+      - instagram_basic
+      - ads_mcp_management
+    tool_categories:
+      - name: Comprehensive reporting
+        description: Gain valuable insights and pull detailed reporting to better understand campaign performance.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-comprehensive-reporting
+      - name: Ad creation and management
+        description: Create and edit ads, ad sets, and campaigns.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-ad-creation-and-management
+      - name: Catalog creation and management
+        description: >-
+          Create a catalog and add product data, and efficiently troubleshoot data feed and item visibility
+          issues.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-catalog-creation-and-management
+      - name: Signals and datasets
+        description: >-
+          Access signal health and quality information, providing insights into where you should prioritize
+          investment in your signals setup.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-signals-and-datasets
+      - name: Help and troubleshooting
+        description: Execute a search of Meta Business Help Center articles relevant to a query.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-help-and-troubleshooting
+      - name: A/B tests and conversion lift studies
+        description: >-
+          Create and manage A/B tests and conversion lift studies, and retrieve details on existing tests
+          and studies.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-abtests-and-conversion-lift-studies
+      - name: Activity logs
+        description: >-
+          Get visibility into activity log changes for an ad account, mirroring the Ads Manager campaign
+          history page.
+        docs: https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-tools-activity-logs
+    tools: []
+    tools_note: >-
+      NOT RECORDED — no individual tool name or inputSchema could be obtained without fabricating one.
+      tools/list returns 401 without an OAuth token, and every per-category tool reference page under
+      .../ads-mcp-server/ads-mcp-server-tools*.md returned HTTP 500 from Meta on four separate attempts on
+      2026-08-13, as did .../ads-mcp-server-tools (the "Available tools" index) and
+      .../ads-mcp-server-get-started. The rendered HTML version of the tools page is client-side only and
+      carries no tool names in its markup. The seven categories above are verbatim from the overview page,
+      which does render. A real tool inventory requires authenticated introspection.
+  - name: Meta Devtools MCP Server
+    endpoint: https://mcp.facebook.com/devtools
+    transport: streamable-http
+    auth: oauth
+    docs: https://developers.facebook.com/documentation/mcp/devtools-mcp
+    verified: probed
+    probe:
+      method: 'POST tools/list (jsonrpc 2.0)'
+      status: 401
+      body: '{"title":"Authentication Required","detail":"Failed to authenticate MCP request","status":401}'
+      fetched: '2026-08-13'
+    scopes:
+      - developer_tools_mcp_app_read
+      - developer_tools_mcp_app_management
+    description: >-
+      Manage Meta apps, configure webhooks, check compliance, review app status, and search developer
+      documentation. Documented at https://developers.facebook.com/documentation/mcp as a Remote MCP server.
+    tools: []
+    tools_note: >-
+      Not recorded. tools/list is 401-gated and the devtools-mcp.md documentation page returned HTTP 500
+      on 2026-08-13.
+clients_validated:
+  - Claude Desktop
+  - Claude Code
+  - ChatGPT (Web)
+  - Codex App
+clients_validated_source: https://developers.facebook.com/documentation/mcp
+authorization:
+  model: OAuth 2.0 with Meta app consent; scopes granted per app on the consent screen
+  protected_resource_metadata:
+    - https://mcp.facebook.com/.well-known/oauth-protected-resource/ads
+    - https://mcp.facebook.com/.well-known/oauth-protected-resource/devtools
+  revocation: facebook.com > Settings > Business Integrations
+  permission_reference: https://developers.facebook.com/docs/permissions
+  note: >-
+    ads_mcp_management is a first-class permission in Meta's Permissions Reference, described there as
+    allowing an app "to access the Meta ads Model Context Protocol (MCP) server and enable AI agents to
+    interact with Meta Ads on behalf of advertisers."
+agent_guidance:
+  source: https://developers.facebook.com/llms.txt
+  user_agent_convention: '<AgentName>/<Version> (<ModelName>) <HTTPClient>'
+  note: >-
+    Meta's llms.txt asks agents calling the Marketing API and the Ads MCP Server to self-identify by
+    appending agent name, version and model name to the User-Agent header, keep the name stable across
+    requests, and not impersonate other agents. Captured verbatim in
+    llms/facebook-business-manager-llms.txt.
+security_notes:
+  - >-
+    Meta's own MCP documentation warns that agents act with the granted scopes and can be manipulated by
+    prompt injection in tool outputs, and advises against granting write/manage scopes to agents that
+    process untrusted input.
+  - Use of a Meta MCP server binds the operator to the Meta Platform Terms (https://developers.facebook.com/terms).
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

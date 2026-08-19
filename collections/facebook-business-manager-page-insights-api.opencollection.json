@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Page Insights API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Page Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get page insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:page_id/insights",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Facebook Page"
+              },
+              {
+                "name": "metric",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to retrieve such as page_impressions, page_engaged_users, page_fans."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation period for the metrics"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range in Unix timestamp or YYYY-MM-DD format"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range in Unix timestamp or YYYY-MM-DD format"
+              }
+            ]
+          },
+          "docs": "Retrieves analytics metrics for the Facebook Page including reach, impressions, engagement, and audience demographics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

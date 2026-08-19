@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Comments API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get post comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:post_id/comments",
+            "params": [
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the post (format PAGE_ID_POST_ID)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter for comment type"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order of comments"
+              }
+            ]
+          },
+          "docs": "Retrieves comments on a specific post. Supports pagination and filtering by order."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:post_id/comments",
+            "params": [
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the post (format PAGE_ID_POST_ID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts a comment on a Page post as the Page. Requires a page access token with pages_manage_engagement permission."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Delete a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://graph.facebook.com/v25.0/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the comment to delete"
+              }
+            ]
+          },
+          "docs": "Deletes a comment from a Page post. The Page must own the comment or the post the comment is on."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

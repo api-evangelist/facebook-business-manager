@@ -1,0 +1,56 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Facebook Business Manager Facebook Marketing Ad Accounts Insights API
+  version: 1.0.0
+  x-generated: '2026-08-13'
+  x-method: generated
+  x-source: openapi/facebook-business-manager-insights-api-openapi.yml
+  x-description: Captures API Evangelist enrichment of the Facebook Business Manager OpenAPI without mutating it.
+    Every value asserted here is sourced from Meta's own public Graph API guides (pagination, error handling, rate
+    limiting, versioning) and recorded in full in the sibling artifacts referenced by the x-* pointers. Nothing
+    here changes the operational contract.
+extends: ../openapi/facebook-business-manager-insights-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apis-io-provider: facebook-business-manager
+    x-graph-api-version: v26.0
+    x-openapi-published-by-provider: false
+    x-provider-contract-format: prose reference only (Meta publishes no OpenAPI)
+- target: $
+  update:
+    x-conventions: conventions/facebook-business-manager-conventions.yml
+    x-error-catalog: errors/facebook-business-manager-problem-types.yml
+    x-rate-limits: rate-limits/facebook-business-manager-rate-limits.yml
+    x-scopes: scopes/facebook-business-manager-scopes.yml
+    x-authentication: authentication/facebook-business-manager-authentication.yml
+    x-lifecycle: lifecycle/facebook-business-manager-lifecycle.yml
+    x-webhooks: asyncapi/facebook-business-manager-webhooks.yml
+    x-data-model: data-model/facebook-business-manager-data-model.yml
+    x-mcp: mcp/facebook-business-manager-mcp.yml
+- target: $.paths.*.*
+  update:
+    x-error-envelope: proprietary; error object in body. HTTP 200 may still carry an error — dispatch on the presence
+      of `error`, not on status.
+    x-idempotent: false
+    x-rate-limit-headers:
+    - X-App-Usage
+    - X-Business-Use-Case-Usage
+- target: $.paths.*.get
+  update:
+    x-pagination:
+      styles:
+      - cursor
+      - time
+      - offset
+      preferred: cursor
+      params:
+      - before
+      - after
+      - since
+      - until
+      - offset
+      - limit
+      terminate_on: absence of paging.next
+      do_not_store_cursors: true
+    x-field-selection: fields parameter required; default response is a minimal field set

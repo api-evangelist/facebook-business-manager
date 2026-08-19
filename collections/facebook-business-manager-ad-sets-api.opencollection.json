@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Ad Sets API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ad Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager List ad sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adsets",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of objects to return per page. Default is 25."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination to retrieve the next page of results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad sets for the specified ad account. Returns targeting, budget, scheduling, and optimization configurations."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Create an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/adsets",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad set within a campaign. Defines targeting, budget, schedule, optimization goal, and bid strategy."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:ad_set_id",
+            "params": [
+              {
+                "name": "ad_set_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad set"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ad set including targeting, budget, scheduling, and optimization settings."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Update an ad set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.facebook.com/v25.0/:ad_set_id",
+            "params": [
+              {
+                "name": "ad_set_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing ad set. Supports modifying targeting, budget, schedule, and optimization settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

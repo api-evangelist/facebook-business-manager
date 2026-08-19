@@ -1,0 +1,148 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/guides/versioning
+docs:
+  - https://developers.facebook.com/docs/graph-api/guides/versioning
+  - https://developers.facebook.com/docs/graph-api/changelog
+  - https://developers.facebook.com/docs/graph-api/guides/upgrading
+  - https://metastatus.com/
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Meta operates one of the most explicit published API lifecycle policies in the catalog: every Graph API
+  version carries a guaranteed minimum two-year life, a published introduction date and a published
+  "Available Until" date, and the changelog is the calendar. The gap in the policy is the failure mode — an
+  expired version does not return an error; calls are silently defaulted to the next oldest usable version.
+versioning:
+  scheme: major version in the URL path
+  pattern: 'https://graph.facebook.com/v{MAJOR}.{MINOR}/{path}'
+  current: v26.0
+  current_released: '2026-07-29'
+  unversioned_calls_supported: true
+  unversioned_behaviour: >-
+    A call made without a version uses the version set in the App Dashboard under Settings > Advanced >
+    Upgrade API Version. Meta recommends always specifying the version explicitly. Unversioned calls are not
+    possible from the JavaScript SDK.
+  independent_version_lines:
+    - name: Graph API
+      note: The core line; v26.0 current.
+    - name: Marketing API
+      note: >-
+        Versioned on its own schedule with its own expiry dates. Marketing API version auto-upgrade was
+        released 2026-07-29.
+    - name: Facebook SDK for iOS / Android / JavaScript
+      note: >-
+        SDKs carry their own version numbering, tied to whichever API version was current on the SDK's
+        release date.
+deprecation:
+  policy_published: true
+  policy_url: https://developers.facebook.com/docs/graph-api/guides/versioning
+  guarantee: >-
+    Each version is guaranteed to operate for at least two years. A version stops being usable two years
+    after the date the SUBSEQUENT version is released — not two years after its own release.
+  sunset_dates_published: true
+  sunset_header: false
+  rfc8594_sunset_header: false
+  sunset_header_note: >-
+    Meta does not emit RFC 8594 Sunset or Deprecation response headers. Expiry is published in the changelog
+    table only, so an integration cannot learn from a response that it is running on an expiring version.
+  end_of_life_behaviour: >-
+    SILENT DOWNGRADE. Once a version is no longer usable, calls made to it are defaulted to the next oldest
+    usable version. No error is returned. An integration pinned to an expired version keeps returning 200s
+    while being served by a version it was never tested against.
+  reserved_right: >-
+    Meta reserves the right to change any API on short notice for security or privacy reasons, outside the
+    versioned schedule (out-of-cycle changes, which apply to all versions immediately).
+  version_pinning_rule: >-
+    An app can only call versions it has already called. If an app was created after v2.0 but made its first
+    call on v2.2, it can never call v2.0 or v2.1.
+  expired_versions:
+    - version: v19.0
+      expired: '2026-05-21'
+    - version: v18.0
+      expired: '2026-01-26'
+    - version: v17.0
+      expired: '2025-09-12'
+    - version: v16.0
+      expired: '2025-05-14'
+    - version: v15.0
+      expired: '2024-11-20'
+    - version: v14.0
+      expired: '2024-09-17'
+    - version: v13.0
+      expired: '2024-05-28'
+  upcoming_expiries:
+    - version: v20.0
+      expires: '2026-09-24'
+    - version: v24.0 (Marketing API)
+      expires: '2026-10-06'
+    - version: v21.0
+      expires: '2027-01-21'
+    - version: v22.0
+      expires: '2027-05-20'
+    - version: v23.0
+      expires: '2027-10-08'
+    - version: v24.0
+      expires: '2028-02-18'
+    - version: v25.0
+      expires: '2028-07-29'
+  product_deprecations:
+    - name: Social Plugins (subset)
+      date: '2026-02-10'
+      source: https://developers.facebook.com/docs/plugins
+      note: >-
+        Meta discontinued a subset of the Social Plugins on 2026-02-10 with no replacement provided, stating
+        the date was final. Notice was two developer alerts: one three months ahead, one a week ahead.
+        Surviving plugins are Share Button, Page Plugin, Embedded Posts, and Embedded Video & Live Video
+        Player.
+status_page:
+  published: true
+  url: https://metastatus.com/
+  name: Meta Status
+  scope: >-
+    Ads Manager, Meta Business Suite, WhatsApp Business API and other Meta business products.
+  machine_readable: false
+  note: >-
+    metastatus.com is a client-rendered SPA — the served HTML is a shell with no incident data in the markup,
+    so there is no status feed an agent can poll. https://developers.facebook.com/status returns 404;
+    developer platform status is surfaced through the App Dashboard and the developer community forum.
+  incident_reporting: https://developers.facebook.com/incident/report/
+support:
+  developer_support: https://developers.facebook.com/support
+  bug_tool: https://developers.facebook.com/support/bugs/
+  community_forum: https://developers.facebook.com/community
+  stack_overflow: https://stackoverflow.com/questions/tagged/facebook-graph-api
+sla:
+  published: false
+  note: >-
+    No public SLA or uptime commitment is published for the Graph API business surface. Terms of use are
+    governed by the Meta Platform Terms (https://developers.facebook.com/terms).
+access_lifecycle:
+  note: >-
+    Beyond version lifecycle, Meta operates a data-access lifecycle that can terminate a working integration
+    independently of API versions.
+  mechanisms:
+    - name: App Review
+      description: Advanced Access to permissions must be approved before an app can use them in Live mode.
+      url: https://developers.facebook.com/docs/app-review
+    - name: Business Verification
+      description: Required for all apps requesting Advanced Access.
+    - name: Data Use Checkup
+      description: Annual recertification that permissions are used in accordance with Platform Terms.
+    - name: Data Protection Assessment
+      description: Required for advanced permissions touching user data.
+    - name: 90-day permission decay
+      description: >-
+        A permission unused for 90 days must be re-granted by the app user. This silently breaks
+        low-frequency integrations.
+      url: https://developers.facebook.com/docs/permissions
+deprecated_operations:
+  derived_from: openapi/*.yml
+  count: 0
+  note: "No operation in this repo's OpenAPI set carries deprecated: true."
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

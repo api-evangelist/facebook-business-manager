@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/*.yml
+specification: API Commons AgentSkill
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Packaged Agent Skills for the Facebook Business Manager surface. Every operationId referenced in these
+  skills was grepped out of the OpenAPI files in openapi/ — none is invented. The cross-cutting rules each
+  skill repeats (no idempotency key, HTTP 200 can carry an error, formula-based rate limits, no Retry-After,
+  cursor pagination terminating on the absence of paging.next, version pinning) are searched from Meta's own
+  Graph API guides and recorded in full in conventions/, errors/, rate-limits/ and lifecycle/.
+provider_published:
+  - name: agents.md
+    file: facebook-business-manager-agents.md
+    source: https://developers.facebook.com/agents.md
+    method: searched
+    http_status: 200
+    fetched: '2026-08-13'
+    description: >-
+      Meta's own agents.md for developers.facebook.com, saved verbatim. It is a documentation-access policy
+      rather than a task skill — it permits agents to read and index public docs, answer questions, provide
+      code examples from docs, and link to doc pages. Note that https://developers.facebook.com/AGENTS.md
+      (uppercase) returns 404; only the lowercase path is served.
+  - name: llms.txt agent guidance
+    source: https://developers.facebook.com/llms.txt
+    file: ../llms/facebook-business-manager-llms.txt
+    method: searched
+    description: >-
+      Meta's llms.txt carries a Marketing API section defining an agent self-identification convention:
+      append <AgentName>/<Version> (<ModelName>) <HTTPClient> to the User-Agent, keep the name stable, do not
+      randomize, do not impersonate.
+skills:
+  - name: facebook-business-manager-launch-ad-campaign
+    file: facebook-business-manager-launch-ad-campaign.md
+    summary: >-
+      Build the four-level advertising hierarchy — campaign, ad set, image, creative, ad — and verify before
+      going live.
+    operations:
+      - createCampaign
+      - createAdSet
+      - uploadAdImage
+      - createAdCreative
+      - createAd
+      - getCampaign
+      - getAdSet
+      - getAd
+    scopes:
+      - ads_management
+      - business_management
+  - name: facebook-business-manager-report-campaign-performance
+    file: facebook-business-manager-report-campaign-performance.md
+    summary: >-
+      Pull account- and campaign-level insights with breakdowns, paged safely to completion under the
+      complexity-based throttle.
+    operations:
+      - getAdAccountInsights
+      - getCampaignInsights
+      - listCampaigns
+      - listAdSets
+      - listAds
+    scopes:
+      - ads_read
+      - ads_management
+  - name: facebook-business-manager-publish-and-moderate-page-content
+    file: facebook-business-manager-publish-and-moderate-page-content.md
+    summary: >-
+      Get a Page access token, publish posts/photos/video, read and reply to comments, delete abuse, read
+      Page insights, and subscribe to webhooks instead of polling.
+    operations:
+      - getPage
+      - getPageFeed
+      - createPagePost
+      - getPost
+      - updatePost
+      - deletePost
+      - getPostComments
+      - createComment
+      - deleteComment
+      - uploadPagePhoto
+      - uploadPageVideo
+      - getPageInsights
+    scopes:
+      - pages_show_list
+      - pages_read_engagement
+      - pages_read_user_content
+      - pages_manage_posts
+      - pages_manage_engagement
+      - publish_video
+      - read_insights
+  - name: facebook-business-manager-build-custom-audience
+    file: facebook-business-manager-build-custom-audience.md
+    summary: >-
+      Create a Custom Audience without duplicating it, wait for it to populate, then target or exclude it
+      from an ad set — with hashed identifiers only.
+    operations:
+      - listCustomAudiences
+      - createCustomAudience
+      - createAdSet
+      - updateAdSet
+      - listAdSets
+    scopes:
+      - ads_management
+      - business_management
+cross_references:
+  conventions: conventions/facebook-business-manager-conventions.yml
+  errors: errors/facebook-business-manager-problem-types.yml
+  rate_limits: rate-limits/facebook-business-manager-rate-limits.yml
+  scopes: scopes/facebook-business-manager-scopes.yml
+  lifecycle: lifecycle/facebook-business-manager-lifecycle.yml
+  webhooks: asyncapi/facebook-business-manager-webhooks.yml
+  mcp: mcp/facebook-business-manager-mcp.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

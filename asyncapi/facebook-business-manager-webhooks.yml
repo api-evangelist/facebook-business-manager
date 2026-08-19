@@ -1,0 +1,133 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/webhooks
+docs:
+  - https://developers.facebook.com/docs/graph-api/webhooks
+  - https://developers.facebook.com/docs/graph-api/webhooks/getting-started
+  - https://developers.facebook.com/docs/graph-api/webhooks/reference
+  - https://developers.facebook.com/docs/graph-api/webhooks/subscriptions-edge
+specification: API Commons Webhooks
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+asyncapi_published: false
+asyncapi_note: >-
+  Meta publishes NO AsyncAPI document for Webhooks from Meta. There is no /asyncapi.yaml on any Meta host and
+  no event schema repository in the facebook GitHub org. The event surface is real and substantial, but it is
+  documented only in prose and per-object reference tables, so this artifact captures the webhook catalog
+  rather than a machine-readable event contract. Nothing here is fabricated as AsyncAPI.
+description: >-
+  "Webhooks from Meta" is the single event surface behind every Business Manager product — Pages, Instagram,
+  Messenger, WhatsApp Business, Marketing/Ads, Catalog and Permissions. An app subscribes to an OBJECT type,
+  then to specific FIELDS on that object; Meta POSTs an HTTPS notification whenever a subscribed field
+  changes. This replaces polling and is the only push mechanism on the platform.
+transport:
+  protocol: https
+  method: POST
+  content_type: application/json
+  tls_required: true
+  self_signed_certificates: false
+  note: The receiving endpoint must present a valid TLS certificate. Self-signed certificates are rejected.
+verification:
+  handshake:
+    method: GET
+    params:
+      - name: hub.mode
+        value: subscribe
+      - name: hub.verify_token
+        description: >-
+          The string the developer set in the Verify Token field when configuring the Webhooks product in the
+          App Dashboard. The receiver must compare it and reject a mismatch.
+      - name: hub.challenge
+        description: An integer the receiver must echo back in the response body to complete the subscription.
+    response: Echo the hub.challenge value.
+  payload_signature:
+    header: X-Hub-Signature-256
+    format: 'sha256={hex-digest}'
+    algorithm: HMAC-SHA256 over the raw request payload, keyed by the app secret
+    required: false
+    note: >-
+      Meta's own wording: "You don't have to validate the payload, but you should." Compare your computed
+      digest against everything after the sha256= prefix. Validation is the only defence against a forged
+      notification, since the endpoint is public by necessity.
+payload_shape:
+  root_fields:
+    - name: object
+      description: The object type the notification is for, e.g. user, page, instagram, whatsapp_business_account.
+    - name: entry
+      description: Array of changed objects.
+  entry_fields:
+    - name: id
+      description: ID of the changed object.
+    - name: time
+      description: Unix timestamp of the change.
+    - name: changes
+      description: 'Array of {field, value} — the subscribed field that changed and its new value.'
+  example: |
+    {
+      "object": "user",
+      "entry": [
+        {
+          "id": "10210299214172187",
+          "uid": "10210299214172187",
+          "time": 1520383571,
+          "changes": [
+            {
+              "field": "photos",
+              "value": { "verb": "update", "object_id": "10211885744794461" }
+            }
+          ]
+        }
+      ]
+    }
+objects:
+  - name: user
+    description: Changes to app-user profile fields.
+  - name: page
+    description: >-
+      Page feed, mentions, ratings, messages, leadgen and more. The Business Manager workhorse.
+  - name: instagram
+    description: Instagram Business account comments, mentions and story insights.
+  - name: whatsapp_business_account
+    description: Inbound WhatsApp messages, message status callbacks, template status changes.
+  - name: application
+    description: App-level events including ads and permission changes.
+  - name: permissions
+    description: Notifies when an app user revokes a granted permission — the trigger for a re-consent flow.
+  - name: certificate_transparency
+    description: Certificate transparency log notifications for verified domains.
+  - name: link
+    description: Link-scrape and Open Graph object changes.
+objects_reference: https://developers.facebook.com/docs/graph-api/webhooks/reference
+subscription_management:
+  edge: /{app-id}/subscriptions
+  description: >-
+    Subscriptions are created and listed on the app's subscriptions edge with an app access token, then a
+    Page or WhatsApp Business Account is individually subscribed via /{page-id}/subscribed_apps.
+  related_operation: subscribePageApp
+  url: https://developers.facebook.com/docs/graph-api/webhooks/subscriptions-edge
+authorization:
+  app_review_required: false
+  note: >-
+    Webhooks itself does not require App Review, but it respects permissions — a subscription silently
+    delivers nothing unless the app holds the permission covering that data AND the owning object has granted
+    it. This is a common silent-failure mode.
+  development_mode: >-
+    Apps in Development mode receive only test notifications initiated from the App Dashboard, or
+    notifications caused by people holding a role on the app.
+product_variants:
+  - name: Webhooks for Messenger
+    note: Different configuration steps; development-mode behaviour also differs.
+    url: https://developers.facebook.com/docs/messenger-platform/webhooks
+  - name: Webhooks for Payments
+    note: Different configuration steps.
+delivery_semantics:
+  ordering: not guaranteed
+  at_least_once: true
+  retries: >-
+    Meta retries failed deliveries, but the retry policy and backoff schedule are not published as a
+    numeric contract. Receivers must be idempotent on (object id, field, time).
+  documented_retry_policy: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

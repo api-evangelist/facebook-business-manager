@@ -1,0 +1,105 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api/changelog
+specification: API Commons ChangeLog
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Meta publishes a dated, versioned changelog for the Graph API and separate changelogs for the Marketing,
+  Instagram, Messenger and WhatsApp Business platforms. Releases are date-stamped and every version carries a
+  published "Available Until" date, which makes this one of the few provider changelogs in the catalog that
+  doubles as a machine-usable sunset calendar.
+scheme: major-version with dated release and dated expiry
+current_version: v26.0
+current_version_released: '2026-07-29'
+versioned_path: true
+version_in_path: 'https://graph.facebook.com/v26.0/...'
+changelogs:
+  - name: Graph API Changelog
+    url: https://developers.facebook.com/docs/graph-api/changelog
+  - name: Marketing API Changelog
+    url: https://developers.facebook.com/docs/marketing-api/changelog
+  - name: Instagram Platform Changelog
+    url: https://developers.facebook.com/docs/instagram-platform/changelog
+  - name: Messenger Platform Changelog
+    url: https://developers.facebook.com/docs/messenger-platform/changelog
+  - name: WhatsApp Business Platform Changelog
+    url: https://developers.facebook.com/docs/whatsapp/business-platform-changelog
+change_classes:
+  - name: Versioned changes
+    description: >-
+      Introduced with a new API version. Apply to the newest version immediately and often to older versions
+      at a stated future date.
+  - name: Out-of-cycle changes
+    description: >-
+      Introduced outside the versioned release schedule and usually applied to ALL versions immediately.
+      Meta states these are introduced infrequently. This is the class that breaks pinned integrations.
+entries:
+  - version: v26.0
+    date: '2026-07-29'
+    available_until: null
+    breaking: unknown
+    highlights: >-
+      Current Graph API version. Marketing API v26.0 shipped the same day, and Meta released Marketing API
+      version auto-upgrade on this date.
+  - version: v25.0
+    date: '2026-02-18'
+    available_until: '2028-07-29'
+    breaking: unknown
+    highlights: >-
+      The version this repo's OpenAPI servers[] blocks target (info.version '25.0').
+  - version: v24.0
+    date: '2025-10-08'
+    available_until: '2028-02-18'
+    breaking: unknown
+    highlights: >-
+      Marketing API v24.0 carries an earlier expiry than the Graph API line — available until 2026-10-06.
+      The published npm Business SDK (facebook-nodejs-business-sdk 24.0.1) still wraps this version.
+  - version: v23.0
+    date: '2025-05-29'
+    available_until: '2027-10-08'
+    breaking: unknown
+  - version: v22.0
+    date: '2025-01-21'
+    available_until: '2027-05-20'
+    breaking: unknown
+  - version: v21.0
+    date: '2024-10-02'
+    available_until: '2027-01-21'
+    breaking: unknown
+  - version: v20.0
+    date: '2024-05-21'
+    available_until: '2026-09-24'
+    breaking: unknown
+  - version: v19.0
+    date: '2024-01-23'
+    available_until: '2026-05-21'
+    breaking: unknown
+    note: EXPIRED as of 2026-05-21.
+  - version: v18.0
+    date: '2023-09-12'
+    available_until: '2026-01-26'
+    breaking: unknown
+    note: >-
+      EXPIRED as of 2026-01-26. Calls to an expired version are silently defaulted to the next oldest usable
+      version rather than failing — an integration pinned to v18.0 is now being served by a different version
+      without any error. This repo's apis.yml carried https://graph.facebook.com/v18.0 as the baseURL on 14
+      API entries until this pass.
+marketing_api_versions:
+  note: >-
+    The Marketing API is versioned on its own schedule with its own expiry dates, published in the same
+    changelog page.
+  entries:
+    - version: v26.0
+      date: '2026-07-29'
+      available_until: null
+    - version: v25.0
+      date: '2026-02-18'
+      available_until: null
+    - version: v24.0
+      date: '2025-10-08'
+      available_until: '2026-10-06'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

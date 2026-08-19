@@ -1,0 +1,222 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.facebook.com/docs/graph-api
+docs:
+  - https://www.facebook.com/.well-known/openid-configuration
+  - https://developers.facebook.com/docs/facebook-login/guides/access-tokens
+  - https://developers.facebook.com/docs/graph-api/results
+  - https://developers.facebook.com/docs/graph-api/guides/error-handling
+  - https://mcp.facebook.com/.well-known/oauth-protected-resource/ads
+specification: API Commons Conformance
+specificationVersion: '0.1'
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+description: >-
+  Assertions about which cross-cutting industry standards the Meta Graph API business surface actually
+  conforms to. Each entry states conformance as a boolean with the evidence that decided it. Where Meta
+  implements something adjacent to a standard but not the standard itself, that is recorded as conforms:
+  false with the near-miss named — the distinction matters to a client library author.
+conformance:
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: >-
+      Facebook Login is an OAuth 2.0 authorization-code implementation. authorization_endpoint
+      https://facebook.com/dialog/oauth/, bearer access tokens, granular user-granted scopes ("permissions"),
+      user-revocable from account settings. Documented at
+      https://developers.facebook.com/docs/facebook-login/guides/access-tokens.
+  - id: oidc
+    name: OpenID Connect
+    conforms: true
+    evidence: >-
+      https://www.facebook.com/.well-known/openid-configuration returns HTTP 200 with a real discovery
+      document — issuer https://www.facebook.com, jwks_uri
+      https://www.facebook.com/.well-known/oauth/openid/jwks/, id_token_signing_alg_values_supported
+      [RS256], subject_types_supported [pairwise], response_types_supported [id_token, token id_token].
+      Probed 2026-08-13.
+    caveats: >-
+      Implicit-style response types only — no `code` in response_types_supported. No userinfo_endpoint is
+      advertised; claims are read from the Graph API /me node instead.
+  - id: rfc9728
+    name: 'RFC 9728: OAuth 2.0 Protected Resource Metadata'
+    conforms: true
+    evidence: >-
+      Both Meta MCP servers serve protected-resource metadata:
+      https://mcp.facebook.com/.well-known/oauth-protected-resource/ads and .../devtools both return HTTP 200
+      with resource, authorization_servers, scopes_supported and bearer_methods_supported. The 401 from
+      https://mcp.facebook.com/ads carries a compliant WWW-Authenticate Bearer challenge with
+      resource_metadata and scope. Probed 2026-08-13.
+    scope: MCP servers only — the Graph API itself does not serve this.
+  - id: rfc8414
+    name: 'RFC 8414: OAuth 2.0 Authorization Server Metadata'
+    conforms: false
+    evidence: >-
+      https://www.facebook.com/.well-known/oauth-authorization-server returns 404;
+      https://mcp.facebook.com/.well-known/oauth-authorization-server returns 404. Probed 2026-08-13.
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >-
+      Two Meta-hosted remote MCP servers, https://mcp.facebook.com/ads and https://mcp.facebook.com/devtools,
+      both answering JSON-RPC 2.0 over HTTP with a 401 OAuth challenge. Documented at
+      https://developers.facebook.com/documentation/mcp. Probed 2026-08-13.
+    caveats: >-
+      Tool schemas could not be verified — tools/list is OAuth-gated and every per-tool documentation page
+      returned HTTP 500 on 2026-08-13.
+  - id: rfc9457
+    name: 'RFC 9457: Problem Details for HTTP APIs'
+    conforms: false
+    evidence: >-
+      The Graph API returns a proprietary envelope ({"error":{message,type,code,error_subcode,fbtrace_id}})
+      with content-type application/json, not application/problem+json. No type URI, no title/detail/instance
+      members. See errors/facebook-business-manager-problem-types.yml.
+  - id: rfc8594
+    name: 'RFC 8594: Sunset HTTP Header'
+    conforms: false
+    evidence: >-
+      Meta publishes per-version "Available Until" dates in the changelog but emits no Sunset or Deprecation
+      response header. An expired version silently downgrades to the next oldest usable version rather than
+      signalling. See lifecycle/facebook-business-manager-lifecycle.yml.
+  - id: idempotency
+    name: Idempotency keys (IETF draft-ietf-httpapi-idempotency-key-header)
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header and no documented safe-retry contract for POST anywhere in the Graph API
+      docs. Conversions API event_id deduplication is analytics deduplication, not request idempotency.
+  - id: pagination
+    name: Standardised pagination
+    conforms: true
+    evidence: >-
+      Three documented, consistently-shaped pagination styles across the whole surface — cursor
+      (paging.cursors.before/after + paging.next/previous), time (since/until), and offset. Cursor is
+      preferred and Meta states cursors must not be stored.
+      https://developers.facebook.com/docs/graph-api/results
+    caveats: Proprietary shape; not JSON:API, not RFC 5988 Link headers.
+  - id: rate-limit-headers
+    name: 'IETF RateLimit header fields (draft-ietf-httpapi-ratelimit-headers)'
+    conforms: false
+    evidence: >-
+      Meta emits proprietary headers — X-App-Usage, X-Business-Use-Case-Usage, X-Ad-Account-Usage,
+      X-Page-Usage — carrying JSON-encoded percentage-of-allowance values rather than the standard
+      RateLimit-Limit/Remaining/Reset triple. No Retry-After on 429.
+  - id: json-api
+    name: 'JSON:API'
+    conforms: false
+    evidence: Graph API uses its own node/edge/field JSON shape.
+  - id: odata
+    name: OData
+    conforms: false
+    evidence: No OData metadata document or $-query conventions.
+  - id: graphql
+    name: GraphQL
+    conforms: false
+    evidence: >-
+      Despite the name, the Graph API is a REST/HTTP graph-traversal API, not GraphQL. No GraphQL endpoint or
+      SDL is published for the business surface.
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >-
+      Meta publishes no OpenAPI description for the Graph API. Probed https://graph.facebook.com/openapi.json
+      and /swagger.json (both HTTP 400 — the Graph API parses the path as a node id) and
+      https://developers.facebook.com/openapi.json (HTTP 404, SPA shell). The 14 OpenAPI files in this repo's
+      openapi/ are API Evangelist-authored from Meta's public reference, not provider-published.
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >-
+      A substantial webhook surface exists (Webhooks from Meta) but no AsyncAPI document is published. See
+      asyncapi/facebook-business-manager-webhooks.yml.
+  - id: a2a
+    name: 'A2A (Agent2Agent) Agent Card'
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json probed on www.facebook.com,
+      developers.facebook.com, business.facebook.com, mcp.facebook.com (404 each) and graph.facebook.com,
+      graph.threads.net (400 each) on 2026-08-13. No agent card is served on any host.
+  - id: llms-txt
+    name: llms.txt
+    conforms: true
+    evidence: >-
+      https://developers.facebook.com/llms.txt returns HTTP 200 with a real llms.txt, plus per-product
+      indexes for WhatsApp, Ads and Commerce, Facebook Login, App Development, Meta MCP and Threads. Also
+      carries an agent self-identification User-Agent convention. Saved verbatim to
+      llms/facebook-business-manager-llms.txt.
+  - id: security-txt
+    name: 'RFC 9116: security.txt'
+    conforms: true
+    evidence: >-
+      https://www.facebook.com/.well-known/security.txt and
+      https://business.facebook.com/.well-known/security.txt both return HTTP 200 with Contact, Policy,
+      Acknowledgments, Hiring and a valid Expires (2026-09-12). Probed 2026-08-13.
+  - id: webhook-signing
+    name: HMAC webhook payload signing
+    conforms: true
+    evidence: >-
+      X-Hub-Signature-256 carries an HMAC-SHA256 digest of the raw payload keyed by the app secret, prefixed
+      sha256=. Meta documents the verification procedure.
+    caveats: Verification is recommended, not enforced.
+  - id: fhir
+    name: FHIR
+    conforms: false
+    evidence: Not a healthcare API.
+  - id: fapi
+    name: 'FAPI (Financial-grade API)'
+    conforms: false
+    evidence: Not a financial-grade API profile; no mTLS or PAR on the OAuth surface.
+  - id: scim
+    name: SCIM
+    conforms: false
+    evidence: >-
+      Business Manager user and asset assignment is managed through Graph API business edges, not SCIM.
+  - id: psd2
+    name: PSD2
+    conforms: false
+    evidence: Not applicable.
+compliance_programs:
+  published: true
+  note: >-
+    Meta does not publish a developer-facing trust center with named certifications (SOC 2 / ISO 27001 / PCI
+    / HIPAA / FedRAMP) for the Graph API. What it publishes instead is a Developer Trust Center describing
+    the compliance obligations it imposes on DEVELOPERS, plus a public vulnerability disclosure program.
+    That is a real, published compliance program, but it is a different thing from a certification
+    attestation and should not be read as one.
+  programs:
+    - name: Meta Developer Trust Center
+      url: https://developers.facebook.com/docs/development/trust-center
+      description: >-
+        Centralized developer compliance resource covering App Review, Data Use Checkup, Data Protection
+        Assessment, Business Verification, data security requirements and enforcement.
+    - name: App Review
+      url: https://developers.facebook.com/docs/app-review
+      description: Pre-approval required for any permission granting access to data the app does not own.
+    - name: Data Use Checkup
+      url: https://developers.facebook.com/docs/resp-plat-initiatives/individual-processes/data-use-checkup
+      description: Annual recertification that permissions are used in accordance with Platform Terms.
+    - name: Data Protection Assessment
+      url: https://developers.facebook.com/blog/post/2021/07/22/introducing-data-protection-assessment
+      description: Required for apps holding advanced permissions over user data.
+    - name: Business Verification
+      url: https://developers.facebook.com/docs/development/release/business-verification
+      description: Identity verification of the business behind the app; prerequisite for Advanced Access.
+    - name: Meta Bug Bounty
+      url: https://bugbounty.meta.com/
+      description: >-
+        Public paid vulnerability disclosure program with a leaderboard, referenced from the served
+        security.txt.
+    - name: Meta Vulnerability Disclosure Policy
+      url: https://about.meta.com/security/vulnerability-disclosure-policy
+      description: Meta's policy for handling vulnerabilities it finds in other products.
+    - name: Responsible Platform Initiatives
+      url: https://developers.facebook.com/docs/resp-plat-initiatives
+      description: Umbrella program for platform integrity processes.
+  certifications_published: false
+  certifications_note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP attestation is published on the developer surface for the
+    Graph API. probe-security-programs.py returned trust=none for this reason.
+summary:
+  conforms: 8
+  does_not_conform: 12
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

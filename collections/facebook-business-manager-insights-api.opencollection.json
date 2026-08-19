@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Facebook Business Manager Facebook Marketing Ad Accounts Insights API",
+    "version": "25.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Facebook Business Manager Get ad account insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/act_:ad_account_id/insights",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ad account (numeric, without the act_ prefix)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+              },
+              {
+                "name": "breakdowns",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of breakdown dimensions such as age, gender, country, or placement."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Level of aggregation for results. Options include account, campaign, adset, or ad."
+              },
+              {
+                "name": "time_increment",
+                "value": "",
+                "type": "query",
+                "description": "Number of days for each increment in the time range, or use monthly or all_days."
+              }
+            ]
+          },
+          "docs": "Retrieves performance insights and analytics for the specified ad account. Supports date range filtering, breakdowns, and action breakdowns."
+        },
+        {
+          "info": {
+            "name": "Facebook Business Manager Get campaign insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.facebook.com/v25.0/:campaign_id/insights",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. If omitted, default fields are returned."
+              },
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "JSON object specifying the date range with since and until fields in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance insights for a specific campaign including impressions, clicks, spend, and conversion metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
