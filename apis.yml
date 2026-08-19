@@ -21,7 +21,7 @@ accessModel:
 image: https://www.facebook.com/images/fb_icon_325x325.png
 created: '2024-01-01'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 type: Index
 position: Consumer
 access: 3rd-Party
