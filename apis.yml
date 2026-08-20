@@ -35,6 +35,11 @@ apis:
   tags:
   - Attribution
   - Conversions
+  - Event
+  - Tracking
+  tags_raw:
+  - Attribution
+  - Conversions
   - Events
   - Tracking
   properties:
@@ -67,6 +72,11 @@ apis:
   humanURL: https://developers.facebook.com/docs/instagram-api
   baseURL: https://graph.facebook.com/v25.0
   tags:
+  - Content
+  - Instagram
+  - Media
+  - Social-Media
+  tags_raw:
   - Content
   - Instagram
   - Media
@@ -129,6 +139,11 @@ apis:
   tags:
   - Catalogs
   - Commerce
+  - Product
+  - Shopping
+  tags_raw:
+  - Catalogs
+  - Commerce
   - Products
   - Shopping
   properties:
@@ -169,6 +184,11 @@ apis:
   tags:
   - Content
   - Publishing
+  - Social-Media
+  - Threads
+  tags_raw:
+  - Content
+  - Publishing
   - Social Media
   - Threads
   properties:
@@ -187,6 +207,11 @@ apis:
   humanURL: https://developers.facebook.com/docs/whatsapp
   baseURL: https://graph.facebook.com/v25.0
   tags:
+  - Customer Service
+  - Messaging
+  - Notification
+  - WhatsApp
+  tags_raw:
   - Customer Service
   - Messaging
   - Notifications
@@ -795,6 +820,17 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
+  - Advertising
+  - Analytics
+  - Business Management
+  - Marketing
+  - Social-Media
+  - Messaging
+  - Commerce
+  - Agents
+  - MCP
+  - Webhook
+tags_raw:
   - Advertising
   - Analytics
   - Business Management
