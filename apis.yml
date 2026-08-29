@@ -717,6 +717,9 @@ apis:
   - type: Authentication
     url: https://developers.facebook.com/docs/pages/access-tokens
 common:
+  - type: CapabilityMap
+    url: capabilities/facebook-business-manager-capability-edges.yml
+    name: Facebook Business Manager Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/facebook-business-manager/overview
   - type: AgenticAccess

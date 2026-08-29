@@ -1,0 +1,119 @@
+slug: facebook-business-manager
+provider: Facebook Business Manager
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 11
+edges:
+- tag: Campaigns
+  spec_file: facebook-business-manager-campaigns-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /act_{ad_account_id}/campaigns createCampaign — "Create and manage ad campaigns, analyze
+    performance, and automate advertising workflows across Meta platforms"
+  reason: Operations create/update advertising campaigns on a paid-social platform — digital marketing
+    (paid media) campaign management. Could also read as Demand Generation; digital marketing is the more
+    precise fit for paid social advertising.
+- tag: Ads
+  spec_file: facebook-business-manager-ads-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.82
+  evidence: POST /act_{ad_account_id}/ads createAd 'Create an ad'; 'retrieve performance metrics'
+  reason: Direct creation and retrieval of ads on Meta platforms — digital marketing / paid media management.
+- tag: Ad Sets
+  spec_file: facebook-business-manager-ad-sets-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: POST /act_{ad_account_id}/adsets createAdSet; 'manage budgets and bidding strategies, define
+    targeting audiences'
+  reason: Ad set creation with budgets, bidding and targeting is core paid-media/digital marketing campaign
+    management.
+- tag: Ad Creatives
+  spec_file: facebook-business-manager-ad-creatives-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.78
+  evidence: POST /act_{ad_account_id}/adcreatives createAdCreative 'Create an ad creative'
+  reason: Creation and listing of ad creatives for Meta paid campaigns is digital marketing / paid media
+    execution.
+- tag: Custom Audiences
+  spec_file: facebook-business-manager-custom-audiences-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: POST /act_{ad_account_id}/customaudiences createCustomAudience — "define targeting audiences"
+  reason: Creating custom ad audiences for targeting is paid-media/marketing automation targeting. Alternative
+    reading is Customer Segmentation Management (BC-420.20), which creates some ambiguity, but the object
+    is an advertising targeting audience within the Marketing API.
+- tag: Insights
+  spec_file: facebook-business-manager-insights-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.75
+  evidence: GET /{campaign_id}/insights getCampaignInsights; "retrieve performance metrics"
+  reason: Retrieval of ad account and campaign performance metrics is marketing measurement/performance
+    reporting, part of marketing operations.
+- tag: Posts
+  spec_file: facebook-business-manager-posts-api-openapi.yml
+  capability_id: BC-400.70
+  capability_id_l1: BC-400
+  capability_name: Content Marketing Management
+  confidence: 0.75
+  evidence: POST /{page_id}/feed createPagePost "Create a page post"; GET /{page_id}/feed getPageFeed
+  reason: Creating, updating and publishing posts to a brand's social feed is content marketing publication/distribution
+    (also digital/social marketing).
+- tag: Ad Accounts
+  spec_file: facebook-business-manager-ad-accounts-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.72
+  evidence: GET /act_{ad_account_id} getAdAccount 'Get ad account details'; 'Create and manage ad campaigns
+    ... across Meta platforms'
+  reason: Ad account entity within the Meta Marketing API — paid-media/digital marketing administration.
+    Sub-capability slightly ambiguous (operations vs digital marketing).
+- tag: Comments
+  spec_file: facebook-business-manager-comments-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: GET /{post_id}/comments getPostComments; POST /{post_id}/comments createComment
+  reason: 'Managing comments on social page posts is social media engagement, part of digital/social marketing
+    operations. Moderate confidence: could also be construed as customer service on social channels, but
+    the spec context is the Marketing/Pages surface.'
+- tag: Page Insights
+  spec_file: facebook-business-manager-page-insights-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.7
+  evidence: GET /{page_id}/insights getPageInsights — "PageInsightsResponse"
+  reason: Page performance analytics for a brand's social presence — marketing measurement. Thin surface
+    (single operation) so confidence moderate.
+- tag: Pages
+  spec_file: facebook-business-manager-pages-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: GET /{page_id} getPage "Get page details"; POST /{page_id}/subscribed_apps subscribePageApp
+  reason: Management of the brand's social business Page (details, app subscription) is social channel
+    administration within digital marketing. Partly technical (app subscription), hence moderate confidence.
