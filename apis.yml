@@ -35,7 +35,7 @@ created: '2024-01-01'
 modified: '2026-08-13'
 specificationVersion: '0.23'
 type: Index
-position: Consumer
+position: Consuming
 access: 3rd-Party
 url: https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/apis.yml
 apis:
