@@ -46,7 +46,7 @@ apis:
   baseURL: https://graph.facebook.com/v25.0
   tags:
   - Attribution
-  - Conversions
+  - Conversion
   - Event
   - Tracking
   tags_raw:
@@ -69,6 +69,11 @@ apis:
   humanURL: https://developers.facebook.com/docs/marketing-api/business-asset-management
   baseURL: https://graph.facebook.com/v25.0
   tags:
+  - Assets
+  - Audiences
+  - Catalog
+  - Pixels
+  tags_raw:
   - Assets
   - Audiences
   - Catalogs
@@ -149,7 +154,7 @@ apis:
   humanURL: https://developers.facebook.com/docs/marketing-api/catalog
   baseURL: https://graph.facebook.com/v25.0
   tags:
-  - Catalogs
+  - Catalog
   - Commerce
   - Product
   - Shopping
@@ -688,6 +693,8 @@ apis:
   humanURL: https://developers.facebook.com/docs/marketing-apis
   baseURL: https://graph.facebook.com/v25.0
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
