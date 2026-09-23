@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Facebook Business Manager Facebook Marketing Ad Accounts Pages API
-  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  title: Facebook Business Manager Facebook Pages API
+  description: Manage Facebook Pages, publish and manage posts, moderate comments, and track engagement through the Graph API. The Pages API allows businesses to programmatically manage their Facebook presence, publish content, respond to comments and messages, and retrieve page-level analytics.
   version: '25.0'
   contact:
     name: Meta Developer Support
@@ -72,28 +72,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request parameters or malformed request body
       content:
@@ -106,28 +85,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
     Page:
       type: object
       properties:
@@ -225,11 +189,47 @@ components:
       properties:
         success:
           type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+      description: Page access token with appropriate permissions such as pages_manage_posts, pages_read_engagement, pages_manage_metadata.
 externalDocs:
-  description: Facebook Marketing API Documentation
-  url: https://developers.facebook.com/docs/marketing-api
+  description: Facebook Pages API Documentation
+  url: https://developers.facebook.com/docs/pages-api

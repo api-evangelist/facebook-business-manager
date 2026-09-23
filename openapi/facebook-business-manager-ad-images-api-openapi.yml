@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Facebook Business Manager Facebook Marketing Ad Accounts Ad Images API
+  title: Facebook Business Manager Facebook Marketing Ad Images API
   description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
   version: '25.0'
   contact:

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Facebook Business Manager Facebook Marketing Ad Accounts Comments API
-  description: Create and manage ad campaigns, analyze performance, and automate advertising workflows across Meta platforms. The Marketing API provides programmatic access to Facebook's advertising system, enabling businesses to create campaigns, ad sets, and ads, manage budgets and bidding strategies, define targeting audiences, and retrieve performance metrics.
+  title: Facebook Business Manager Facebook Pages Comments API
+  description: Manage Facebook Pages, publish and manage posts, moderate comments, and track engagement through the Graph API. The Pages API allows businesses to programmatically manage their Facebook presence, publish content, respond to comments and messages, and retrieve page-level analytics.
   version: '25.0'
   contact:
     name: Meta Developer Support
@@ -116,26 +116,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
     postId:
       name: post_id
       in: path
@@ -152,13 +140,6 @@ components:
         type: integer
         default: 25
         maximum: 100
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
     fields:
       name: fields
       in: query
@@ -166,6 +147,25 @@ components:
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     CommentList:
       type: object
@@ -176,52 +176,17 @@ components:
             $ref: '#/components/schemas/Comment'
         paging:
           $ref: '#/components/schemas/Paging'
-    Error:
+    SuccessResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
-    Paging:
-      type: object
-      properties:
-        cursors:
-          type: object
-          properties:
-            before:
-              type: string
-            after:
-              type: string
-        next:
-          type: string
-        previous:
-          type: string
+        success:
+          type: boolean
     CreateResponse:
       type: object
       properties:
         id:
           type: string
           description: The ID of the newly created object
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     Comment:
       type: object
       properties:
@@ -255,11 +220,46 @@ components:
         attachment:
           type: object
           description: Media attachment on the comment
+    Paging:
+      type: object
+      properties:
+        cursors:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        next:
+          type: string
+        previous:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 access token with ads_management or ads_read permissions. Obtain tokens via the Facebook Login flow.
+      description: Page access token with appropriate permissions such as pages_manage_posts, pages_read_engagement, pages_manage_metadata.
 externalDocs:
-  description: Facebook Marketing API Documentation
-  url: https://developers.facebook.com/docs/marketing-api
+  description: Facebook Pages API Documentation
+  url: https://developers.facebook.com/docs/pages-api
