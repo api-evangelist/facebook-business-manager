@@ -52,19 +52,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -87,6 +74,19 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging with Facebook support
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     adAccountId:
       name: ad_account_id

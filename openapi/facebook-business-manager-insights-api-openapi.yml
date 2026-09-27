@@ -94,7 +94,79 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
   schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    InsightsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsightsData'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
     InsightsData:
       type: object
       properties:
@@ -162,65 +234,15 @@ components:
           type: string
         ad_name:
           type: string
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
-    InsightsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InsightsData'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
@@ -231,28 +253,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

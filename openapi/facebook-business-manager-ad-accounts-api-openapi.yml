@@ -101,19 +101,6 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging with Facebook support
-  responses:
-    Unauthorized:
-      description: Invalid or expired access token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     adAccountId:
       name: ad_account_id
@@ -129,6 +116,19 @@ components:
       description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Invalid or expired access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -86,16 +86,81 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    adId:
+      name: ad_id
+      in: path
+      required: true
+      description: The ID of the ad
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
   schemas:
-    AdList:
+    PagingCursors:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ad'
-        paging:
-          $ref: '#/components/schemas/Paging'
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
     Ad:
       type: object
       properties:
@@ -133,12 +198,26 @@ components:
         updated_time:
           type: string
           format: date-time
-    CreateResponse:
+    AdList:
       type: object
       properties:
-        id:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ad'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
           type: string
-          description: The ID of the newly created object
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
     AdCreate:
       type: object
       required:
@@ -164,94 +243,15 @@ components:
           enum:
           - ACTIVE
           - PAUSED
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    adId:
-      name: ad_id
-      in: path
-      required: true
-      description: The ID of the ad
-      schema:
-        type: string
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page. Default is 25.
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

@@ -112,29 +112,27 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AdSetUpdate:
+    PagingCursors:
       type: object
       properties:
-        name:
+        before:
           type: string
-        status:
+          description: Cursor pointing to the start of the current page
+        after:
           type: string
-          enum:
-          - ACTIVE
-          - PAUSED
-          - DELETED
-          - ARCHIVED
-        daily_budget:
+          description: Cursor pointing to the end of the current page
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    CreateResponse:
+      type: object
+      properties:
+        id:
           type: string
-        lifetime_budget:
-          type: string
-        targeting:
-          type: object
-        bid_amount:
-          type: integer
-        end_time:
-          type: string
-          format: date-time
+          description: The ID of the newly created object
     AdSet:
       type: object
       properties:
@@ -233,6 +231,38 @@ components:
         updated_time:
           type: string
           format: date-time
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
     AdSetCreate:
       type: object
       required:
@@ -289,18 +319,6 @@ components:
         end_time:
           type: string
           format: date-time
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     AdSetList:
       type: object
       properties:
@@ -310,53 +328,35 @@ components:
             $ref: '#/components/schemas/AdSet'
         paging:
           $ref: '#/components/schemas/Paging'
-    Paging:
+    AdSetUpdate:
       type: object
       properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
+        name:
           type: string
-          description: URL for the next page of results
-        previous:
+        status:
           type: string
-          description: URL for the previous page of results
-    Error:
-      type: object
-      properties:
-        error:
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        daily_budget:
+          type: string
+        lifetime_budget:
+          type: string
+        targeting:
           type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
-    PagingCursors:
-      type: object
-      properties:
-        before:
+        bid_amount:
+          type: integer
+        end_time:
           type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
+          format: date-time
   parameters:
-    adSetId:
-      name: ad_set_id
+    adAccountId:
+      name: ad_account_id
       in: path
       required: true
-      description: The ID of the ad set
+      description: The ID of the ad account (numeric, without the act_ prefix)
       schema:
         type: string
     after:
@@ -364,13 +364,6 @@ components:
       in: query
       required: false
       description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
       schema:
         type: string
     limit:
@@ -382,6 +375,13 @@ components:
         type: integer
         default: 25
         maximum: 100
+    adSetId:
+      name: ad_set_id
+      in: path
+      required: true
+      description: The ID of the ad set
+      schema:
+        type: string
     fields:
       name: fields
       in: query
@@ -390,14 +390,14 @@ components:
       schema:
         type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

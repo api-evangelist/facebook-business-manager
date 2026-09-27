@@ -136,7 +136,114 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
   schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    CampaignCreate:
+      type: object
+      required:
+      - name
+      - objective
+      - status
+      - special_ad_categories
+      properties:
+        name:
+          type: string
+          description: The name of the campaign
+        objective:
+          type: string
+          description: The campaign objective
+          enum:
+          - OUTCOME_AWARENESS
+          - OUTCOME_ENGAGEMENT
+          - OUTCOME_LEADS
+          - OUTCOME_SALES
+          - OUTCOME_TRAFFIC
+          - OUTCOME_APP_PROMOTION
+        status:
+          type: string
+          description: The initial status of the campaign
+          enum:
+          - ACTIVE
+          - PAUSED
+        special_ad_categories:
+          type: array
+          items:
+            type: string
+          description: Required special ad categories or empty array if none apply
+        daily_budget:
+          type: string
+          description: Daily budget in smallest currency unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget in smallest currency unit
+        buying_type:
+          type: string
+          enum:
+          - AUCTION
+          - RESERVED
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
     Error:
       type: object
       properties:
@@ -158,18 +265,6 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging with Facebook support
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Campaign:
       type: object
       properties:
@@ -236,6 +331,21 @@ components:
           type: string
           format: date-time
           description: Scheduled stop time of the campaign
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    CampaignList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Campaign'
+        paging:
+          $ref: '#/components/schemas/Paging'
     CampaignUpdate:
       type: object
       properties:
@@ -255,125 +365,15 @@ components:
         lifetime_budget:
           type: string
           description: Updated lifetime budget
-    CampaignList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Campaign'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    CampaignCreate:
-      type: object
-      required:
-      - name
-      - objective
-      - status
-      - special_ad_categories
-      properties:
-        name:
-          type: string
-          description: The name of the campaign
-        objective:
-          type: string
-          description: The campaign objective
-          enum:
-          - OUTCOME_AWARENESS
-          - OUTCOME_ENGAGEMENT
-          - OUTCOME_LEADS
-          - OUTCOME_SALES
-          - OUTCOME_TRAFFIC
-          - OUTCOME_APP_PROMOTION
-        status:
-          type: string
-          description: The initial status of the campaign
-          enum:
-          - ACTIVE
-          - PAUSED
-        special_ad_categories:
-          type: array
-          items:
-            type: string
-          description: Required special ad categories or empty array if none apply
-        daily_budget:
-          type: string
-          description: Daily budget in smallest currency unit
-        lifetime_budget:
-          type: string
-          description: Lifetime budget in smallest currency unit
-        buying_type:
-          type: string
-          enum:
-          - AUCTION
-          - RESERVED
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page. Default is 25.
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

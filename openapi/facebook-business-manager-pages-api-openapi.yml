@@ -72,25 +72,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Page:
       type: object
@@ -184,11 +165,6 @@ components:
         is_published:
           type: boolean
           description: Whether the Page is published and visible
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     Error:
       type: object
       properties:
@@ -210,6 +186,30 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     pageId:
       name: page_id

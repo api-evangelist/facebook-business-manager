@@ -66,6 +66,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -96,12 +111,54 @@ components:
             $ref: '#/components/schemas/CustomAudience'
         paging:
           $ref: '#/components/schemas/Paging'
-    CreateResponse:
+    Paging:
       type: object
       properties:
-        id:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
           type: string
-          description: The ID of the newly created object
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    CustomAudienceCreate:
+      type: object
+      required:
+      - name
+      - subtype
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        subtype:
+          type: string
+          enum:
+          - CUSTOM
+          - WEBSITE
+          - APP
+          - OFFLINE_CONVERSION
+          - LOOKALIKE
+          - ENGAGEMENT
+        customer_file_source:
+          type: string
+          description: Source of customer data for CUSTOM subtype
+        lookalike_spec:
+          type: object
+          description: Specification for lookalike audiences
+          properties:
+            origin_audience_id:
+              type: string
+            ratio:
+              type: number
+              minimum: 0.01
+              maximum: 0.2
+            country:
+              type: string
+        rule:
+          type: object
+          description: Rule-based audience definition for WEBSITE or APP subtypes
     CustomAudience:
       type: object
       properties:
@@ -157,69 +214,12 @@ components:
         time_updated:
           type: string
           format: date-time
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    CustomAudienceCreate:
-      type: object
-      required:
-      - name
-      - subtype
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        subtype:
-          type: string
-          enum:
-          - CUSTOM
-          - WEBSITE
-          - APP
-          - OFFLINE_CONVERSION
-          - LOOKALIKE
-          - ENGAGEMENT
-        customer_file_source:
-          type: string
-          description: Source of customer data for CUSTOM subtype
-        lookalike_spec:
-          type: object
-          description: Specification for lookalike audiences
-          properties:
-            origin_audience_id:
-              type: string
-            ratio:
-              type: number
-              minimum: 0.01
-              maximum: 0.2
-            country:
-              type: string
-        rule:
-          type: object
-          description: Rule-based audience definition for WEBSITE or APP subtypes
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
   parameters:
-    after:
-      name: after
+    fields:
+      name: fields
       in: query
       required: false
-      description: Cursor for pagination to retrieve the next page of results
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
       schema:
         type: string
     adAccountId:
@@ -238,22 +238,22 @@ components:
         type: integer
         default: 25
         maximum: 100
-    fields:
-      name: fields
+    after:
+      name: after
       in: query
       required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      description: Cursor for pagination to retrieve the next page of results
       schema:
         type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

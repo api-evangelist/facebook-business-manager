@@ -92,12 +92,13 @@ apis:
   - Content
   - Instagram
   - Media
-  - Social-Media
+  - Social Media
   tags_raw:
   - Content
   - Instagram
   - Media
   - Social Media
+  - Social-Media
   properties:
   - type: Documentation
     url: https://developers.facebook.com/docs/instagram-api
@@ -201,13 +202,14 @@ apis:
   tags:
   - Content
   - Publishing
-  - Social-Media
+  - Social Media
   - Threads
   tags_raw:
   - Content
   - Publishing
   - Social Media
   - Threads
+  - Social-Media
   properties:
   - type: Documentation
     url: https://developers.facebook.com/docs/threads
@@ -846,7 +848,7 @@ tags:
   - Analytics
   - Business Management
   - Marketing
-  - Social-Media
+  - Social Media
   - Messaging
   - Commerce
   - Agents
@@ -863,6 +865,7 @@ tags_raw:
   - Agents
   - MCP
   - Webhooks
+  - Social-Media
 x-enrichment:
   date: '2026-08-13'
   status: enriched

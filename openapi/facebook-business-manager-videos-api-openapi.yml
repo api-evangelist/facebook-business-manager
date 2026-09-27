@@ -59,14 +59,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

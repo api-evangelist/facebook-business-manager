@@ -134,95 +134,62 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
-    postId:
-      name: post_id
-      in: path
-      required: true
-      description: The ID of the post (format PAGE_ID_POST_ID)
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-  responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PostCreate:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The text content for the post
-        link:
-          type: string
-          format: uri
-          description: URL to share in the post
-        published:
-          type: boolean
-          description: Whether to publish the post immediately
-          default: true
-        scheduled_publish_time:
-          type: integer
-          description: Unix timestamp for when to publish the post. Must be between 10 minutes and 6 months from now.
-        targeting:
-          type: object
-          description: Targeting specification for the post audience
     SuccessResponse:
       type: object
       properties:
         success:
           type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+    Paging:
+      type: object
+      properties:
+        cursors:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        next:
+          type: string
+        previous:
+          type: string
     CreateResponse:
       type: object
       properties:
         id:
           type: string
           description: The ID of the newly created object
+    PostList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        paging:
+          $ref: '#/components/schemas/Paging'
     Post:
       type: object
       properties:
@@ -291,50 +258,83 @@ components:
         scheduled_publish_time:
           type: string
           description: Unix timestamp for scheduled posts
-    PostList:
+    PostCreate:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Post'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    Paging:
-      type: object
-      properties:
-        cursors:
-          type: object
-          properties:
-            before:
-              type: string
-            after:
-              type: string
-        next:
+        message:
           type: string
-        previous:
+          description: The text content for the post
+        link:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
+          format: uri
+          description: URL to share in the post
+        published:
+          type: boolean
+          description: Whether to publish the post immediately
+          default: true
+        scheduled_publish_time:
+          type: integer
+          description: Unix timestamp for when to publish the post. Must be between 10 minutes and 6 months from now.
+        targeting:
           type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
+          description: Targeting specification for the post audience
+  responses:
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+    postId:
+      name: post_id
+      in: path
+      required: true
+      description: The ID of the post (format PAGE_ID_POST_ID)
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
