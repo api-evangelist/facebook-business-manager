@@ -136,54 +136,56 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
-      schema:
-        type: string
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page. Default is 25.
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
   schemas:
-    PagingCursors:
+    CampaignList:
       type: object
       properties:
-        before:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Campaign'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    CampaignUpdate:
+      type: object
+      properties:
+        name:
           type: string
-          description: Cursor pointing to the start of the current page
-        after:
+          description: Updated campaign name
+        status:
           type: string
-          description: Cursor pointing to the end of the current page
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        daily_budget:
+          type: string
+          description: Updated daily budget
+        lifetime_budget:
+          type: string
+          description: Updated lifetime budget
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
     CampaignCreate:
       type: object
       required:
@@ -227,12 +229,6 @@ components:
           enum:
           - AUCTION
           - RESERVED
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Paging:
       type: object
       properties:
@@ -244,27 +240,18 @@ components:
         previous:
           type: string
           description: URL for the previous page of results
-    Error:
+    SuccessResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Campaign:
       type: object
       properties:
@@ -331,41 +318,60 @@ components:
           type: string
           format: date-time
           description: Scheduled stop time of the campaign
-    SuccessResponse:
+    PagingCursors:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
-    CampaignList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Campaign'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    CampaignUpdate:
-      type: object
-      properties:
-        name:
+        before:
           type: string
-          description: Updated campaign name
-        status:
+          description: Cursor pointing to the start of the current page
+        after:
           type: string
-          enum:
-          - ACTIVE
-          - PAUSED
-          - DELETED
-          - ARCHIVED
-        daily_budget:
-          type: string
-          description: Updated daily budget
-        lifetime_budget:
-          type: string
-          description: Updated lifetime budget
+          description: Cursor pointing to the end of the current page
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
   responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Invalid or expired access token
       content:
@@ -374,12 +380,6 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
       content:
         application/json:
           schema:

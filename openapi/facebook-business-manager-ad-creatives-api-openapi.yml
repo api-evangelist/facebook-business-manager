@@ -65,37 +65,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page. Default is 25.
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
   schemas:
     AdCreativeCreate:
       type: object
@@ -125,30 +94,6 @@ components:
           - SUBSCRIBE
         url_tags:
           type: string
-    AdCreativeList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdCreative'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -181,6 +126,12 @@ components:
         previous:
           type: string
           description: URL for the previous page of results
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     AdCreative:
       type: object
       properties:
@@ -222,6 +173,55 @@ components:
         url_tags:
           type: string
           description: URL tags for tracking parameters
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    AdCreativeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdCreative'
+        paging:
+          $ref: '#/components/schemas/Paging'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Invalid or expired access token

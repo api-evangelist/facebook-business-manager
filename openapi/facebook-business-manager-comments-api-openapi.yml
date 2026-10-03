@@ -116,40 +116,47 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    postId:
+      name: post_id
+      in: path
+      required: true
+      description: The ID of the post (format PAGE_ID_POST_ID)
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
   schemas:
-    Comment:
+    CommentList:
       type: object
       properties:
-        id:
-          type: string
-          description: The ID of the comment
-        message:
-          type: string
-          description: The text content of the comment
-        from:
-          type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string
-          description: The person or Page that made the comment
-        created_time:
-          type: string
-          format: date-time
-          description: When the comment was created
-        like_count:
-          type: integer
-          description: Number of likes on the comment
-        comment_count:
-          type: integer
-          description: Number of replies to the comment
-        is_hidden:
-          type: boolean
-          description: Whether the comment is hidden
-        attachment:
-          type: object
-          description: Media attachment on the comment
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        paging:
+          $ref: '#/components/schemas/Paging'
     Error:
       type: object
       properties:
@@ -185,27 +192,57 @@ components:
           type: string
         previous:
           type: string
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
     CreateResponse:
       type: object
       properties:
         id:
           type: string
           description: The ID of the newly created object
-    CommentList:
+    Comment:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Comment'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    SuccessResponse:
-      type: object
-      properties:
-        success:
+        id:
+          type: string
+          description: The ID of the comment
+        message:
+          type: string
+          description: The text content of the comment
+        from:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+          description: The person or Page that made the comment
+        created_time:
+          type: string
+          format: date-time
+          description: When the comment was created
+        like_count:
+          type: integer
+          description: Number of likes on the comment
+        comment_count:
+          type: integer
+          description: Number of replies to the comment
+        is_hidden:
           type: boolean
+          description: Whether the comment is hidden
+        attachment:
+          type: object
+          description: Media attachment on the comment
   responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Invalid or expired access token or insufficient permissions
       content:
@@ -218,43 +255,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    postId:
-      name: post_id
-      in: path
-      required: true
-      description: The ID of the post (format PAGE_ID_POST_ID)
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

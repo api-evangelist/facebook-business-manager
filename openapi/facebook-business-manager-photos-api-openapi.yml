@@ -55,26 +55,15 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
   schemas:
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -96,14 +85,25 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging
-  parameters:
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+  responses:
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

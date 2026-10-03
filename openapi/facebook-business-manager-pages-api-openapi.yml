@@ -72,7 +72,48 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
     Page:
       type: object
       properties:
@@ -165,33 +206,13 @@ components:
         is_published:
           type: boolean
           description: Whether the Page is published and visible
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
   responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Invalid or expired access token or insufficient permissions
       content:
@@ -204,27 +225,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
