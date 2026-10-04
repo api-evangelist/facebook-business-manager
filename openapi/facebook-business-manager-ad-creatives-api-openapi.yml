@@ -66,55 +66,24 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AdCreativeCreate:
-      type: object
-      required:
-      - name
-      - object_story_spec
-      properties:
-        name:
-          type: string
-        object_story_spec:
-          type: object
-          description: Story specification including page, link, and media data
-        title:
-          type: string
-        body:
-          type: string
-        call_to_action_type:
-          type: string
-          enum:
-          - LEARN_MORE
-          - SHOP_NOW
-          - SIGN_UP
-          - BOOK_NOW
-          - DOWNLOAD
-          - GET_OFFER
-          - CONTACT_US
-          - SUBSCRIBE
-        url_tags:
-          type: string
-    Error:
+    PagingCursors:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    AdCreativeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdCreative'
+        paging:
+          $ref: '#/components/schemas/Paging'
     Paging:
       type: object
       properties:
@@ -173,25 +142,63 @@ components:
         url_tags:
           type: string
           description: URL tags for tracking parameters
-    PagingCursors:
+    Error:
       type: object
       properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
-    AdCreativeList:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    AdCreativeCreate:
       type: object
+      required:
+      - name
+      - object_story_spec
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdCreative'
-        paging:
-          $ref: '#/components/schemas/Paging'
+        name:
+          type: string
+        object_story_spec:
+          type: object
+          description: Story specification including page, link, and media data
+        title:
+          type: string
+        body:
+          type: string
+        call_to_action_type:
+          type: string
+          enum:
+          - LEARN_MORE
+          - SHOP_NOW
+          - SIGN_UP
+          - BOOK_NOW
+          - DOWNLOAD
+          - GET_OFFER
+          - CONTACT_US
+          - SUBSCRIBE
+        url_tags:
+          type: string
   parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -206,13 +213,6 @@ components:
       in: query
       required: false
       description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
       schema:
         type: string
     adAccountId:

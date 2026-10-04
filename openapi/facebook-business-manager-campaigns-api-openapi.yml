@@ -137,98 +137,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    CampaignList:
+    PagingCursors:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Campaign'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    CampaignUpdate:
-      type: object
-      properties:
-        name:
+        before:
           type: string
-          description: Updated campaign name
-        status:
+          description: Cursor pointing to the start of the current page
+        after:
           type: string
-          enum:
-          - ACTIVE
-          - PAUSED
-          - DELETED
-          - ARCHIVED
-        daily_budget:
-          type: string
-          description: Updated daily budget
-        lifetime_budget:
-          type: string
-          description: Updated lifetime budget
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
-    CampaignCreate:
-      type: object
-      required:
-      - name
-      - objective
-      - status
-      - special_ad_categories
-      properties:
-        name:
-          type: string
-          description: The name of the campaign
-        objective:
-          type: string
-          description: The campaign objective
-          enum:
-          - OUTCOME_AWARENESS
-          - OUTCOME_ENGAGEMENT
-          - OUTCOME_LEADS
-          - OUTCOME_SALES
-          - OUTCOME_TRAFFIC
-          - OUTCOME_APP_PROMOTION
-        status:
-          type: string
-          description: The initial status of the campaign
-          enum:
-          - ACTIVE
-          - PAUSED
-        special_ad_categories:
-          type: array
-          items:
-            type: string
-          description: Required special ad categories or empty array if none apply
-        daily_budget:
-          type: string
-          description: Daily budget in smallest currency unit
-        lifetime_budget:
-          type: string
-          description: Lifetime budget in smallest currency unit
-        buying_type:
-          type: string
-          enum:
-          - AUCTION
-          - RESERVED
+          description: Cursor pointing to the end of the current page
     Paging:
       type: object
       properties:
@@ -240,18 +157,6 @@ components:
         previous:
           type: string
           description: URL for the previous page of results
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Campaign:
       type: object
       properties:
@@ -318,16 +223,125 @@ components:
           type: string
           format: date-time
           description: Scheduled stop time of the campaign
-    PagingCursors:
+    CreateResponse:
       type: object
       properties:
-        before:
+        id:
           type: string
-          description: Cursor pointing to the start of the current page
-        after:
+          description: The ID of the newly created object
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+    CampaignCreate:
+      type: object
+      required:
+      - name
+      - objective
+      - status
+      - special_ad_categories
+      properties:
+        name:
           type: string
-          description: Cursor pointing to the end of the current page
+          description: The name of the campaign
+        objective:
+          type: string
+          description: The campaign objective
+          enum:
+          - OUTCOME_AWARENESS
+          - OUTCOME_ENGAGEMENT
+          - OUTCOME_LEADS
+          - OUTCOME_SALES
+          - OUTCOME_TRAFFIC
+          - OUTCOME_APP_PROMOTION
+        status:
+          type: string
+          description: The initial status of the campaign
+          enum:
+          - ACTIVE
+          - PAUSED
+        special_ad_categories:
+          type: array
+          items:
+            type: string
+          description: Required special ad categories or empty array if none apply
+        daily_budget:
+          type: string
+          description: Daily budget in smallest currency unit
+        lifetime_budget:
+          type: string
+          description: Lifetime budget in smallest currency unit
+        buying_type:
+          type: string
+          enum:
+          - AUCTION
+          - RESERVED
+    CampaignList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Campaign'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
+    CampaignUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated campaign name
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        daily_budget:
+          type: string
+          description: Updated daily budget
+        lifetime_budget:
+          type: string
+          description: Updated lifetime budget
   parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -337,11 +351,11 @@ components:
         type: integer
         default: 25
         maximum: 100
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
       schema:
         type: string
     adAccountId:
@@ -349,20 +363,6 @@ components:
       in: path
       required: true
       description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
       schema:
         type: string
   responses:

@@ -112,6 +112,32 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -133,6 +159,12 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging with Facebook support
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
     AdSetUpdate:
       type: object
       properties:
@@ -156,38 +188,15 @@ components:
         end_time:
           type: string
           format: date-time
-    Paging:
+    AdSetList:
       type: object
       properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdSet'
+        paging:
+          $ref: '#/components/schemas/Paging'
     AdSet:
       type: object
       properties:
@@ -342,16 +351,14 @@ components:
         end_time:
           type: string
           format: date-time
-    AdSetList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdSet'
-        paging:
-          $ref: '#/components/schemas/Paging'
   parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -380,13 +387,6 @@ components:
       in: path
       required: true
       description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
       schema:
         type: string
   responses:

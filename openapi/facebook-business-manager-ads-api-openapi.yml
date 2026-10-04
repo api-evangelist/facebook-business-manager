@@ -87,27 +87,57 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    PagingCursors:
       type: object
       properties:
-        error:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
+    AdCreate:
+      type: object
+      required:
+      - name
+      - adset_id
+      - creative
+      - status
+      properties:
+        name:
+          type: string
+        adset_id:
+          type: string
+        creative:
           type: object
+          required:
+          - creative_id
           properties:
-            message:
+            creative_id:
               type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
+              description: The ID of the ad creative to use
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Ad:
       type: object
       properties:
@@ -145,23 +175,6 @@ components:
         updated_time:
           type: string
           format: date-time
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     AdList:
       type: object
       properties:
@@ -171,40 +184,27 @@ components:
             $ref: '#/components/schemas/Ad'
         paging:
           $ref: '#/components/schemas/Paging'
-    AdCreate:
+    Error:
       type: object
-      required:
-      - name
-      - adset_id
-      - creative
-      - status
       properties:
-        name:
-          type: string
-        adset_id:
-          type: string
-        creative:
+        error:
           type: object
-          required:
-          - creative_id
           properties:
-            creative_id:
+            message:
               type: string
-              description: The ID of the ad creative to use
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - PAUSED
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
   parameters:
     adId:
       name: ad_id
@@ -222,6 +222,13 @@ components:
         type: integer
         default: 25
         maximum: 100
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
     fields:
       name: fields
       in: query
@@ -234,13 +241,6 @@ components:
       in: path
       required: true
       description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
       schema:
         type: string
   responses:

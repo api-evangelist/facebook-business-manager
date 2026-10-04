@@ -134,75 +134,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    postId:
-      name: post_id
-      in: path
-      required: true
-      description: The ID of the post (format PAGE_ID_POST_ID)
-      schema:
-        type: string
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
-    PostList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Post'
-        paging:
-          $ref: '#/components/schemas/Paging'
     Paging:
       type: object
       properties:
@@ -217,11 +149,6 @@ components:
           type: string
         previous:
           type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     CreateResponse:
       type: object
       properties:
@@ -248,6 +175,41 @@ components:
         targeting:
           type: object
           description: Targeting specification for the post audience
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    PostList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
     Post:
       type: object
       properties:
@@ -316,6 +278,44 @@ components:
         scheduled_publish_time:
           type: string
           description: Unix timestamp for scheduled posts
+  parameters:
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    postId:
+      name: post_id
+      in: path
+      required: true
+      description: The ID of the post (format PAGE_ID_POST_ID)
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found

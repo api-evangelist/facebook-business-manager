@@ -58,15 +58,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
   schemas:
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -88,12 +86,6 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
   responses:
     Unauthorized:
       description: Invalid or expired access token or insufficient permissions
@@ -107,6 +99,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
