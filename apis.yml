@@ -726,6 +726,8 @@ apis:
   - type: Authentication
     url: https://developers.facebook.com/docs/pages/access-tokens
 common:
+  - type: FinOps
+    url: finops/facebook-business-manager-finops.yml
   - type: CapabilityMap
     url: capabilities/facebook-business-manager-capability-edges.yml
     name: Facebook Business Manager Business Capability Map
