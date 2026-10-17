@@ -135,6 +135,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    PostList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        paging:
+          $ref: '#/components/schemas/Paging'
     Paging:
       type: object
       properties:
@@ -149,67 +158,11 @@ components:
           type: string
         previous:
           type: string
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
-    PostCreate:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The text content for the post
-        link:
-          type: string
-          format: uri
-          description: URL to share in the post
-        published:
-          type: boolean
-          description: Whether to publish the post immediately
-          default: true
-        scheduled_publish_time:
-          type: integer
-          description: Unix timestamp for when to publish the post. Must be between 10 minutes and 6 months from now.
-        targeting:
-          type: object
-          description: Targeting specification for the post audience
     SuccessResponse:
       type: object
       properties:
         success:
           type: boolean
-    PostList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Post'
-        paging:
-          $ref: '#/components/schemas/Paging'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging
     Post:
       type: object
       properties:
@@ -278,14 +231,54 @@ components:
         scheduled_publish_time:
           type: string
           description: Unix timestamp for scheduled posts
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    PostCreate:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The text content for the post
+        link:
+          type: string
+          format: uri
+          description: URL to share in the post
+        published:
+          type: boolean
+          description: Whether to publish the post immediately
+          default: true
+        scheduled_publish_time:
+          type: integer
+          description: Unix timestamp for when to publish the post. Must be between 10 minutes and 6 months from now.
+        targeting:
+          type: object
+          description: Targeting specification for the post audience
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging
   parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -295,11 +288,11 @@ components:
         type: integer
         default: 25
         maximum: 100
-    pageId:
-      name: page_id
+    postId:
+      name: post_id
       in: path
       required: true
-      description: The ID of the Facebook Page
+      description: The ID of the post (format PAGE_ID_POST_ID)
       schema:
         type: string
     fields:
@@ -309,16 +302,23 @@ components:
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
-    postId:
-      name: post_id
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
+    pageId:
+      name: page_id
       in: path
       required: true
-      description: The ID of the post (format PAGE_ID_POST_ID)
+      description: The ID of the Facebook Page
       schema:
         type: string
   responses:
-    NotFound:
-      description: The requested resource was not found
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
@@ -329,8 +329,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

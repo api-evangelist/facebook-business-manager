@@ -111,7 +111,54 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page. Default is 25.
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The ID of the ad account (numeric, without the act_ prefix)
+      schema:
+        type: string
+    adSetId:
+      name: ad_set_id
+      in: path
+      required: true
+      description: The ID of the ad set
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
   schemas:
+    AdSetList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdSet'
+        paging:
+          $ref: '#/components/schemas/Paging'
     PagingCursors:
       type: object
       properties:
@@ -132,71 +179,68 @@ components:
         previous:
           type: string
           description: URL for the previous page of results
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: Human-readable error message
-            type:
-              type: string
-              description: Error type classification
-            code:
-              type: integer
-              description: Numeric error code
-            error_subcode:
-              type: integer
-              description: Numeric error subcode for more specific categorization
-            fbtrace_id:
-              type: string
-              description: Unique trace ID for debugging with Facebook support
     SuccessResponse:
       type: object
       properties:
         success:
           type: boolean
           description: Whether the operation was successful
-    AdSetUpdate:
+    AdSetCreate:
       type: object
+      required:
+      - name
+      - campaign_id
+      - optimization_goal
+      - billing_event
+      - targeting
+      - status
       properties:
         name:
           type: string
+        campaign_id:
+          type: string
+        optimization_goal:
+          type: string
+          enum:
+          - LINK_CLICKS
+          - IMPRESSIONS
+          - REACH
+          - LANDING_PAGE_VIEWS
+          - OFFSITE_CONVERSIONS
+          - LEAD_GENERATION
+          - APP_INSTALLS
+          - VALUE
+        billing_event:
+          type: string
+          enum:
+          - IMPRESSIONS
+          - LINK_CLICKS
+        targeting:
+          type: object
+          description: Targeting specification
         status:
           type: string
           enum:
           - ACTIVE
           - PAUSED
-          - DELETED
-          - ARCHIVED
         daily_budget:
           type: string
         lifetime_budget:
           type: string
-        targeting:
-          type: object
         bid_amount:
           type: integer
+        bid_strategy:
+          type: string
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+        start_time:
+          type: string
+          format: date-time
         end_time:
           type: string
           format: date-time
-    AdSetList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdSet'
-        paging:
-          $ref: '#/components/schemas/Paging'
     AdSet:
       type: object
       properties:
@@ -295,107 +339,57 @@ components:
         updated_time:
           type: string
           format: date-time
-    AdSetCreate:
+    CreateResponse:
       type: object
-      required:
-      - name
-      - campaign_id
-      - optimization_goal
-      - billing_event
-      - targeting
-      - status
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
+    AdSetUpdate:
+      type: object
       properties:
         name:
           type: string
-        campaign_id:
-          type: string
-        optimization_goal:
-          type: string
-          enum:
-          - LINK_CLICKS
-          - IMPRESSIONS
-          - REACH
-          - LANDING_PAGE_VIEWS
-          - OFFSITE_CONVERSIONS
-          - LEAD_GENERATION
-          - APP_INSTALLS
-          - VALUE
-        billing_event:
-          type: string
-          enum:
-          - IMPRESSIONS
-          - LINK_CLICKS
-        targeting:
-          type: object
-          description: Targeting specification
         status:
           type: string
           enum:
           - ACTIVE
           - PAUSED
+          - DELETED
+          - ARCHIVED
         daily_budget:
           type: string
         lifetime_budget:
           type: string
+        targeting:
+          type: object
         bid_amount:
           type: integer
-        bid_strategy:
-          type: string
-          enum:
-          - LOWEST_COST_WITHOUT_CAP
-          - LOWEST_COST_WITH_BID_CAP
-          - COST_CAP
-        start_time:
-          type: string
-          format: date-time
         end_time:
           type: string
           format: date-time
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page. Default is 25.
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    adSetId:
-      name: ad_set_id
-      in: path
-      required: true
-      description: The ID of the ad set
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
-      schema:
-        type: string
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The ID of the ad account (numeric, without the act_ prefix)
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error message
+            type:
+              type: string
+              description: Error type classification
+            code:
+              type: integer
+              description: Numeric error code
+            error_subcode:
+              type: integer
+              description: Numeric error subcode for more specific categorization
+            fbtrace_id:
+              type: string
+              description: Unique trace ID for debugging with Facebook support
   responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Invalid or expired access token
       content:
@@ -404,6 +398,12 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

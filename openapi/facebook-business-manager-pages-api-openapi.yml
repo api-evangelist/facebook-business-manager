@@ -72,26 +72,12 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
     Page:
       type: object
       properties:
@@ -184,11 +170,6 @@ components:
         is_published:
           type: boolean
           description: Whether the Page is published and visible
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
     Error:
       type: object
       properties:
@@ -211,13 +192,6 @@ components:
               type: string
               description: Unique trace ID for debugging
   parameters:
-    pageId:
-      name: page_id
-      in: path
-      required: true
-      description: The ID of the Facebook Page
-      schema:
-        type: string
     fields:
       name: fields
       in: query
@@ -225,6 +199,32 @@ components:
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
+    pageId:
+      name: page_id
+      in: path
+      required: true
+      description: The ID of the Facebook Page
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

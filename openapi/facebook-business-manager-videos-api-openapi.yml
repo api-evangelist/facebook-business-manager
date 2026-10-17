@@ -87,14 +87,14 @@ components:
               type: string
               description: Unique trace ID for debugging
   responses:
-    Unauthorized:
-      description: Invalid or expired access token or insufficient permissions
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token or insufficient permissions
       content:
         application/json:
           schema:

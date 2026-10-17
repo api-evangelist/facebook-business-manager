@@ -137,6 +137,25 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CampaignUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated campaign name
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DELETED
+          - ARCHIVED
+        daily_budget:
+          type: string
+          description: Updated daily budget
+        lifetime_budget:
+          type: string
+          description: Updated lifetime budget
     PagingCursors:
       type: object
       properties:
@@ -146,6 +165,15 @@ components:
         after:
           type: string
           description: Cursor pointing to the end of the current page
+    CampaignList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Campaign'
+        paging:
+          $ref: '#/components/schemas/Paging'
     Paging:
       type: object
       properties:
@@ -157,6 +185,12 @@ components:
         previous:
           type: string
           description: URL for the previous page of results
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
     Campaign:
       type: object
       properties:
@@ -229,12 +263,6 @@ components:
         id:
           type: string
           description: The ID of the newly created object
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful
     CampaignCreate:
       type: object
       required:
@@ -278,15 +306,6 @@ components:
           enum:
           - AUCTION
           - RESERVED
-    CampaignList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Campaign'
-        paging:
-          $ref: '#/components/schemas/Paging'
     Error:
       type: object
       properties:
@@ -308,40 +327,7 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging with Facebook support
-    CampaignUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated campaign name
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - PAUSED
-          - DELETED
-          - ARCHIVED
-        daily_budget:
-          type: string
-          description: Updated daily budget
-        lifetime_budget:
-          type: string
-          description: Updated lifetime budget
   parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for pagination to retrieve the next page of results
-      schema:
-        type: string
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -365,9 +351,23 @@ components:
       description: The ID of the ad account (numeric, without the act_ prefix)
       schema:
         type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for pagination to retrieve the next page of results
+      schema:
+        type: string
   responses:
-    NotFound:
-      description: The requested resource was not found
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
@@ -378,8 +378,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

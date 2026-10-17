@@ -116,6 +116,37 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of objects to return per page
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    postId:
+      name: post_id
+      in: path
+      required: true
+      description: The ID of the post (format PAGE_ID_POST_ID)
+      schema:
+        type: string
+    fields:
+      name: fields
+      in: query
+      required: false
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      required: false
+      description: Cursor for forward pagination
+      schema:
+        type: string
   schemas:
     Paging:
       type: object
@@ -131,6 +162,26 @@ components:
           type: string
         previous:
           type: string
+    CommentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        paging:
+          $ref: '#/components/schemas/Paging'
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the newly created object
     Comment:
       type: object
       properties:
@@ -164,12 +215,6 @@ components:
         attachment:
           type: object
           description: Media attachment on the comment
-    CreateResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the newly created object
     Error:
       type: object
       properties:
@@ -191,54 +236,9 @@ components:
             fbtrace_id:
               type: string
               description: Unique trace ID for debugging
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-    CommentList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Comment'
-        paging:
-          $ref: '#/components/schemas/Paging'
-  parameters:
-    after:
-      name: after
-      in: query
-      required: false
-      description: Cursor for forward pagination
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of objects to return per page
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    postId:
-      name: post_id
-      in: path
-      required: true
-      description: The ID of the post (format PAGE_ID_POST_ID)
-      schema:
-        type: string
-    fields:
-      name: fields
-      in: query
-      required: false
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   responses:
-    NotFound:
-      description: The requested resource was not found
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
@@ -249,8 +249,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

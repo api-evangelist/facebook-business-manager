@@ -95,26 +95,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PagingCursors:
-      type: object
-      properties:
-        before:
-          type: string
-          description: Cursor pointing to the start of the current page
-        after:
-          type: string
-          description: Cursor pointing to the end of the current page
-    Paging:
-      type: object
-      properties:
-        cursors:
-          $ref: '#/components/schemas/PagingCursors'
-        next:
-          type: string
-          description: URL for the next page of results
-        previous:
-          type: string
-          description: URL for the previous page of results
     InsightsData:
       type: object
       properties:
@@ -182,6 +162,17 @@ components:
           type: string
         ad_name:
           type: string
+    Paging:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/PagingCursors'
+        next:
+          type: string
+          description: URL for the next page of results
+        previous:
+          type: string
+          description: URL for the previous page of results
     InsightsResponse:
       type: object
       properties:
@@ -191,6 +182,15 @@ components:
             $ref: '#/components/schemas/InsightsData'
         paging:
           $ref: '#/components/schemas/Paging'
+    PagingCursors:
+      type: object
+      properties:
+        before:
+          type: string
+          description: Cursor pointing to the start of the current page
+        after:
+          type: string
+          description: Cursor pointing to the end of the current page
     Error:
       type: object
       properties:
@@ -213,18 +213,18 @@ components:
               type: string
               description: Unique trace ID for debugging with Facebook support
   parameters:
-    campaignId:
-      name: campaign_id
-      in: path
-      required: true
-      description: The ID of the campaign
-      schema:
-        type: string
     fields:
       name: fields
       in: query
       required: false
       description: Comma-separated list of fields to include in the response. If omitted, default fields are returned.
+      schema:
+        type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The ID of the campaign
       schema:
         type: string
     adAccountId:
@@ -241,14 +241,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Invalid or expired access token
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    Unauthorized:
+      description: Invalid or expired access token
       content:
         application/json:
           schema:
