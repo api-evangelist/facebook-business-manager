@@ -1,4 +1,4 @@
-# Facebook Business Manager (facebook-business-manager)
+# Facebook Business Manager
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,325 +66,271 @@
 
 APIs for managing Facebook Business accounts, advertising, pages, and assets across the Meta platform family. Facebook Business Manager exposes a deep catalog of Graph API surfaces for marketing, pages, conversions, business asset management, Instagram, insights, Messenger, catalogs, live video, Threads, and the WhatsApp Business Platform, all governed through a shared authentication and access model.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/apis.yml)
+**Areas:** Advertising · Analytics · Business Management · Marketing · Social Media · Messaging · Commerce · Agents · MCP · Webhook
 
-## Scope
+## Facebook Business Manager on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Facebook Business Manager is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/facebook-business-manager/](https://apis.io/providers/facebook-business-manager/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- Advertising
-- Analytics
-- Business Management
-- Marketing
-- Social Media
+- [Facebook Conversions API](https://apis.io/apis/facebook-business-manager/facebook-conversions-api/) — Send web and offline events directly to Facebook for improved tracking and attribution.
+- [Facebook Business Asset API](https://apis.io/apis/facebook-business-manager/facebook-business-asset-api/) — Manage business assets including pixels, catalogs, and custom audiences.
+- [Facebook Instagram API](https://apis.io/apis/facebook-business-manager/facebook-instagram-api/) — Manage Instagram Business and Creator accounts through Business Manager.
+- [Facebook Insights API](https://apis.io/apis/facebook-business-manager/facebook-insights-api/) — Access performance metrics and analytics data for Facebook Pages, ad campaigns, and content. The Insights API provides detailed reporting on engagement,…
+- [Facebook Messenger Platform API](https://apis.io/apis/facebook-business-manager/facebook-messenger-platform-api/) — Build conversational experiences on the Messenger platform. The Messenger Platform API enables businesses to send and receive messages, create automated…
+- [Facebook Catalog API](https://apis.io/apis/facebook-business-manager/facebook-catalog-api/) — Create and manage product catalogs for use in dynamic ads, shops, and commerce experiences across Meta platforms. The Catalog API allows businesses to…
+- [Facebook Live Video API](https://apis.io/apis/facebook-business-manager/facebook-live-video-api/) — Stream live video content directly to Facebook Pages, user profiles, and groups. The Live Video API enables scheduling broadcasts, managing live streams,…
+- [Facebook Threads API](https://apis.io/apis/facebook-business-manager/facebook-threads-api/) — Publish content, manage replies, and retrieve analytics on the Threads platform. The Threads API provides programmatic access for creating text posts,…
+- [Facebook WhatsApp Business Platform API](https://apis.io/apis/facebook-business-manager/facebook-whatsapp-business-platform-api/) — Send and receive messages, manage business profiles, and automate customer communications through the WhatsApp Business Platform. The Cloud API enables…
+- [Facebook Business Manager Ad Accounts API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-ad-accounts-api/) — Manage advertising accounts including settings, spend limits, and account-level configurations.
+- [Facebook Business Manager Ad Creatives API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-ad-creatives-api/) — Manage ad creative content including images, videos, copy, and call-to-action configurations.
+- [Facebook Business Manager Ad Images API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-ad-images-api/) — Upload and manage images used in ad creatives.
+- [Facebook Business Manager Ad Sets API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-ad-sets-api/) — Manage ad sets within campaigns, including targeting, budgets, scheduling, and optimization goals.
+- [Facebook Business Manager Ads API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-ads-api/) — Manage individual ads within ad sets, including creative associations and status.
+- [Facebook Business Manager Campaigns API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-campaigns-api/) — Manage advertising campaigns including creation, updating, and status management.
+- [Facebook Business Manager Comments API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-comments-api/) — Manage comments on Page posts including reading, replying, and moderating.
+- [Facebook Business Manager Custom Audiences API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-custom-audiences-api/) — Create and manage custom audiences for ad targeting based on customer data, website visitors, or app users.
+- [Facebook Business Manager Insights API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-insights-api/) — Retrieve performance metrics and analytics data for campaigns, ad sets, and ads.
+- [Facebook Business Manager Page Insights API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-page-insights-api/) — Retrieve analytics and engagement metrics for a Facebook Page.
+- [Facebook Business Manager Pages API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-pages-api/) — Retrieve and manage Facebook Page settings, information, and metadata.
+- [Facebook Business Manager Photos API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-photos-api/) — Upload and manage photos on a Facebook Page.
+- [Facebook Business Manager Posts API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-posts-api/) — Create, read, update, and delete posts on a Facebook Page feed.
+- [Facebook Business Manager Videos API](https://apis.io/apis/facebook-business-manager/facebook-business-manager-videos-api/) — Upload and manage videos on a Facebook Page.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Facebook Business Manager Webhooks](https://apis.io/asyncapis/facebook-business-manager/facebook-business-manager-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [facebook-business-manager-mcp.yml](https://apis.io/servers/facebook-business-manager/facebook-business-manager-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Facebook Business Manager Agentic Access](https://apis.io/agentic-access/facebook-business-manager/facebook-business-manager-agentic-access/)
+
+#### JSON Schema (32)
+
+The data models the API reads and writes.
+
+- [Ad](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-ad/)
+- [AdAccount](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adaccount/)
+- [AdCreate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adcreate/)
+- [AdCreative](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adcreative/)
+- [AdCreativeCreate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adcreativecreate/)
+- [AdCreativeList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adcreativelist/)
+- [AdList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adlist/)
+- [AdSet](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adset/)
+- [AdSetCreate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adsetcreate/)
+- [AdSetList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adsetlist/)
+- [AdSetUpdate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-adsetupdate/)
+- [Campaign](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-campaign/)
+- [CampaignCreate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-campaigncreate/)
+- [CampaignList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-campaignlist/)
+- [CampaignUpdate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-campaignupdate/)
+- [Comment](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-comment/)
+- [CommentList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-commentlist/)
+- [CreateResponse](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-createresponse/)
+- [CustomAudience](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-customaudience/)
+- [CustomAudienceCreate](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-customaudiencecreate/)
+- [CustomAudienceList](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-customaudiencelist/)
+- [Error](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-error/)
+- [InsightsData](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-insightsdata/)
+- [InsightsResponse](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-insightsresponse/)
+- [Page](https://apis.io/schemas/facebook-business-manager/facebook-business-manager-page/)
+- …and 7 more published on APIs.io
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Facebook Business Manager Structure](https://apis.io/json-structure/facebook-business-manager/facebook-business-manager-structure/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Facebook Business Manager Domain Vocabulary](https://apis.io/vocabularies/facebook-business-manager/facebook-business-manager-vocabulary/)
+
+#### Collections (30)
+
+Postman and Open Collection request collections.
 
-## Timestamps
-
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
-
-## APIs
-
-### Facebook Marketing API
-
-Create and manage ad campaigns, analyze performance, and automate advertising workflows.
-
-- **Human URL:** [https://developers.facebook.com/docs/marketing-apis](https://developers.facebook.com/docs/marketing-apis)
-- **Base URL:** `https://graph.facebook.com/v18.0`
-
-#### Tags
-
-- Ads
-- Advertising
-- Campaigns
-- Marketing
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/marketing-api)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-marketing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://developers.facebook.com/docs/marketing-api/authentication)
-- [Changelog](https://developers.facebook.com/docs/graph-api/changelog)
-- [Rate Limits](https://developers.facebook.com/docs/graph-api/overview/rate-limiting)
-- [Getting Started](https://developers.facebook.com/docs/marketing-api/get-started)
-- [Reference](https://developers.facebook.com/docs/marketing-api/reference)
-- [S D Ks](https://developers.facebook.com/docs/business-sdk/getting-started)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Pages API
-
-Manage Facebook Pages, posts, comments, and engagement.
-
-- **Human URL:** [https://developers.facebook.com/docs/pages](https://developers.facebook.com/docs/pages)
-- **Base URL:** `https://graph.facebook.com/v18.0`
-
-#### Tags
-
-- Content
-- Pages
-- Publishing
-- Social Media
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/pages-api)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/facebook-business-manager/refs/heads/main/openapi/facebook-pages-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Getting Started](https://developers.facebook.com/docs/pages/getting-started)
-- [Reference](https://developers.facebook.com/docs/pages-api/overview)
-- [Authentication](https://developers.facebook.com/docs/pages/access-tokens)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Conversions API
-
-Send web and offline events directly to Facebook for improved tracking and attribution.
-
-- **Human URL:** [https://developers.facebook.com/docs/marketing-api/conversions-api](https://developers.facebook.com/docs/marketing-api/conversions-api)
-- **Base URL:** `https://graph.facebook.com/v18.0`
-
-#### Tags
-
-- Attribution
-- Conversions
-- Events
-- Tracking
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/marketing-api/conversions-api)
-- [Implementation  Guide](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started)
-- [Reference](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters)
-- [S D Ks](https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Business Asset API
-
-Manage business assets including pixels, catalogs, and custom audiences.
-
-- **Human URL:** [https://developers.facebook.com/docs/marketing-api/business-asset-management](https://developers.facebook.com/docs/marketing-api/business-asset-management)
-- **Base URL:** `https://graph.facebook.com/v18.0`
-
-#### Tags
-
-- Assets
-- Audiences
-- Catalogs
-- Pixels
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/marketing-api/business-asset-management)
-- [Reference](https://developers.facebook.com/docs/marketing-api/business-asset-management/get-started)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Instagram API
-
-Manage Instagram Business and Creator accounts through Business Manager.
-
-- **Human URL:** [https://developers.facebook.com/docs/instagram-api](https://developers.facebook.com/docs/instagram-api)
-- **Base URL:** `https://graph.facebook.com/v18.0`
-
-#### Tags
-
-- Content
-- Instagram
-- Media
-- Social Media
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/instagram-api)
-- [Getting Started](https://developers.facebook.com/docs/instagram-api/getting-started)
-- [Reference](https://developers.facebook.com/docs/instagram-api/reference)
-- [Authentication](https://developers.facebook.com/docs/instagram-api/getting-started#authentication)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Insights API
-
-Access performance metrics and analytics data for Facebook Pages, ad campaigns, and content. The Insights API provides detailed reporting on engagement, reach, impressions, and audience demographics for businesses managing their Meta presence.
-
-- **Human URL:** [https://developers.facebook.com/docs/platforminsights](https://developers.facebook.com/docs/platforminsights)
-- **Base URL:** `https://graph.facebook.com/v25.0`
-
-#### Tags
-
-- Analytics
-- Insights
-- Metrics
-- Reporting
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/platforminsights)
-- [Reference](https://developers.facebook.com/docs/graph-api/reference/page/insights)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Messenger Platform API
-
-Build conversational experiences on the Messenger platform. The Messenger Platform API enables businesses to send and receive messages, create automated bots, manage customer interactions, and integrate rich media and quick replies into chat workflows.
-
-- **Human URL:** [https://developers.facebook.com/docs/messenger-platform](https://developers.facebook.com/docs/messenger-platform)
-- **Base URL:** `https://graph.facebook.com/v25.0`
-
-#### Tags
-
-- Bots
-- Chat
-- Customer Service
-- Messaging
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/messenger-platform)
-- [Getting Started](https://developers.facebook.com/docs/messenger-platform/getting-started)
-- [Reference](https://developers.facebook.com/docs/messenger-platform/reference)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Catalog API
-
-Create and manage product catalogs for use in dynamic ads, shops, and commerce experiences across Meta platforms. The Catalog API allows businesses to upload product information, manage inventory feeds, and synchronize product data for advertising and shopping features.
-
-- **Human URL:** [https://developers.facebook.com/docs/marketing-api/catalog](https://developers.facebook.com/docs/marketing-api/catalog)
-- **Base URL:** `https://graph.facebook.com/v25.0`
-
-#### Tags
-
-- Catalogs
-- Commerce
-- Products
-- Shopping
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/marketing-api/catalog)
-- [Reference](https://developers.facebook.com/docs/marketing-api/catalog/reference)
-- [Getting Started](https://developers.facebook.com/docs/marketing-api/catalog/get-started)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Live Video API
-
-Stream live video content directly to Facebook Pages, user profiles, and groups. The Live Video API enables scheduling broadcasts, managing live streams, interacting with audiences through comments, and retrieving post-broadcast analytics.
-
-- **Human URL:** [https://developers.facebook.com/docs/videos/live-video](https://developers.facebook.com/docs/videos/live-video)
-- **Base URL:** `https://graph.facebook.com/v25.0`
-
-#### Tags
-
-- Broadcasting
-- Live Streaming
-- Media
-- Video
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/videos/live-video)
-- [Reference](https://developers.facebook.com/docs/graph-api/reference/live-video)
-- [Getting Started](https://developers.facebook.com/docs/videos/live-video/getting-started)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook Threads API
-
-Publish content, manage replies, and retrieve analytics on the Threads platform. The Threads API provides programmatic access for creating text posts, sharing media, managing conversations, and accessing engagement metrics for Threads profiles.
-
-- **Human URL:** [https://developers.facebook.com/docs/threads](https://developers.facebook.com/docs/threads)
-- **Base URL:** `https://graph.threads.net/v25.0`
-
-#### Tags
-
-- Content
-- Publishing
-- Social Media
-- Threads
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/threads)
-- [Getting Started](https://developers.facebook.com/docs/threads/get-started)
-- [Reference](https://developers.facebook.com/docs/threads/threads-api)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Facebook WhatsApp Business Platform API
-
-Send and receive messages, manage business profiles, and automate customer communications through the WhatsApp Business Platform. The Cloud API enables businesses to integrate WhatsApp messaging into their applications for customer support, notifications, and transactional communications.
-
-- **Human URL:** [https://developers.facebook.com/docs/whatsapp](https://developers.facebook.com/docs/whatsapp)
-- **Base URL:** `https://graph.facebook.com/v25.0`
-
-#### Tags
-
-- Customer Service
-- Messaging
-- Notifications
-- WhatsApp
-
-#### Properties
-
-- [Documentation](https://developers.facebook.com/docs/whatsapp/cloud-api)
-- [Getting Started](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started)
-- [Reference](https://developers.facebook.com/docs/whatsapp/cloud-api/reference)
-- [Postman Collection](collections/facebook-marketing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-marketing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/facebook-pages.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/facebook-pages.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Portal](https://developers.facebook.com)
-- [Developer  Console](https://developers.facebook.com/apps)
-- [Business  Manager](https://business.facebook.com)
-- [Support](https://developers.facebook.com/support)
-- [Status Page](https://developers.facebook.com/status)
-- [Terms of Service](https://developers.facebook.com/terms)
-- [Privacy Policy](https://www.facebook.com/privacy/explanation)
-- [Getting Started](https://developers.facebook.com/docs/development/create-an-app)
+- [Facebook Business Manager Facebook Marketing Ad Accounts API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-ad-accounts-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Creatives API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-ad-creatives-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Images API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-ad-images-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Sets API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-ad-sets-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ads API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-ads-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Campaigns API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-campaigns-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Comments API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-comments-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Custom Audiences API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-custom-audiences-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Insights API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-insights-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Page Insights API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-page-insights-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Pages API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-pages-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Photos API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-photos-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Posts API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-posts-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Videos API](https://apis.io/collections/facebook-business-manager/open-facebook-business-manager-videos-api/)
+- [Facebook Business Manager Facebook Marketing API](https://apis.io/collections/facebook-business-manager/open-facebook-marketing/)
+- [Facebook Business Manager Facebook Pages API](https://apis.io/collections/facebook-business-manager/open-facebook-pages/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-ad-accounts-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Creatives API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-ad-creatives-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Images API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-ad-images-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ad Sets API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-ad-sets-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Ads API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-ads-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Campaigns API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-campaigns-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Comments API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-comments-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Custom Audiences API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-custom-audiences-api/)
+- [Facebook Business Manager Facebook Marketing Ad Accounts Insights API](https://apis.io/collections/facebook-business-manager/postman-facebook-business-manager-insights-api/)
+- …and 5 more published on APIs.io
+
+#### Overlays (28)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Facebook Business Manager Ad Accounts Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-accounts-api-overlay/)
+- [Facebook Business Manager Ad Accounts Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-accounts-api-phrasing-overlay/)
+- [Facebook Business Manager Ad Creatives Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-creatives-api-overlay/)
+- [Facebook Business Manager Ad Creatives Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-creatives-api-phrasing-overlay/)
+- [Facebook Business Manager Ad Images Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-images-api-overlay/)
+- [Facebook Business Manager Ad Images Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-images-api-phrasing-overlay/)
+- [Facebook Business Manager Ad Sets Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-sets-api-overlay/)
+- [Facebook Business Manager Ad Sets Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ad-sets-api-phrasing-overlay/)
+- [Facebook Business Manager Ads Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ads-api-overlay/)
+- [Facebook Business Manager Ads Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-ads-api-phrasing-overlay/)
+- [Facebook Business Manager Campaigns Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-campaigns-api-overlay/)
+- [Facebook Business Manager Campaigns Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-campaigns-api-phrasing-overlay/)
+- [Facebook Business Manager Comments Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-comments-api-overlay/)
+- [Facebook Business Manager Comments Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-comments-api-phrasing-overlay/)
+- [Facebook Business Manager Custom Audiences Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-custom-audiences-api-overlay/)
+- [Facebook Business Manager Custom Audiences Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-custom-audiences-api-phrasing-overlay/)
+- [Facebook Business Manager Insights Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-insights-api-overlay/)
+- [Facebook Business Manager Insights Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-insights-api-phrasing-overlay/)
+- [Facebook Business Manager Page Insights Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-page-insights-api-overlay/)
+- [Facebook Business Manager Page Insights Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-page-insights-api-phrasing-overlay/)
+- [Facebook Business Manager Pages Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-pages-api-overlay/)
+- [Facebook Business Manager Pages Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-pages-api-phrasing-overlay/)
+- [Facebook Business Manager Photos Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-photos-api-overlay/)
+- [Facebook Business Manager Photos Api Phrasing Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-photos-api-phrasing-overlay/)
+- [Facebook Business Manager Posts Api Overlay](https://apis.io/overlays/facebook-business-manager/facebook-business-manager-posts-api-overlay/)
+- …and 3 more published on APIs.io
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Facebook Business Manager — jsonschema rules](https://apis.io/rules/facebook-business-manager/facebook-business-manager-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Facebook Business Manager Authentication](https://apis.io/security/facebook-business-manager/facebook-business-manager-authentication/)
+- [Facebook Business Manager Domain Security](https://apis.io/security/facebook-business-manager/facebook-business-manager-domain-security/)
+- [Facebook Business Manager Vulnerability Disclosure](https://apis.io/security/facebook-business-manager/facebook-business-manager-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Facebook Business Manager Scopes](https://apis.io/scopes/facebook-business-manager/facebook-business-manager-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Facebook Business Manager Plans Pricing](https://apis.io/plans/facebook-business-manager/facebook-business-manager-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Facebook Business Manager Rate Limits](https://apis.io/rate-limits/facebook-business-manager/facebook-business-manager-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Facebook Business Manager Finops](https://apis.io/finops/facebook-business-manager/facebook-business-manager-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.meta.com)
 - [Documentation](https://developers.facebook.com/docs)
-- [Authentication](https://developers.facebook.com/docs/facebook-login/guides/access-tokens)
-- [Rate Limits](https://developers.facebook.com/docs/graph-api/overview/rate-limiting)
+- [Getting started](https://developers.facebook.com/docs/development/create-an-app)
+- [API reference](https://developers.facebook.com/docs/graph-api/reference)
+- [Pricing](https://www.facebook.com/business/ads/pricing)
+- [Support](https://developers.facebook.com/support)
 - [Changelog](https://developers.facebook.com/docs/graph-api/changelog)
 - [Blog](https://developers.meta.com/blog/)
-- [Website](https://www.meta.com)
-- [Sign Up](https://developers.facebook.com/async/registration/)
-- [S D Ks](https://developers.facebook.com/docs/business-sdk/getting-started)
-- [GitHub Organization](https://github.com/facebook)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/facebook-graph-api)
-- [Community](https://developers.facebook.com/community)
-- [Developer  Tools](https://developers.facebook.com/tools/explorer)
-- [L L Ms Txt](https://developers.facebook.com/llms.txt)
+- [Terms of service](https://developers.facebook.com/terms)
+- [Privacy policy](https://www.facebook.com/privacy/explanation)
+- [GitHub](https://github.com/facebook)
+- [Status](https://metastatus.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 67.0** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 59.8 |
+| Contract governance | 28.0 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 83.9 |
+| Access clarity | 56.6 |
+
+**Agent readiness 45.4** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 41.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/facebook-business-manager/](https://apis.io/providers/facebook-business-manager/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Facebook Business Manager: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/facebook-business-manager/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
