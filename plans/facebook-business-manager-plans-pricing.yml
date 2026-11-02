@@ -1,0 +1,174 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Facebook Business Manager
+providerId: facebook-business-manager
+created: '2026-05-04'
+# 2026-08-13: upgraded generated -> searched. Re-read Meta's Marketing API get-started, the Graph API
+# rate-limiting guide and the Permissions Reference on 2026-08-13. Finding confirmed: Meta charges NOTHING
+# for API access itself. There is no per-call price, no API plan and no metered API tier anywhere on the
+# developer surface. What gates you is App Review tier, not money. All revenue is downstream — ad spend and
+# WhatsApp per-conversation pricing.
+method: searched
+source: https://developers.facebook.com/docs/marketing-api/get-started
+modified: '2026-08-13'
+verified: '2026-08-13'
+plan_count: 3
+reconciled: true
+tags:
+  - Advertising
+  - Analytics
+  - Business Management
+  - Marketing
+  - Social Media
+description: Facebook Business Manager (now part of Meta Business Suite) is free to use. The Marketing,
+  Pages, Conversions, Catalog, and related Graph APIs that Business Manager exposes are not directly billed;
+  monetization is downstream via Meta Ads spend and per-conversation WhatsApp Business pricing. API access
+  is gated by App Review tiers (Development / Standard / Advanced) which determine rate-limit ceilings.
+sources:
+  - https://www.facebook.com/business/tools/meta-business-suite
+  - https://developers.facebook.com/docs/marketing-api/overview/authorization
+  - https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+plans:
+  - id: facebook-business-manager-free
+    name: Free (Business Manager / Meta Business Suite)
+    type: freemium
+    description: Free use of Meta Business Suite and the Business Manager API surface. No per-call API
+      fees. Rate limits enforced by App Review tier.
+    entries:
+      - label: API Requests
+        description: Free API access; throttled by app-level and BUC formulas tied to engaged users /
+          active ads.
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: usage
+        geo: global
+        domains:
+          - https://graph.facebook.com/v18.0
+          - https://graph.facebook.com/v25.0
+          - https://graph.threads.net/v25.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Meta Business Suite Console
+      - name: Pages, Ad Accounts, Catalogs, Pixels Management
+      - name: Roles & Permissions
+      - name: Public Documentation
+      - name: Facebook Marketing API
+      - name: Facebook Pages API
+      - name: Facebook Conversions API
+      - name: Facebook Business Asset API
+      - name: Facebook Catalog API
+      - name: Facebook Insights API
+  - id: facebook-business-manager-advanced-access
+    name: Advanced Access (App Review)
+    type: freemium
+    description: After Business Verification + App Review, apps unlock significantly higher BUC rate limits.
+      No additional API fee.
+    entries:
+      - label: Ads Management Calls
+        description: 'Advanced Access ceiling: 100000 + 40 * Number of Active ads, per hour.'
+        name: ads_management_calls
+        type: rate
+        metric: calls_per_hour
+        limit: 100000
+        timeFrame: hour
+        geo: global
+        domains:
+          - https://graph.facebook.com/v25.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Ads Insights Calls
+        description: 'Advanced Access ceiling: 190000 + 400 * Number of Active ads, per hour.'
+        name: ads_insights_calls
+        type: rate
+        metric: calls_per_hour
+        limit: 190000
+        timeFrame: hour
+        geo: global
+        domains:
+          - https://graph.facebook.com/v25.0
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Business Verification
+      - name: Higher BUC Rate Ceilings
+      - name: Full Permission Scopes
+  - id: facebook-business-manager-downstream-spend
+    name: Downstream Spend (Ads + WhatsApp Business)
+    type: usage-based
+    description: API access is free, but the campaigns and conversations driven through Business Manager
+      are billed by Meta. Ads spend is set via campaign budgets; WhatsApp Business charges per 24-hour
+      conversation by category and country.
+    entries:
+      - label: Ad Spend
+        description: Variable per campaign, country, and placement; billed against the ad account on the
+          Business Manager.
+        name: ad_spend
+        type: metered
+        metric: USD
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://www.facebook.com/business/ads/pricing
+        userMultiplied: false
+      - label: WhatsApp Conversation
+        description: Per 24-hour conversation, by category (Marketing, Utility, Authentication, Service)
+          and destination country.
+        name: whatsapp_conversation
+        type: metered
+        metric: conversation
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://developers.facebook.com/docs/whatsapp/pricing
+        userMultiplied: false
+    elements:
+      - name: Meta Ads Manager
+      - name: WhatsApp Business Platform
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  units:
+  - compute
+  - money
+  - request
+  plans:
+  - name: Free (Business Manager / Meta Business Suite)
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
+  - name: Advanced Access (App Review)
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - hour
+  - name: Downstream Spend (Ads + WhatsApp Business)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - money
+    - other
+    periods:
+    - per-use
